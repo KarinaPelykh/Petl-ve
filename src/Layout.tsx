@@ -4,7 +4,7 @@ import { Outlet } from "react-router";
 export const Layout = () => {
   return (
     <div>
-      <header>
+      <header className="container">
         <nav>
           <ul>
             <li>News</li>

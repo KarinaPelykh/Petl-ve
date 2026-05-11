@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Manrope";
+  src: url("/assets/fonts/Manrope-Bold.ttf");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Manrope";
+  src: url("/assets/fonts/Manrope-Light.ttf");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Manrope";
+  src: url("/assets/fonts/Manrope-Medium.ttf");
+  font-weight: 500;
+}
+
+@theme inline {
+  --color-*: initial;
+
+  --color-yellow: #f6b83d;
+  --color-yellow-100: #f9b020;
+  --color-white: #ffffff;
+  --color-black: #262626;
+  --color-cream: #fff4df;
+  --color-red: #ef2447;
+  --color-green: #08aa83;
+  --color-blue: #54adff;
+  --color-pink: #f43f5e;
+  --color-dark-cream: #fbe7c1;
+  --color-grey: #f9f9f9;
+
+  --rounded-*: initial;
+
+  --rounded-xs: 15px;
+  --rounded-s: 16px;
+  --rounded-ms: 30px;
+  --rounded-m: 60px;
+  --rounded-full: 100px;
+
+  --text-*: initial;
+
+  --text-xs: 10px;
+  --text-xs-font-weight: 500;
+  --text-xs-line-height: 8px;
+
+  --text-s: 12px;
+  --text-s-font-weight: 500;
+  --text-s-line-height: 10.2px;
+
+  --text-ms: 14px;
+  --text-ms-font-weight: 500;
+  --text-ms-line-height: 18.06px;
+
+  --text-m: 16px;
+  --text-m-font-weight: 700;
+  --text-m-line-height: 13px;
+
+  --text-xl: 18px;
+  --text-xl-font-weight: 700;
+  --text-xl-line-height: 13.5px;
+
+  --text-1xl: 20px;
+  --text-1xl-font-weight: 700;
+  --text-1xl-line-height: 15.34px;
+
+  --text-2xl: 24px;
+  --text-2xl-font-weight: 700;
+  --text-2xl-line-height: 24px;
+
+  --text-3xl: 32px;
+  --text-3xl-font-weight: 700;
+  --text-3xl-line-height: 32px;
+
+  --text-4xl: 54px;
+  --text-4xl-font-weight: 700;
+  --text-4xl-line-height: 54px;
+
+  --font-*: initial;
+  --font-manrope: "Manrope", sans-serif;
+}
+
+/* .container {
+  padding: 0 20px;
+  margin: 0 auto;
+  max-width: 767px;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    padding: 0 32px;
+    max-width: 1215px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    max-width: 1280px;
+  }
+} */
