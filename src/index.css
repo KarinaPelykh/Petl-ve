@@ -33,13 +33,12 @@
   --color-dark-cream: #fbe7c1;
   --color-grey: #f9f9f9;
 
-  --rounded-*: initial;
-
-  --rounded-xs: 15px;
-  --rounded-s: 16px;
-  --rounded-ms: 30px;
-  --rounded-m: 60px;
-  --rounded-full: 100px;
+  --radius-*: initial;
+  --radius-xs: 15px;
+  --radius-s: 16px;
+  --radius-ms: 30px;
+  --radius-m: 60px;
+  --radius-full: 100px;
 
   --text-*: initial;
 
@@ -81,9 +80,14 @@
 
   --font-*: initial;
   --font-manrope: "Manrope", sans-serif;
+
+  --breakpoint-*: initial;
+  --breakpoint-mobile: 360px;
+  --breakpoint-tablet-l: 768px;
+  --breakpoint-desktop-l: 1440px;
 }
 
-/* .container {
+.container {
   padding: 0 20px;
   margin: 0 auto;
   max-width: 767px;
@@ -98,6 +102,6 @@
 
 @media screen and (min-width: 1440px) {
   .container {
-    max-width: 1280px;
+    max-width: 100%;
   }
-} */
+}

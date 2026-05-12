@@ -5,11 +5,13 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         {/* public routes for authUser */}
-        <Route index element={<p>Login</p>} />
+        <Route index path="login" element={<p>Login</p>} />
         <Route path="register" element={<p>register</p>} />
+        <Route path="home" element={<p>Home</p>} />
+
         {/* public routes  */}
         <Route path="news" element={<p>news</p>} />
-        <Route path="notices" element={<p>notices</p>} />
+        <Route path="findPet" element={<p>Find pet</p>} />
         <Route path="friends" element={<p>friends</p>} />
         {/* private routes */}
         {/* <Route path="profile" element={<p>user profile</p>} /> */}
