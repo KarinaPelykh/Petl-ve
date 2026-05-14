@@ -1,18 +1,27 @@
+import clsx from "clsx";
 import { Link } from "react-router";
 
-type Nav = { name: string; link: string };
+const nav = [
+  { link: "news", name: "News" },
+  { link: "findPet", name: "Find pet" },
+  { link: "friends", name: "Our friends" },
+];
 
-type HeaderNavListProps = {
-  nav: Nav[];
-};
+type HeaderNavListProps = { className: string; itemClassName?: string };
 
-export const HeaderNavList = ({ nav }: HeaderNavListProps) => {
+export const HeaderNavList = ({
+  className,
+  itemClassName,
+}: HeaderNavListProps) => {
   return (
-    <ul className="hidden desktop-l:flex desktop-l:gap-2.5">
+    <ul className={clsx(className, "gap-2 ")}>
       {nav.map((item) => (
         <li
           key={item.name}
-          className="py-3.75 px-5 border border-black/15 rounded-ms"
+          className={clsx(
+            "py-3.75  flex items-center px-5 border border-black/15 rounded-ms  text-ms w-fit",
+            itemClassName,
+          )}
         >
           <Link to={item.link}> {item.name}</Link>
         </li>
