@@ -1,0 +1,18 @@
+.bg {
+  background-image: url("/image/mob/login.png");
+  background-reaped: no-repeat;
+
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  @media screen and (min-width: 768px) {
+    background-image: url("/public/image/tablet-log.png");
+
+    background-position: 80%;
+  }
+  @media screen and (min-width: 1440px) {
+    background-image: url("/public/image/pet-webP/register-dog2x.webp");
+    background-position: bottom;
+  }
+}

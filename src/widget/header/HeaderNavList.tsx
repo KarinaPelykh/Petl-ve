@@ -19,7 +19,7 @@ export const HeaderNavList = ({
         <li
           key={item.name}
           className={clsx(
-            "py-3.75  flex items-center px-5 border border-black/15 rounded-ms  text-ms w-fit",
+            "py-3.75  flex items-center px-5 border border-black/15 rounded-ms  text-ms w-fit  transition-colors  duration-500 hover:border-yellow",
             itemClassName,
           )}
         >

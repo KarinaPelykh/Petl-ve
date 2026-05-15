@@ -5,7 +5,7 @@ import { HeaderBurgerMenu } from "./HeaderBurgerMenu";
 
 export const Header = () => {
   return (
-    <header className="pb-5 pt-7 tablet-l:pt-8.5  desktop-l:py-8 ">
+    <header className="container pb-5 pt-7 tablet-l:pt-8.5  desktop-l:py-8 ">
       <nav className="flex justify-between items-center">
         <Link to="home">
           <Icon

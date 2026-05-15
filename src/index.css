@@ -66,17 +66,21 @@
   --text-1xl-font-weight: 700;
   --text-1xl-line-height: 15.34px;
 
-  --text-2xl: 24px;
+  --text-2xl: 28px;
   --text-2xl-font-weight: 700;
-  --text-2xl-line-height: 24px;
+  --text-2xl-line-height: 15.34px;
 
-  --text-3xl: 32px;
+  --text-3xl: 24px;
   --text-3xl-font-weight: 700;
-  --text-3xl-line-height: 32px;
+  --text-3xl-line-height: 24px;
 
-  --text-4xl: 54px;
+  --text-4xl: 32px;
   --text-4xl-font-weight: 700;
-  --text-4xl-line-height: 54px;
+  --text-4xl-line-height: 32px;
+
+  --text-5xl: 54px;
+  --text-5xl-font-weight: 700;
+  --text-5xl-line-height: 54px;
 
   --font-*: initial;
   --font-manrope: "Manrope", sans-serif;
@@ -88,14 +92,18 @@
 }
 
 .container {
-  padding: 0 20px;
+  padding-right: 20px;
+  padding-left: 20px;
+
   margin: 0 auto;
   max-width: 767px;
 }
 
 @media screen and (min-width: 768px) {
   .container {
-    padding: 0 32px;
+    padding-right: 32px;
+    padding-left: 32px;
+
     max-width: 1215px;
   }
 }

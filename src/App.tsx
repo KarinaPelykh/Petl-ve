@@ -1,11 +1,12 @@
 import { Route, Routes } from "react-router";
 import { Layout } from "./app/Layout";
+import { LoginPage } from "./pages/Login";
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
         {/* public routes for authUser */}
-        <Route index path="login" element={<p>Login</p>} />
+        <Route index path="login" element={<LoginPage />} />
         <Route path="register" element={<p>register</p>} />
         <Route path="home" element={<p>Home</p>} />
 
