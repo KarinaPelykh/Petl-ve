@@ -8,10 +8,11 @@ import {
   MessageText,
 } from "../../../shared/ui/Form";
 import { Heading } from "../../../shared/ui/Heading";
+import { PasswordInput } from "../../../shared/ui/PasswordInput";
 
 export const LoginForm = () => {
   return (
-    <Form className="py-15 tablet-l:rounded-m tablet-l:py-17.75 tablet-l:px-35 desktop-l:px-21 desktop-l:py-29.5">
+    <Form className="py-15 tablet-l:rounded-m tablet-l:py-17.75 tablet-l:px-35 desktop-l:px-21 desktop-l:py-29.5 desktop-l:w-1/2">
       <Heading className="tablet-l:text-5xl tablet-l:mb-4" as="h1">
         Log in
       </Heading>
@@ -25,7 +26,7 @@ export const LoginForm = () => {
       </FromField>
       <FromField name="password">
         <Label htmlFor="email" />
-        <Input type="password" placeholder="Password" />
+        <PasswordInput placeholder="Password" />
         <MessageText />
       </FromField>
       <Button className="bg-yellow w-full text-white uppercase mb-3 tablet-l:mt-16 desktop-l:py-4">

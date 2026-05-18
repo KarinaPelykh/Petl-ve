@@ -51,13 +51,14 @@ export const Form = ({
 export const FromField = ({
   name = "",
   children,
+  className,
   ...props
 }: FormItemsProps<"div">) => {
   // const value = useFormContext();
 
   return (
     <FormContext.Provider value={{ name }}>
-      <div className="mb-2.5 last:mb-0 tablet-l:mb-4s" {...props}>
+      <div className={clsx("mb-2.5  tablet-l:mb-4", className)} {...props}>
         {children}
       </div>
     </FormContext.Provider>
@@ -71,7 +72,7 @@ export const Label = ({ children, ...props }: ComponentProps<"label">) => {
 export const Input = ({ ...props }: ComponentProps<"input">) => {
   return (
     <input
-      className="p-3 desktop-l:p-4 border border-black/50 placeholder:text-black/50 rounded-ms w-full outline-none text-black/50"
+      className="p-3  desktop-l:p-4 border h-10.5 border-black/50 placeholder:text-black/50 text-ms rounded-ms w-full outline-none text-black/50"
       {...props}
     />
   );

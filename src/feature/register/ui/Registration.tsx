@@ -8,14 +8,15 @@ import {
   MessageText,
 } from "../../../shared/ui/Form";
 import { Heading } from "../../../shared/ui/Heading";
+import { PasswordInput } from "../../../shared/ui/PasswordInput";
 
 export const RegistrationForm = () => {
   return (
-    <Form className="py-15 tablet-l:rounded-m tablet-l:py-17.75 tablet-l:px-35 desktop-l:px-21 desktop-l:py-29.5">
+    <Form className="py-6.75 tablet-l:rounded-m tablet-l:py-7.5 tablet-l:px-35 desktop-l:px-21 desktop-l:py-19.25  desktop-l:w-1/2">
       <Heading className="tablet-l:text-5xl tablet-l:mb-4" as="h1">
         Register
       </Heading>
-      <p className="text-ms mb-6 tablet-l:text-m desktop-l:mb-8">
+      <p className="text-ms mb-5 tablet-l:text-xl  tablet-l:mb-8 desktop-l:mb-8">
         Thank you for your interest in our platform.
       </p>
       <FromField name="name">
@@ -30,15 +31,15 @@ export const RegistrationForm = () => {
       </FromField>
       <FromField name="password">
         <Label htmlFor="password" />
-        <Input type="password" placeholder="Password" />
+        <PasswordInput placeholder="Password" />
         <MessageText />
       </FromField>
-      <FromField name="confirmPassword">
+      <FromField name="confirmPassword" className="mb-6 tablet-l:mb-8">
         <Label htmlFor="confirmPassword" />
-        <Input type="password" placeholder="Confirm password" />
+        <PasswordInput placeholder="Confirm password" />
         <MessageText />
       </FromField>
-      <Button className="bg-yellow w-full text-white uppercase mb-3 tablet-l:mt-16 desktop-l:py-4">
+      <Button className="bg-yellow w-full text-white uppercase  mb-3  desktop-l:py-4 text-ms">
         Registration
       </Button>
       <p className="text-black/50 text-s text-center  tablet-l:text-ms">

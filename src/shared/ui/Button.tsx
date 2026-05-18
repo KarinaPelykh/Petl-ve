@@ -5,11 +5,18 @@ type ButtonProps = {
   children: ReactNode;
   className?: string;
   onClick?: () => void;
+  type?: "button" | "submit";
 };
 
-export const Button = ({ children, className, onClick }: ButtonProps) => {
+export const Button = ({
+  type = "button",
+  children,
+  className,
+  onClick,
+}: ButtonProps) => {
   return (
     <button
+      type={type}
       className={clsx(" p-3 text-center rounded-ms ", className)}
       onClick={onClick}
     >

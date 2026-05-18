@@ -16,15 +16,17 @@ export const HeaderNavList = ({
   return (
     <ul className={clsx(className, "gap-2 ")}>
       {nav.map((item) => (
-        <li
-          key={item.name}
-          className={clsx(
-            "py-3.75  flex items-center px-5 border border-black/15 rounded-ms  text-ms w-fit  transition-colors  duration-500 hover:border-yellow",
-            itemClassName,
-          )}
-        >
-          <Link to={item.link}> {item.name}</Link>
-        </li>
+        <Link to={item.link}>
+          <li
+            key={item.name}
+            className={clsx(
+              "py-3.75  flex items-center px-5 border border-black/15 rounded-ms  text-ms w-fit  transition-colors  duration-500 hover:border-yellow",
+              itemClassName,
+            )}
+          >
+            {item.name}
+          </li>
+        </Link>
       ))}
     </ul>
   );

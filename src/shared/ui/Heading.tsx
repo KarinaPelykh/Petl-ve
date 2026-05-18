@@ -16,7 +16,7 @@ type HeadingProps = {
 export const Heading = ({ as, children, className }: HeadingProps) => {
   return createElement(
     acceptedHeading[as],
-    { className: clsx("text-2xl mb-3", className) },
+    { className: clsx("text-2xl mb-3 ", className) },
     children,
   );
 };
