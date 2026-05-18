@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 
 const authNav = [
   { link: "login", name: "Log in" },
@@ -9,6 +9,9 @@ const authNav = [
 type HeaderAuthListProps = { className: string };
 
 export const HeaderAuthList = ({ className }: HeaderAuthListProps) => {
+  const location = useLocation();
+  const homePage = location.pathname === "/";
+
   return (
     <ul className={clsx(className, "gap-2 ")}>
       {authNav.map((item) => (
@@ -20,6 +23,7 @@ export const HeaderAuthList = ({ className }: HeaderAuthListProps) => {
               item.name === "Log in"
                 ? "bg-yellow text-white px-8.75"
                 : " text-yellow bg-cream",
+              homePage && "border border-white",
             )}
           >
             {item.name}

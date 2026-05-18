@@ -1,11 +1,13 @@
 import { Suspense } from "react";
-import { Outlet } from "react-router";
+import { Outlet, useLocation } from "react-router";
 import { Header } from "../widget/header";
 
 export const Layout = () => {
+  const location = useLocation();
+
   return (
     <>
-      <Header />
+      {location.pathname !== "/" && <Header />}
       <Suspense>
         <Outlet />
       </Suspense>

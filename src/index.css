@@ -48,40 +48,51 @@
   --text-xs-line-height: 8px;
 
   --text-s: 12px;
-  --text-s-font-weight: 500;
-  --text-s-line-height: 10.2px;
+  --text-s--font-weight: 500;
+  --text-s--line-height: 10.2px;
 
   --text-ms: 14px;
-  --text-ms-font-weight: 500;
-  --text-ms-line-height: 18.06px;
+  --text-ms--font-weight: 500;
+  --text-ms--line-height: 18.06px;
 
   --text-m: 16px;
-  --text-m-font-weight: 700;
-  --text-m-line-height: 13px;
+  --text-m--font-weight: 700;
+  --text-m--line-height: 13px;
 
   --text-xl: 18px;
-  --text-xl-font-weight: 700;
-  --text-xl-line-height: 13.5px;
+  --text-xl--line-height: 22px;
 
   --text-1xl: 20px;
   --text-1xl-font-weight: 700;
   --text-1xl-line-height: 15.34px;
 
   --text-2xl: 28px;
-  --text-2xl-font-weight: 700;
-  --text-2xl-line-height: 15.34px;
+  --text-2xl--font-weight: 700;
+  --text-2xl--line-height: 15.34px;
 
   --text-3xl: 24px;
-  --text-3xl-font-weight: 700;
-  --text-3xl-line-height: 24px;
+  --text-3xl--font-weight: 700;
+  --text-3xl--line-height: 24px;
 
   --text-4xl: 32px;
-  --text-4xl-font-weight: 700;
-  --text-4xl-line-height: 32px;
+  --text-4xl--font-weight: 700;
+  --text-4xl--line-height: 32px;
 
-  --text-5xl: 54px;
-  --text-5xl-font-weight: 700;
-  --text-5xl-line-height: 54px;
+  --text-5xl: 50px;
+  --text-5xl--font-weight: 700;
+  --text-5xl--line-height: 48px;
+
+  --text-6xl: 54px;
+  --text-6xl--font-weight: 700;
+  --text-6xl--line-height: 55px;
+
+  --text-7xl: 80px;
+  --text-7xl--font-weight: 700;
+  --text-7xl--line-height: 77px;
+
+  --text-8xl: 90px;
+  --text-8xl--font-weight: 700;
+  --text-8xl--line-height: 87px;
 
   --font-*: initial;
   --font-manrope: "Manrope", sans-serif;

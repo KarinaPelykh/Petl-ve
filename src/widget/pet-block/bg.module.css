@@ -1,37 +1,37 @@
 .bgDog {
-  background-image: url("/public/image/pet-webP/mob/dog2@x.webp");
+  background-image: url("/image/pet-webP/mob/dog2@x.webp");
   background-reaped: no-repeat;
 
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center bottom;
 
   @media screen and (min-width: 768px) {
-    background-image: url("/public/image/pet-webP/tablet/dog2@x.webp");
+    background-image: url("/image/pet-webP/tablet/dog2@x.webp");
 
     background-position: 70%;
   }
   @media screen and (min-width: 1440px) {
-    background-image: url("/public/image/pet-webP/desktop/dog2@x.webp");
+    background-image: url("/image/pet-webP/desktop/dog2@x.webp");
     background-position: bottom;
   }
 }
 
 .bgCat {
-  background-image: url("/public/image/pet-webP/mob/cat2@x.webp");
+  background-image: url("/image/pet-webP/mob/cat2@x.webp");
   background-reaped: no-repeat;
 
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center bottom;
 
   @media screen and (min-width: 768px) {
-    background-image: url("/public/image/pet-webP/tablet/cat2@x.webp");
+    background-image: url("/image/pet-webP/tablet/cat2@x.webp");
 
     background-position: 70%;
   }
   @media screen and (min-width: 1440px) {
-    background-image: url("/public/image/pet-webP/desktop/cat2@x.webp");
+    background-image: url("/image/pet-webP/desktop/cat2@x.webp");
     background-position: bottom;
   }
 }
