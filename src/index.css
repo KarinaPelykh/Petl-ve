@@ -98,6 +98,10 @@
   --text-9xl--font-weight: 800;
   --text-9xl--line-height: 144px;
 
+  --text-10xl: 300px;
+  --text-10xl--font-weight: 800;
+  --text-10xl--line-height: 300px;
+
   --font-*: initial;
   --font-manrope: "Manrope", sans-serif;
 
