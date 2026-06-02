@@ -4,6 +4,7 @@ import { LoginPage } from "./pages/Login";
 import { RegisterPage } from "./pages/Register";
 import { HomePage } from "./pages/Home";
 import { NotFound } from "./pages/NotFound";
+import { News } from "./pages/News";
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
         <Route path="login" element={<LoginPage />} />
         <Route path="register" element={<RegisterPage />} />
         {/* public routes  */}
-        <Route path="news" element={<p>news</p>} />
+        <Route path="news" element={<News />} />
         <Route path="findPet" element={<p>Find pet</p>} />
         <Route path="friends" element={<p>friends</p>} />
         {/* private routes */}

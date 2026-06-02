@@ -48,7 +48,7 @@ export const Form = ({
   );
 };
 
-export const FromField = ({
+export const FormField = ({
   name = "",
   children,
   className,

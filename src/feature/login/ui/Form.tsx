@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import { Button } from "../../../shared/ui/Button";
 import {
   Form,
-  FromField,
+  FormField,
   Input,
   Label,
   MessageText,
@@ -19,16 +19,16 @@ export const LoginForm = () => {
       <p className="text-ms mb-6 tablet-l:text-m desktop-l:mb-8">
         Welcome! Please enter your credentials to login to the platform:
       </p>
-      <FromField name="email">
+      <FormField name="email">
         <Label htmlFor="email" />
         <Input type="text" placeholder="Email" />
         <MessageText />
-      </FromField>
-      <FromField name="password">
+      </FormField>
+      <FormField name="password">
         <Label htmlFor="email" />
         <PasswordInput placeholder="Password" />
         <MessageText />
-      </FromField>
+      </FormField>
       <Button className="bg-yellow w-full text-white uppercase mb-3 tablet-l:mt-16 desktop-l:py-4">
         Log In
       </Button>

@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import { Button } from "../../../shared/ui/Button";
 import {
   Form,
-  FromField,
+  FormField,
   Input,
   Label,
   MessageText,
@@ -19,26 +19,26 @@ export const RegistrationForm = () => {
       <p className="text-ms mb-5 tablet-l:text-xl  tablet-l:mb-8 desktop-l:mb-8">
         Thank you for your interest in our platform.
       </p>
-      <FromField name="name">
+      <FormField name="name">
         <Label htmlFor="name" />
         <Input type="text" placeholder="Name" />
         <MessageText />
-      </FromField>
-      <FromField name="email">
+      </FormField>
+      <FormField name="email">
         <Label htmlFor="email" />
         <Input type="text" placeholder="Email" />
         <MessageText />
-      </FromField>
-      <FromField name="password">
+      </FormField>
+      <FormField name="password">
         <Label htmlFor="password" />
         <PasswordInput placeholder="Password" />
         <MessageText />
-      </FromField>
-      <FromField name="confirmPassword" className="mb-6 tablet-l:mb-8">
+      </FormField>
+      <FormField name="confirmPassword" className="mb-6 tablet-l:mb-8">
         <Label htmlFor="confirmPassword" />
         <PasswordInput placeholder="Confirm password" />
         <MessageText />
-      </FromField>
+      </FormField>
       <Button className="bg-yellow w-full text-white uppercase  mb-3  desktop-l:py-4 text-ms">
         Registration
       </Button>
