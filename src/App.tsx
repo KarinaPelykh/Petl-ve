@@ -5,6 +5,7 @@ import { RegisterPage } from "./pages/Register";
 import { HomePage } from "./pages/Home";
 import { NotFound } from "./pages/NotFound";
 import { News } from "./pages/News";
+import { OurFriends } from "./pages/OurFriends";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
         {/* public routes  */}
         <Route path="news" element={<News />} />
         <Route path="findPet" element={<p>Find pet</p>} />
-        <Route path="friends" element={<p>friends</p>} />
+        <Route path="friends" element={<OurFriends />} />
         {/* private routes */}
         {/* <Route path="profile" element={<p>user profile</p>} /> */}
       </Route>
