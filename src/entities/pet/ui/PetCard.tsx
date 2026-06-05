@@ -4,7 +4,7 @@ import { Icon } from "../../../shared/ui/Icon";
 
 export const PetCard = () => {
   return (
-    <article className="p-6 bg-white rounded-s desktop-l:w-[363px]">
+    <article className="p-6 bg-white rounded-s desktop-l:w-90.75">
       <div className="rounded-s overflow-hidden  mb-6">
         <img
           src="/public/image/image1.png"
