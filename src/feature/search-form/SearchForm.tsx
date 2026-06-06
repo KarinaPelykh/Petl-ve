@@ -1,6 +1,6 @@
 import type { SetStateAction } from "react";
 import { Form } from "../../shared/ui/Form";
-import { SearchField } from "../../shared/ui/SearchField/SearchField";
+import { SearchField } from "../../shared/ui/SearchField";
 
 type SearchFormProps = {
   search: string;

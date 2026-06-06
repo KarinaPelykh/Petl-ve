@@ -1,6 +1,6 @@
 import type { Dispatch, SetStateAction } from "react";
 import { Form } from "../../shared/ui/Form";
-import { SearchField } from "../../shared/ui/SearchField/SearchField";
+import { SearchField } from "../../shared/ui/SearchField";
 import { CATEGORY, GENDER, TYPE } from "./constants";
 import { Select } from "./Select";
 import type { Filter } from "../../pages/FindPet";

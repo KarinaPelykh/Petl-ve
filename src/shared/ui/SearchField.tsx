@@ -1,7 +1,7 @@
 import clsx from "clsx";
-import { Button } from "../Button";
-import { FormField, Input, Label, MessageText } from "../Form";
-import { Icon } from "../Icon";
+import { Button } from "./Button";
+import { FormField, Input, Label, MessageText } from "./Form";
+import { Icon } from "./Icon";
 
 type SearchFieldProps = {
   value: string;

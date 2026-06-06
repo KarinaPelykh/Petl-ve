@@ -1,4 +1,4 @@
-import { PartnerCard } from "../../entities/parner/ui/PartnerCard";
+import { PartnerCard } from "../../entities/partner/ui/PartnerCard";
 
 export const PartnerList = () => {
   return (
