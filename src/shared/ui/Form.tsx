@@ -69,10 +69,18 @@ export const Label = ({ children, ...props }: ComponentProps<"label">) => {
   return <label {...props}>{children}</label>;
 };
 
-export const Input = ({ ...props }: ComponentProps<"input">) => {
+export const Input = ({
+  onChange,
+  className,
+  ...props
+}: ComponentProps<"input">) => {
   return (
     <input
-      className="p-3  desktop-l:p-4 border h-10.5 border-black/50 placeholder:text-black/50 text-ms rounded-ms w-full outline-none text-black/50"
+      onChange={onChange}
+      className={clsx(
+        "p-3  desktop-l:p-4 border h-10.5 border-black/50 placeholder:text-black/50 placeholder:capitalize text-ms rounded-ms w-full outline-none text-black/50",
+        className,
+      )}
       {...props}
     />
   );

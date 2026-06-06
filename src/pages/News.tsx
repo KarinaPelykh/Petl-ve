@@ -1,9 +1,12 @@
+import { useState } from "react";
 import { SearchForm } from "../feature/search-form/SearchForm";
 
 import { Heading } from "../shared/ui/Heading";
 import { NewsList } from "../widget/news-list/NewsList";
 
 export const News = () => {
+  const [search, setSearch] = useState("");
+
   return (
     <section className="pt-15 pb-11">
       <div className="container">
@@ -11,7 +14,7 @@ export const News = () => {
           <Heading as="h1" variant="first" className="mb-5  tablet-l:mb-0">
             News
           </Heading>
-          <SearchForm />
+          <SearchForm search={search} setSearch={setSearch} />
         </div>
         <NewsList />
       </div>
