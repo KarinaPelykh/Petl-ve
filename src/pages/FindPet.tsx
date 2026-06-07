@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PetCard } from "../entities/pet/ui/PetCard";
 import { Heading } from "../shared/ui/Heading";
 import { SearchPetForm } from "../feature/search-pet/SearchPetForm";
+import { getNotices } from "../shared/api/redux/notices/operations";
+import { notices } from "../shared/api/redux/notices/selectors";
+import { useAppDispatch, useAppSelector } from "../shared/hooks/reduxHooks";
 
 export type Filter = {
   search: string;
@@ -19,7 +22,14 @@ export const FindPets = () => {
     animalType: "",
     location: "",
   });
-  console.log(filter);
+
+  const dispatch = useAppDispatch();
+
+  const data = useAppSelector(notices);
+
+  useEffect(() => {
+    dispatch(getNotices());
+  }, [dispatch]);
 
   return (
     <section className="py-13.5">
@@ -31,7 +41,9 @@ export const FindPets = () => {
 
         <div className="flex justify-center">
           <ul className="grid gap-5  tablet-l:grid-cols-2 desktop-l:grid-cols-3 desktop-l:gap-8">
-            <PetCard />
+            {data.map((notice) => (
+              <PetCard key={notice._id} notice={notice} />
+            ))}
           </ul>
         </div>
       </div>
