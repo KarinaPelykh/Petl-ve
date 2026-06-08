@@ -1,35 +1,39 @@
+import type { New } from "../../shared/api/redux/news/types";
 import { Button } from "../../shared/ui/Button";
 import { Heading } from "../../shared/ui/Heading";
-export const NewsCard = () => {
+
+type NewsCardProps = {
+  item: New;
+};
+
+export const NewsCard = ({ item }: NewsCardProps) => {
   return (
-    <li>
-      <div className="rounded-xs mb-5 bg-yellow overflow-hidden tablet-l:mb-7">
+    <li className="desktop-l:h-[476px] desktop-l:w-fit">
+      <div className="rounded-xs mb-5 overflow-hidden tablet-l:mb-7 w-fit">
         <img
           alt="new"
-          src=""
+          src={item.imgUrl}
           width={335}
           height={190}
-          className="block w-full h-auto"
+          className="block w-full h-auto desktop-l:w-[361px] desktop-l:h-[226px]"
         />
       </div>
 
-      <div>
+      <div className="desktop-l:py-7 flex flex-col desktop-l:w-[361px]">
         <Heading
           as="h2"
           className="text-m mb-3 tablet-l:text-1xl tablet-l:mb-3.5"
         >
-          On Pets, Moral Logic and Love
+          {item.title}
         </Heading>
-        <p className="text-ms mb-5 tablet-l:text-m tablet-l:mb-7 tablet-l:font-medium">
-          In January, I fell in love with someone. It was the last thing I’d
-          expect and caught me completely off guard. He has sandy blond hair
-          with flecks of gray and gorgeous, sad eyes.
+        <p className="text-ms mb-5 tablet-l:text-m tablet-l:font-medium">
+          {item.text}
         </p>
         <div
           className="flex justify-between items-center text-ms tablet-l:font-medium
  tablet-l:text-m"
         >
-          <span className="text-black/50 ">15/03/2023</span>
+          <span className="text-black/50 ">{item.date}</span>
           <Button className="text-yellow underline p-0! ">Read more</Button>
         </div>
       </div>

@@ -1,9 +1,16 @@
+import type { New } from "../../shared/api/redux/news/types";
 import { NewsCard } from "./NewsCard";
 
-export const NewsList = () => {
+type NewsListProps = {
+  newsData: New[];
+};
+
+export const NewsList = ({ newsData }: NewsListProps) => {
   return (
-    <ul className="grid gap-5 tablet-l:grid-cols-2 desktop-l:grid-cols-3 desktop-l:gap-9">
-      <NewsCard />
+    <ul className="grid gap-6 tablet-l:grid-cols-2 desktop-l:grid-cols-3 desktop-l:gap-y-10 desktop-l:gap-x-[35px]">
+      {newsData.map((item) => (
+        <NewsCard key={item._id} item={item} />
+      ))}
     </ul>
   );
 };
