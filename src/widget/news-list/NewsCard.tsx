@@ -1,4 +1,5 @@
 import type { New } from "../../shared/api/redux/news/types";
+import { useFormatDate } from "../../shared/hooks/useFormatDate";
 import { Button } from "../../shared/ui/Button";
 import { Heading } from "../../shared/ui/Heading";
 
@@ -7,33 +8,36 @@ type NewsCardProps = {
 };
 
 export const NewsCard = ({ item }: NewsCardProps) => {
+  const date = useFormatDate(item.date);
+  
   return (
-    <li className="desktop-l:h-[476px] desktop-l:w-fit">
-      <div className="rounded-xs mb-5 overflow-hidden tablet-l:mb-7 w-fit">
+    <li className="flex flex-col desktop-l:w-90.25 tablet-l:h-119">
+      <div className="rounded-xs mb-5 tablet-l:mb-0! desktop-l:h[226px]   tablet-l:h-56.5 h-47.5 overflow-hidden w-fit">
         <img
-          alt="new"
+          alt="news"
           src={item.imgUrl}
           width={335}
           height={190}
-          className="block w-full h-auto desktop-l:w-[361px] desktop-l:h-[226px]"
+          className="block object-cover w-full h-auto "
         />
       </div>
-
-      <div className="desktop-l:py-7 flex flex-col desktop-l:w-[361px]">
-        <Heading
-          as="h2"
-          className="text-m mb-3 tablet-l:text-1xl tablet-l:mb-3.5"
-        >
-          {item.title}
-        </Heading>
-        <p className="text-ms mb-5 tablet-l:text-m tablet-l:font-medium">
-          {item.text}
-        </p>
+      <div className="flex flex-col flex-1 tablet-l:py-7  ">
+        <div className="flex flex-col">
+          <Heading
+            as="h2"
+            className="text-m mb-3 tablet-l:text-1xl tablet-l:mb-3.5"
+          >
+            {item.title}
+          </Heading>
+          <p className="text-ms tablet-l:text-m tablet-l:font-medium">
+            {item.text}
+          </p>
+        </div>
         <div
-          className="flex justify-between items-center text-ms tablet-l:font-medium
+          className="flex justify-between items-center   tablet-l:mt-auto!  mt-5  text-ms tablet-l:font-medium
  tablet-l:text-m"
         >
-          <span className="text-black/50 ">{item.date}</span>
+          <span className="text-black/50 ">{date}</span>
           <Button className="text-yellow underline p-0! ">Read more</Button>
         </div>
       </div>
