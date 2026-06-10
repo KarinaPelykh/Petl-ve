@@ -6,6 +6,7 @@ import { NewsList } from "../widget/news-list/NewsList";
 import { useAppDispatch, useAppSelector } from "../shared/hooks/reduxHooks";
 import { getNews } from "../shared/api/redux/news/operations";
 import { news } from "../shared/api/redux/news/selectors";
+import { Pagination } from "../shared/ui/Pagination";
 
 export const News = () => {
   const [search, setSearch] = useState("");
@@ -14,7 +15,7 @@ export const News = () => {
   const data = useAppSelector(news);
 
   useEffect(() => {
-    dispatch(getNews());
+    dispatch(getNews(1));
   }, [dispatch]);
 
   return (
@@ -26,7 +27,10 @@ export const News = () => {
           </Heading>
           <SearchForm search={search} setSearch={setSearch} />
         </div>
-        <NewsList newsData={data} />
+        <NewsList newsData={data.results} />
+        <div className=" w-full  flex justify-center mt-15">
+          <Pagination data={data} />
+        </div>
       </div>
     </section>
   );

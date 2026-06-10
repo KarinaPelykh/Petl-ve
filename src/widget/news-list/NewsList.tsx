@@ -8,7 +8,7 @@ type NewsListProps = {
 export const NewsList = ({ newsData }: NewsListProps) => {
   return (
     <ul className="grid gap-6  tablet-l:gap-x-6  tablet-l:gap-y-8 tablet-l:grid-cols-2 desktop-l:grid-cols-3 desktop-l:gap-y-10 desktop-l:gap-x-[35px]">
-      {newsData.map((item) => (
+      {newsData?.map((item) => (
         <NewsCard key={item._id} item={item} />
       ))}
     </ul>

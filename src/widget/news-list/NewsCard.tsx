@@ -1,6 +1,6 @@
+import { Link } from "react-router";
 import type { New } from "../../shared/api/redux/news/types";
 import { useFormatDate } from "../../shared/hooks/useFormatDate";
-import { Button } from "../../shared/ui/Button";
 import { Heading } from "../../shared/ui/Heading";
 
 type NewsCardProps = {
@@ -9,7 +9,7 @@ type NewsCardProps = {
 
 export const NewsCard = ({ item }: NewsCardProps) => {
   const date = useFormatDate(item.date);
-  
+
   return (
     <li className="flex flex-col desktop-l:w-90.25 tablet-l:h-119">
       <div className="rounded-xs mb-5 tablet-l:mb-0! desktop-l:h[226px]   tablet-l:h-56.5 h-47.5 overflow-hidden w-fit">
@@ -38,7 +38,9 @@ export const NewsCard = ({ item }: NewsCardProps) => {
  tablet-l:text-m"
         >
           <span className="text-black/50 ">{date}</span>
-          <Button className="text-yellow underline p-0! ">Read more</Button>
+          <Link to={item.url} target="black" className="text-yellow  p-0! ">
+            Read more
+          </Link>
         </div>
       </div>
     </li>

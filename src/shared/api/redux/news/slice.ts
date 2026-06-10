@@ -3,7 +3,7 @@ import { getNews } from "./operations";
 import type { State } from "./types";
 
 const initialState: State = {
-  items: [],
+  items: {},
   isLoading: false,
 };
 
@@ -12,9 +12,12 @@ const newsSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers(builder) {
-    builder.addCase(getNews.fulfilled, (state, action: PayloadAction<[]>) => {
-      state.items = action.payload;
-    });
+    builder.addCase(
+      getNews.fulfilled,
+      (state, action: PayloadAction<State["items"]>) => {
+        state.items = action.payload;
+      },
+    );
   },
 });
 

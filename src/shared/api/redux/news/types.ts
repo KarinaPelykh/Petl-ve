@@ -7,8 +7,14 @@ export type New = {
   url: string;
   id: string;
 };
+export type Data = {
+  page: number;
+  perPage: number;
+  totalPages: number;
+  results: New[];
+};
 
 export type State = {
-  items: New[];
+  items: Data;
   isLoading: boolean;
 };
