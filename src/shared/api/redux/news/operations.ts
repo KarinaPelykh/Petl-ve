@@ -3,7 +3,7 @@ import { instance } from "../../axios";
 
 export const getNews = createAsyncThunk(
   "news/getAll",
-  async (page, thunkAPI) => {
+  async (page: number, thunkAPI) => {
     try {
       const response = await instance.get(`news?page=${page}`);
       console.log(page);

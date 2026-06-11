@@ -105,6 +105,8 @@
   --font-*: initial;
   --font-manrope: "Manrope", sans-serif;
 
+  --shadow-base: #fbe7c1 0px 10px 15px -3px, #fbe7c1 0px 4px 6px -2px;
+
   --breakpoint-*: initial;
   --breakpoint-mobile: 360px;
   --breakpoint-tablet-l: 768px;

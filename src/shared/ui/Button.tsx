@@ -13,9 +13,11 @@ export const Button = ({
   children,
   className,
   onClick,
+  ...props
 }: ButtonProps) => {
   return (
     <button
+      {...props}
       type={type}
       className={clsx(" p-3 text-center rounded-ms ", className)}
       onClick={onClick}

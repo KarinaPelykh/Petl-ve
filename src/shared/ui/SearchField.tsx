@@ -26,15 +26,15 @@ export const SearchField = ({
           placeholder={type}
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className={clsx("bg-white border-none", className)}
+          className={clsx("border-none bg-white", className)}
         />
         <MessageText />
       </FormField>
 
-      <Button type="submit" className="absolute  top-0 right-0">
+      <Button type="submit" className="absolute top-0 right-0">
         <Icon
           name="search"
-          className="size-4.5 stroke-black fill-transparent "
+          className="size-4.5 fill-transparent stroke-black"
         />
       </Button>
     </div>

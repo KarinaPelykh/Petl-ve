@@ -11,7 +11,7 @@ export const NewsCard = ({ item }: NewsCardProps) => {
   const date = useFormatDate(item.date);
 
   return (
-    <li className="flex flex-col desktop-l:w-90.25 tablet-l:h-119">
+    <li className="flex rounded-xs flex-col desktop-l:w-90.25 tablet-l:h-119 shadow-base">
       <div className="rounded-xs mb-5 tablet-l:mb-0! desktop-l:h[226px]   tablet-l:h-56.5 h-47.5 overflow-hidden w-fit">
         <img
           alt="news"
@@ -21,7 +21,7 @@ export const NewsCard = ({ item }: NewsCardProps) => {
           className="block object-cover w-full h-auto "
         />
       </div>
-      <div className="flex flex-col flex-1 tablet-l:py-7  ">
+      <div className="flex flex-col flex-1 tablet-l:py-7 p-2.5 ">
         <div className="flex flex-col">
           <Heading
             as="h2"
@@ -38,7 +38,11 @@ export const NewsCard = ({ item }: NewsCardProps) => {
  tablet-l:text-m"
         >
           <span className="text-black/50 ">{date}</span>
-          <Link to={item.url} target="black" className="text-yellow  p-0! ">
+          <Link
+            to={item.url}
+            target="black"
+            className="text-yellow  p-0! underline font-normal!"
+          >
             Read more
           </Link>
         </div>
