@@ -1,17 +1,9 @@
 import clsx from "clsx";
-import {
-  createContext,
-  useContext,
-  type ComponentProps,
-  type ElementType,
-  type ReactNode,
-} from "react";
+import { createContext, useContext, useMemo, type ComponentProps } from "react";
 
-type FormItemsProps<T extends ElementType> = {
-  props?: ComponentProps<T>;
-  children?: ReactNode;
+type FormItemsProps = {
   className?: string;
-  name?: string;
+  name: string;
 };
 
 type FormContextProps = {
@@ -30,55 +22,11 @@ export const useFormContext = () => {
   return form;
 };
 
-export const Form = ({
-  className,
-  children,
-  props,
-}: FormItemsProps<"form">) => {
+export const Form = ({ className, ...props }: ComponentProps<"form">) => {
   return (
     <form
       className={clsx(
-        "bg-white rounded-ms flex my-auto flex-col py-7 px-5",
-        className,
-      )}
-      {...props}
-    >
-      {children}
-    </form>
-  );
-};
-
-export const FormField = ({
-  name = "",
-  children,
-  className,
-  ...props
-}: FormItemsProps<"div">) => {
-  // const value = useFormContext();
-
-  return (
-    <FormContext.Provider value={{ name }}>
-      <div className={clsx("mb-2.5  tablet-l:mb-4", className)} {...props}>
-        {children}
-      </div>
-    </FormContext.Provider>
-  );
-};
-
-export const Label = ({ children, ...props }: ComponentProps<"label">) => {
-  return <label {...props}>{children}</label>;
-};
-
-export const Input = ({
-  onChange,
-  className,
-  ...props
-}: ComponentProps<"input">) => {
-  return (
-    <input
-      onChange={onChange}
-      className={clsx(
-        "p-3  desktop-l:p-4 border h-10.5 border-black/50 placeholder:text-black/50 placeholder:capitalize text-ms rounded-ms w-full outline-none text-black/50",
+        "rounded-ms my-auto flex flex-col bg-white px-5 py-7",
         className,
       )}
       {...props}
@@ -86,6 +34,52 @@ export const Input = ({
   );
 };
 
+export const FormField = ({
+  name,
+  children,
+  className,
+  ...props
+}: FormItemsProps & ComponentProps<"div">) => {
+  const value = useMemo(() => ({ name }), [name]);
+
+  return (
+    <FormContext.Provider value={value}>
+      <div {...props} className={clsx("tablet-l:mb-4 mb-2.5", className)}>
+        {children}
+      </div>
+    </FormContext.Provider>
+  );
+};
+
+export const ItemLabel = ({ ...props }: ComponentProps<"div">) => {
+  return <div {...props} />;
+};
+
+export const Label = ({ ...props }: ComponentProps<"label">) => {
+  return <label {...props} />;
+};
+
+export const Input = ({
+  onChange,
+  className,
+  ...props
+}: ComponentProps<"input">) => {
+  const { name } = useFormContext();
+  return (
+    <input
+      {...props}
+      name={name}
+      onChange={onChange}
+      className={clsx(
+        "desktop-l:p-4 text-ms rounded-ms h-10.5 w-full border border-black/50 p-3 text-black/50 outline-none placeholder:text-black/50 placeholder:capitalize",
+        className,
+      )}
+    />
+  );
+};
+
 export const MessageText = () => {
+  // const { name } = useFormContext();
+
   return <p></p>;
 };

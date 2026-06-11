@@ -6,7 +6,6 @@ export const getNews = createAsyncThunk(
   async (page: number, thunkAPI) => {
     try {
       const response = await instance.get(`news?page=${page}`);
-      console.log(page);
 
       return response.data;
     } catch (error) {

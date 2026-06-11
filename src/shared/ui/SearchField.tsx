@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { Button } from "./Button";
-import { FormField, Input, Label, MessageText } from "./Form";
+import { FormField, Input, ItemLabel, Label, MessageText } from "./Form";
 import { Icon } from "./Icon";
 
 type SearchFieldProps = {
@@ -19,16 +19,17 @@ export const SearchField = ({
   return (
     <div className="relative">
       <FormField name={type} className="mb-0!">
-        <Label htmlFor={type} />
-        <Input
-          type={type}
-          id={type}
-          placeholder={type}
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          className={clsx("border-none bg-white", className)}
-        />
-        <MessageText />
+        <ItemLabel>
+          <Label htmlFor={type} />
+          <Input
+            id="email"
+            placeholder={type}
+            value={value}
+            onChange={(e) => onChange(e.target.value)}
+            className={clsx("border-none bg-white", className)}
+          />
+          <MessageText />
+        </ItemLabel>
       </FormField>
 
       <Button type="submit" className="absolute top-0 right-0">

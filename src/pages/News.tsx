@@ -14,21 +14,37 @@ export const News = () => {
   const dispatch = useAppDispatch();
   const data = useAppSelector(news);
 
+  const [filtered, setFiltered] = useState(data.results);
+
   useEffect(() => {
     dispatch(getNews(1));
   }, [dispatch]);
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    const filteredData = data.results?.filter((item) =>
+      item.title.toLowerCase().includes(search.toLowerCase()),
+    );
+
+    setFiltered(filteredData);
+  };
 
   return (
     <section className="pt-15 pb-11">
       <div className="container mx-auto!">
         <div className="tablet-l:flex tablet-l:justify-between tablet-l:items-center tablet-l:mb-11 desktop-l:mb-15">
-          <Heading as="h1" variant="first" className="mb-5  tablet-l:mb-0">
+          <Heading as="h1" variant="first" className="tablet-l:mb-0 mb-5">
             News
           </Heading>
-          <SearchForm search={search} setSearch={setSearch} />
+          <SearchForm
+            search={search}
+            setSearch={setSearch}
+            onSubmit={onSubmit}
+          />
         </div>
-        <NewsList newsData={data.results} />
-        <div className=" w-full  flex justify-center mt-15">
+        <NewsList newsData={filtered} />
+        <div className="mt-15 flex w-full justify-center">
           <Pagination data={data} />
         </div>
       </div>
