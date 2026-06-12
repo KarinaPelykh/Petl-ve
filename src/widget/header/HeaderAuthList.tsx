@@ -13,16 +13,16 @@ export const HeaderAuthList = ({ className }: HeaderAuthListProps) => {
   const homePage = location.pathname === "/";
 
   return (
-    <ul className={clsx(className, "gap-2 ")}>
+    <ul className={clsx(className, "gap-2")}>
       {authNav.map((item) => (
         <Link to={item.link} key={item.name}>
           <li
             className={clsx(
-              "py-3.75 px-5 rounded-ms flex justify-center text-ms uppercase",
+              "rounded-ms text-ms flex justify-center px-5 py-3.75 uppercase shadow-lg transition-all duration-500 hover:scale-105",
               className && "py-3!",
               item.name === "Log in"
-                ? "bg-yellow text-white px-8.75"
-                : " text-yellow bg-cream",
+                ? "bg-yellow px-8.75 text-white"
+                : "text-yellow bg-cream",
               homePage && "border border-white",
             )}
           >

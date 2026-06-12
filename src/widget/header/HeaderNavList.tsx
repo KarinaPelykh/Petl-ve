@@ -17,12 +17,12 @@ export const HeaderNavList = ({
   const homePage = location.pathname === "/";
 
   return (
-    <ul className={clsx(className, "gap-2 ")}>
+    <ul className={clsx(className, "gap-2")}>
       {nav.map((item) => (
         <Link key={item.name} to={item.link}>
           <li
             className={clsx(
-              "py-3.75  flex items-center px-5 border border-black/15 rounded-ms  text-ms w-fit  transition-colors  duration-500 hover:border-yellow",
+              "rounded-ms text-ms hover:border-yellow flex w-fit items-center border border-black/15 px-5 py-3.75 shadow-lg transition-all duration-500 hover:scale-105",
               itemClassName,
               homePage && "border-white text-white",
             )}

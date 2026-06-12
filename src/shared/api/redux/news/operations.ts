@@ -3,9 +3,14 @@ import { instance } from "../../axios";
 
 export const getNews = createAsyncThunk(
   "news/getAll",
-  async (page: number, thunkAPI) => {
+  async (
+    { page = 1, search = "" }: { page: number; search?: string },
+    thunkAPI,
+  ) => {
     try {
-      const response = await instance.get(`news?page=${page}`);
+      const response = await instance.get(
+        `news?page=${page}&keyword=${search}`,
+      );
 
       return response.data;
     } catch (error) {

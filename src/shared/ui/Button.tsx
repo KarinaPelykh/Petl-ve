@@ -19,7 +19,10 @@ export const Button = ({
     <button
       {...props}
       type={type}
-      className={clsx(" p-3 text-center rounded-ms ", className)}
+      className={clsx(
+        "rounded-ms group cursor-pointer p-3 text-center transition-all duration-500 ease-out",
+        className,
+      )}
       onClick={onClick}
     >
       {children}

@@ -7,14 +7,14 @@ export const HeaderNav = () => {
   const location = useLocation();
   const homePage = location.pathname === "/";
   return (
-    <nav className="flex justify-between items-center">
-      <Link to="/">
+    <nav className="flex items-center justify-between">
+      <Link to="/" className="transition-all duration-500 hover:scale-105">
         <Icon
           name={homePage ? "wh-logo" : "mobile-logo"}
-          className="w-19 h-5 desktop-l:w-26.25 desktop-l:h-8"
+          className="desktop-l:w-26.25 desktop-l:h-8 h-5 w-19"
         />
       </Link>
-      <HeaderNavList className="hidden desktop-l:flex" />
+      <HeaderNavList className="desktop-l:flex hidden" />
       <HeaderBurgerMenu />
     </nav>
   );

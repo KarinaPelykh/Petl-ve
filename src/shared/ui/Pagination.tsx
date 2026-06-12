@@ -15,21 +15,22 @@ export function Pagination({ data }: { data: Data }) {
   const dispatch = useAppDispatch();
 
   const handlePageClick = (event: { selected: number }) => {
-    dispatch(getNews(event.selected + 1));
+    const page = event.selected + 1;
+    dispatch(getNews({ page }));
   };
 
   const handelClikOnFirstPage = () => {
     if (isFirstPage) {
       return;
     }
-    dispatch(getNews(1));
+    dispatch(getNews({ page: 1 }));
   };
 
   const handleLastPage = () => {
     if (isLastPage) {
       return;
     }
-    dispatch(getNews(data.totalPages));
+    dispatch(getNews({ page: data.totalPages }));
   };
 
   return (
@@ -37,7 +38,7 @@ export function Pagination({ data }: { data: Data }) {
       <Button
         onClick={handelClikOnFirstPage}
         className={clsx(
-          "mr-2.5 flex size-11 cursor-pointer items-center justify-center rounded-[50%] border border-black/20 bg-transparent p-0!",
+          "mr-2.5 flex size-11 cursor-pointer items-center justify-center rounded-[50%] border border-black/20 bg-transparent p-0! shadow-lg",
           isFirstPage && "pointer-events-none opacity-50",
         )}
       >
@@ -54,22 +55,22 @@ export function Pagination({ data }: { data: Data }) {
         previousLabel={<Icon name="slider-1" className="size-11 rotate-180" />}
         renderOnZeroPageCount={null}
         className="mr-2.5 flex"
-        breakClassName=" border border-black/20 rounded-[50%] size-11 mr-2.5 flex justify-center items-center"
+        breakClassName=" shadow-lg border border-black/20 rounded-[50%] size-11 mr-2.5 flex justify-center items-center"
         previousClassName={clsx(
-          " border border-black/20 rounded-[50%] size-11 mr-2.5 flex justify-center items-center cursor-pointer",
+          " border border-black/20 rounded-[50%] shadow-lg  size-11 mr-2.5 flex justify-center items-center cursor-pointer",
           isFirstPage && "opacity-50 pointer-events-none",
         )}
         nextClassName={clsx(
           isLastPage && "opacity-50 pointer-events-none",
-          "border border-black/20 rounded-[50%] size-11 flex justify-center items-center cursor-pointer",
+          "border border-black/20  shadow-lg rounded-[50%] size-11 flex justify-center items-center cursor-pointer",
         )}
-        activeClassName="border-0 bg-yellow rounded-[50%] text-white size-11 mr-2.5  flex justify-center items-center"
-        pageClassName="border mr-2.5 border-black/20 rounded-[50%] size-11 flex justify-center items-center cursor-pointer"
+        activeClassName="border-0 bg-yellow shadow-lg rounded-[50%] text-white size-11 mr-2.5  flex justify-center items-center"
+        pageClassName="border  shadow-lg mr-2.5 border-black/20 rounded-[50%] size-11 flex justify-center items-center cursor-pointer"
       />
       <Button
         onClick={handleLastPage}
         className={clsx(
-          "mr-2.5 flex size-11 cursor-pointer items-center justify-center rounded-[50%] border border-black/20 bg-transparent p-0!",
+          "mr-2.5 flex size-11 cursor-pointer items-center justify-center rounded-[50%] border border-black/20 bg-transparent p-0! shadow-lg",
           isLastPage && "pointer-events-none opacity-50",
         )}
       >
