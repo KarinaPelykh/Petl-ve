@@ -8,7 +8,8 @@ type SearchFieldProps = {
   value: string;
   onChange: (value: string) => void;
   type: "search" | "location";
-  setSearch: (value: SetStateAction<string>) => void;
+  setSearch?: (value: SetStateAction<string>) => void;
+  className?: string;
 };
 
 export const SearchField = ({
@@ -16,6 +17,7 @@ export const SearchField = ({
   onChange,
   type,
   setSearch,
+  className,
 }: SearchFieldProps) => {
   return (
     <FormField name={type} className="relative mb-0!">
@@ -25,6 +27,7 @@ export const SearchField = ({
           placeholder={type}
           value={value}
           onChange={(e) => onChange(e.target.value)}
+          className={className}
         />
         <MessageText />
       </ItemLabel>
@@ -41,7 +44,7 @@ export const SearchField = ({
         <Button
           type="button"
           className="absolute top-0 right-0"
-          onClick={() => setSearch("")}
+          onClick={() => setSearch ?? ""}
         >
           <Icon
             name="close"

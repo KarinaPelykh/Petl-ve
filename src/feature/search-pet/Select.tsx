@@ -1,38 +1,39 @@
+import Select from "react-select";
 import clsx from "clsx";
-import type { SetStateAction } from "react";
-import type { Filter } from "../../pages/FindPet";
+
+type Option = { value: string; label: string };
 
 type SelectProps = {
   data: string[];
+  onChange: (value: string) => void;
   className?: string;
-  setState: (val: SetStateAction<Filter>) => void;
-  state: string;
-  field: keyof Filter;
+  field: string;
 };
 
-export const Select = ({
-  data,
-  className,
-  setState,
-  state,
-  field,
-}: SelectProps) => {
+export const MySelect = ({ data, onChange, field, className }: SelectProps) => {
+  const defaultOptions = { value: "Show all", label: "Show all" };
+
+  const optionsN = [
+    defaultOptions,
+    ...data.map((item) => ({ value: item, label: item })),
+  ];
+
   return (
-    <select
-      value={state}
-      onChange={(e) =>
-        setState((prev) => ({ ...prev, [field]: e.target.value }))
-      }
+    <Select<Option>
+      options={optionsN}
+      onChange={(selected) => {
+        if (!selected) {
+          return;
+        }
+        onChange(selected.value);
+      }}
+      classNamePrefix="react-select"
+      unstyled
+      placeholder={field}
       className={clsx(
+        "text-ms desktop-l:p-4 tablet-l:w-42.5 rounded-ms absolute flex h-10.5 w-full items-center justify-between border-none bg-white p-3 text-black outline-none placeholder:text-black/50",
         className,
-        "border-none bg-white p-3 text-ms desktop-l:p-4 border tablet-l:w-42.5 h-10.5 border-black/50 placeholder:text-black/50  rounded-ms w-full outline-none text-black",
       )}
-    >
-      {data.map((value, i) => (
-        <option key={i} value={value}>
-          {value}
-        </option>
-      ))}
-    </select>
+    />
   );
 };

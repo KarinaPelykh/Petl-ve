@@ -7,14 +7,16 @@ export type New = {
   url: string;
   id: string;
 };
-export type Data = {
+
+export type State = {
+  items: Data<New>;
+  isLoading: boolean;
+};
+
+//universal
+export type Data<T> = {
   page: number;
   perPage: number;
   totalPages: number;
-  results: New[];
-};
-
-export type State = {
-  items: Data;
-  isLoading: boolean;
+  results: T[];
 };

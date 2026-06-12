@@ -1,9 +1,15 @@
 import type { Dispatch, SetStateAction } from "react";
 import { Form } from "../../shared/ui/Form";
 import { SearchField } from "../../shared/ui/SearchField";
-import { CATEGORY, GENDER, TYPE } from "./constants";
-import { Select } from "./Select";
+
 import type { Filter } from "../../pages/FindPet";
+import { useAppSelector } from "../../shared/hooks/reduxHooks";
+import {
+  category,
+  gender,
+  species,
+} from "../../shared/api/redux/notices/selectors";
+import { MySelect } from "./Select";
 
 type SearchPetFormProps = {
   filter: Filter;
@@ -15,42 +21,44 @@ export const SearchPetForm = ({ filter, setFilter }: SearchPetFormProps) => {
     setFilter((prev) => ({ ...prev, [key]: val }));
   };
 
+  const categoryData = useAppSelector(category);
+  const genderData = useAppSelector(gender);
+  const speciesData = useAppSelector(species);
+
   return (
-    <Form className="bg-cream! w-full p-5 flex flex-col gap-3 mb-10 tablet-l:flex-row tablet-l:flex-wrap tablet-l:py-10 tablet-l:px-8 desktop-l:p-10">
+    <Form className="bg-cream! tablet-l:flex-row tablet-l:flex-wrap tablet-l:py-10 tablet-l:px-8 desktop-l:p-10 desktop-l:w-[1216px] mb-10 flex w-full flex-col gap-3 p-5">
       <SearchField
         type="search"
         value={filter.search}
         onChange={(val) => onChangeInput(val, "search")}
-        className="tablet-l:w-66.25"
+        className="desktop-l:w-66.25 border-0 bg-white"
       />
 
-      <div className="flex  gap-2">
-        <Select
-          data={CATEGORY}
-          setState={setFilter}
-          state={filter.category}
-          field="category"
+      <div className="flex gap-2">
+        <MySelect
+          data={categoryData}
+          onChange={(val) => onChangeInput(val, "category")}
+          field="Category"
+          className="desktop-l:w-50"
         />
-
-        <Select
-          data={GENDER}
-          setState={setFilter}
-          state={filter.gender}
-          field="gender"
+        <MySelect
+          data={genderData}
+          onChange={(val) => onChangeInput(val, "sex")}
+          field="By gender"
+          className="desktop-l:w-47.5"
         />
       </div>
-      <Select
-        data={TYPE}
-        setState={setFilter}
-        state={filter.animalType}
-        field="animalType"
+      <MySelect
+        data={speciesData}
+        onChange={(val) => onChangeInput(val, "animalType")}
+        field="By type"
         className="tablet-l:w-47.5"
       />
       <SearchField
         type="location"
         value={filter.location}
         onChange={(val) => onChangeInput(val, "location")}
-        className="tablet-l:w-56.75"
+        className="desktop-l:w-56.75 border-0 bg-white"
       />
     </Form>
   );

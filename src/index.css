@@ -110,7 +110,7 @@
   --breakpoint-*: initial;
   --breakpoint-mobile: 360px;
   --breakpoint-tablet-l: 768px;
-  --breakpoint-desktop-l: 1440px;
+  --breakpoint-desktop-l: 1280px;
 }
 
 .container {
@@ -133,7 +133,45 @@
 @media screen and (min-width: 1280px) {
   .container {
     max-width: 1280px;
-    padding-right: 64px;
-    padding-left: 64px;
+    /* padding-right: 64px;
+    padding-left: 64px; */
   }
+}
+
+.react-select__control {
+  width: 100%;
+}
+
+.react-select__menu {
+  background: white;
+  border-radius: 15px;
+  padding: 14px;
+  top: 46px !important;
+  right: 0px;
+}
+.react-select__option {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+  color: rgba(38, 38, 38, 0.6);
+  text-transform: capitalize;
+}
+.react-select__menu-list {
+  display: grid;
+  gap: 8px;
+}
+.react-select__single-value {
+  text-transform: capitalize;
+}
+.react-select__option--is-selected {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+  color: #f6b83d;
+  text-transform: capitalize;
+}
+.react-select__control--menu-is-open .react-select__indicator svg {
+  transform: rotate(180deg);
+  transition-property: rotate;
+  transition-duration: 500ms;
 }

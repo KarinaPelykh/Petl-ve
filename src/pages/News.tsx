@@ -39,7 +39,10 @@ export const News = () => {
         <NewsList newsData={data.results} />
         {data?.results?.length !== 0 ? (
           <div className="mt-15 flex w-full justify-center">
-            <Pagination data={data} />
+            <Pagination
+              data={data}
+              onPageChange={(page) => dispatch(getNews({ page }))}
+            />
           </div>
         ) : (
           <div className="relative flex flex-col items-center justify-center overflow-hidden py-20">

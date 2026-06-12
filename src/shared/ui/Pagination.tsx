@@ -1,36 +1,41 @@
-import { getNews } from "../api/redux/news/operations";
-import type { Data } from "../api/redux/news/types";
+import type { Data, New } from "../api/redux/news/types";
 import ReactPaginate from "react-paginate";
-import { useAppDispatch } from "../hooks/reduxHooks";
 import { Button } from "./Button";
 import { Icon } from "./Icon";
 import clsx from "clsx";
+import type { Notice } from "../api/redux/notices/slice";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const ReactPaginateComponent = (ReactPaginate as any).default || ReactPaginate;
 
-export function Pagination({ data }: { data: Data }) {
+type T = Notice | New;
+
+type PaginationProps = {
+  data: Data<T>;
+  onPageChange: (page: number) => void;
+};
+
+export function Pagination({ data, onPageChange }: PaginationProps) {
   const isFirstPage = data.page === 1;
   const isLastPage = data.page === data.totalPages;
 
-  const dispatch = useAppDispatch();
-
   const handlePageClick = (event: { selected: number }) => {
     const page = event.selected + 1;
-    dispatch(getNews({ page }));
+    onPageChange(page);
   };
 
   const handelClikOnFirstPage = () => {
     if (isFirstPage) {
       return;
     }
-    dispatch(getNews({ page: 1 }));
+    onPageChange(1);
   };
 
   const handleLastPage = () => {
     if (isLastPage) {
       return;
     }
-    dispatch(getNews({ page: data.totalPages }));
+    onPageChange(data.totalPages);
   };
 
   return (

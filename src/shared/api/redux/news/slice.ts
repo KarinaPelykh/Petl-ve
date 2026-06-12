@@ -3,7 +3,12 @@ import { getNews } from "./operations";
 import type { State } from "./types";
 
 const initialState: State = {
-  items: {},
+  items: {
+    page: 0,
+    perPage: 0,
+    totalPages: 0,
+    results: [],
+  },
   isLoading: false,
 };
 
