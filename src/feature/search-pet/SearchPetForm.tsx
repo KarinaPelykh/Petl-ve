@@ -10,6 +10,7 @@ import {
   species,
 } from "../../shared/api/redux/notices/selectors";
 import { MySelect } from "./Select";
+import { LocationSelect } from "./AsyncSelect";
 
 type SearchPetFormProps = {
   filter: Filter;
@@ -26,7 +27,7 @@ export const SearchPetForm = ({ filter, setFilter }: SearchPetFormProps) => {
   const speciesData = useAppSelector(species);
 
   return (
-    <Form className="bg-cream! tablet-l:flex-row tablet-l:flex-wrap tablet-l:py-10 tablet-l:px-8 desktop-l:p-10 desktop-l:w-[1216px] mb-10 flex w-full flex-col gap-3 p-5">
+    <Form className="bg-cream! tablet-l:flex-row tablet-l:flex-wrap tablet-l:py-10 tablet-l:px-8 desktop-l:p-10 desktop-l:w-304 mb-10 flex w-full flex-col gap-3 p-5">
       <SearchField
         type="search"
         value={filter.search}
@@ -54,12 +55,24 @@ export const SearchPetForm = ({ filter, setFilter }: SearchPetFormProps) => {
         field="By type"
         className="tablet-l:w-47.5"
       />
-      <SearchField
+      {/* <SearchField
         type="location"
         value={filter.location}
         onChange={(val) => onChangeInput(val, "location")}
         className="desktop-l:w-56.75 border-0 bg-white"
+      /> */}
+      <LocationSelect
+        value={filter.location}
+        onChange={(val) => onChangeInput(val, "location")}
+        className="desktop-l:w-56.75 border-0 bg-white"
       />
+      {/* <MySelect
+        data={citiesData}
+        value={filter.location}
+        onChange={(val) => onChangeInput(val, "location")}
+        field="Location"
+        className="desktop-l:w-56.75 border-0 bg-white"
+      /> */}
     </Form>
   );
 };

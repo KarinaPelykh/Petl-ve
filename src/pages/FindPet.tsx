@@ -4,6 +4,7 @@ import { Heading } from "../shared/ui/Heading";
 import { SearchPetForm } from "../feature/search-pet/SearchPetForm";
 import {
   getCategory,
+  getCities,
   getGender,
   getNotices,
   getSpecies,
@@ -48,6 +49,10 @@ export const FindPets = () => {
   useEffect(() => {
     dispatch(getSpecies());
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getCities({ keyword: filter.location }));
+  }, [dispatch, filter.location]);
 
   return (
     <section className="py-13.5">
