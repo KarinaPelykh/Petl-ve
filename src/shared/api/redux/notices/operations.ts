@@ -1,11 +1,19 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { instance } from "../../axios";
 
+type Filter = { page: number } & {
+  keyword?: string;
+  sex?: string;
+  category?: string;
+  species?: string;
+  locationId?: string;
+};
+
 export const getNotices = createAsyncThunk(
   "notices/getAll",
-  async ({ page = 1 }: { page: number }, thunkAPI) => {
+  async (params: Filter, thunkAPI) => {
     try {
-      const response = await instance.get(`notices/?page=${page}`);
+      const response = await instance.get(`notices/?$`, { params });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -52,16 +60,15 @@ export const getSpecies = createAsyncThunk(
   },
 );
 
-export const getCities = createAsyncThunk(
-  "cities/getAll",
-  async ({ keyword }: { keyword?: string }, thunkAPI) => {
-    try {
-      const response = await instance.get(`cities/?keyword=${keyword}`);
-      console.log(response.data);
+// export const getCities = createAsyncThunk(
+//   "cities/getAll",
+//   async ({ keyword }: { keyword?: string }, thunkAPI) => {
+//     try {
+//       const response = await instance.get(`cities/?keyword=${keyword}`);
 
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error);
-    }
-  },
-);
+//       return response.data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error);
+//     }
+//   },
+// );

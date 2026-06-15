@@ -71,7 +71,7 @@ export const Input = ({
       name={name}
       onChange={onChange}
       className={clsx(
-        "desktop-l:p-4 text-ms rounded-ms h-10.5 w-full border border-black/50 p-3 text-black/50 shadow-lg outline-none placeholder:text-black/50 placeholder:capitalize",
+        "desktop-l:p-4 text-ms rounded-ms h-10.5 w-full border border-black/50 p-3 text-black/50 shadow-lg placeholder:text-black/50 placeholder:capitalize",
         className,
       )}
     />

@@ -1,4 +1,4 @@
-import type { Dispatch, SetStateAction } from "react";
+import { type Dispatch, type SetStateAction } from "react";
 import { Form } from "../../shared/ui/Form";
 import { SearchField } from "../../shared/ui/SearchField";
 
@@ -10,7 +10,7 @@ import {
   species,
 } from "../../shared/api/redux/notices/selectors";
 import { MySelect } from "./Select";
-import { LocationSelect } from "./AsyncSelect";
+import { AsyncSearchBar } from "./AsyncSearchBar";
 
 type SearchPetFormProps = {
   filter: Filter;
@@ -30,9 +30,9 @@ export const SearchPetForm = ({ filter, setFilter }: SearchPetFormProps) => {
     <Form className="bg-cream! tablet-l:flex-row tablet-l:flex-wrap tablet-l:py-10 tablet-l:px-8 desktop-l:p-10 desktop-l:w-304 mb-10 flex w-full flex-col gap-3 p-5">
       <SearchField
         type="search"
-        value={filter.search}
-        onChange={(val) => onChangeInput(val, "search")}
-        className="desktop-l:w-66.25 border-0 bg-white"
+        value={filter.keyword}
+        onChange={(val) => onChangeInput(val, "keyword")}
+        className="desktop-l:w-66.25 outline-yellow border-0 bg-white"
       />
 
       <div className="flex gap-2">
@@ -51,28 +51,15 @@ export const SearchPetForm = ({ filter, setFilter }: SearchPetFormProps) => {
       </div>
       <MySelect
         data={speciesData}
-        onChange={(val) => onChangeInput(val, "animalType")}
+        onChange={(val) => onChangeInput(val, "species")}
         field="By type"
         className="tablet-l:w-47.5"
       />
-      {/* <SearchField
-        type="location"
-        value={filter.location}
-        onChange={(val) => onChangeInput(val, "location")}
-        className="desktop-l:w-56.75 border-0 bg-white"
-      /> */}
-      <LocationSelect
+      <AsyncSearchBar
         value={filter.location}
         onChange={(val) => onChangeInput(val, "location")}
         className="desktop-l:w-56.75 border-0 bg-white"
       />
-      {/* <MySelect
-        data={citiesData}
-        value={filter.location}
-        onChange={(val) => onChangeInput(val, "location")}
-        field="Location"
-        className="desktop-l:w-56.75 border-0 bg-white"
-      /> */}
     </Form>
   );
 };

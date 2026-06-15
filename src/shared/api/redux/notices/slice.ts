@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import { getCategory, getCities, getGender, getNotices, getSpecies } from "./operations";
+import { getCategory, getGender, getNotices, getSpecies } from "./operations";
 import type { Data } from "../news/types";
 
 export type Notice = {
@@ -30,7 +30,7 @@ const initialState: State = {
     totalPages: 0,
     results: [],
   },
-  cities:[],
+  // cities:[],
   categories: [],
   gender: [],
   species: [],
@@ -57,11 +57,10 @@ const noticesSlice = createSlice({
       })
       .addCase(getSpecies.fulfilled, (state, action) => {
         state.species = action.payload;
-      })
-      .addCase(getCities.fulfilled, (state, action) => {
-        state.cities = action.payload;
-
       });
+    // .addCase(getCities.fulfilled, (state, action) => {
+    //   state.cities = action.payload;
+    // });
   },
 });
 

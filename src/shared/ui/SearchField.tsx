@@ -2,13 +2,11 @@ import clsx from "clsx";
 import { Button } from "./Button";
 import { FormField, Input, ItemLabel, Label, MessageText } from "./Form";
 import { Icon } from "./Icon";
-import type { SetStateAction } from "react";
 
 type SearchFieldProps = {
   value: string;
   onChange: (value: string) => void;
   type: "search" | "location";
-  setSearch?: (value: SetStateAction<string>) => void;
   className?: string;
 };
 
@@ -16,7 +14,6 @@ export const SearchField = ({
   value,
   onChange,
   type,
-  setSearch,
   className,
 }: SearchFieldProps) => {
   return (
@@ -44,7 +41,7 @@ export const SearchField = ({
         <Button
           type="button"
           className="absolute top-0 right-0"
-          onClick={() => setSearch ?? ""}
+          onClick={() => onChange("")}
         >
           <Icon
             name="close"
