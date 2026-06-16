@@ -24,34 +24,30 @@ export type Filter = {
   category: string;
   species: string;
   location: Option | null;
+  byPrice: boolean;
+  byPopularity: boolean;
+};
+
+const initialState = {
+  keyword: "",
+  sex: "",
+  category: "",
+  species: "",
+  location: null,
+  byPrice: false,
+  byPopularity: false,
 };
 
 export const FindPets = () => {
-  const [filter, setFilter] = useState<Filter>({
-    keyword: "",
-    sex: "",
-    category: "",
-    species: "",
-    location: null,
-  });
+  const [filter, setFilter] = useState<Filter>(initialState);
 
   const dispatch = useAppDispatch();
 
   const data = useAppSelector(notices);
 
   useEffect(() => {
-    dispatch(getNotices({ page: 1 }));
-  }, [dispatch]);
-
-  useEffect(() => {
     dispatch(getCategory());
-  }, [dispatch]);
-
-  useEffect(() => {
     dispatch(getGender());
-  }, [dispatch]);
-
-  useEffect(() => {
     dispatch(getSpecies());
   }, [dispatch]);
 
@@ -63,19 +59,15 @@ export const FindPets = () => {
       category: filter.category,
       species: filter.species,
       locationId: filter.location?.locationId || "",
+      byPrice: filter.byPrice,
+      byPopularity: filter.byPopularity,
     };
 
     dispatch(getNotices(params));
   }, [filter, dispatch]);
 
   const resetFilter = () => {
-    setFilter({
-      keyword: "",
-      sex: "",
-      category: "",
-      species: "",
-      location: null,
-    });
+    setFilter(initialState);
   };
 
   return (

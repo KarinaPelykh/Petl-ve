@@ -7,13 +7,15 @@ type Filter = { page: number } & {
   category?: string;
   species?: string;
   locationId?: string;
+  byPrice?: boolean;
+  byPopularity?: boolean;
 };
 
 export const getNotices = createAsyncThunk(
   "notices/getAll",
   async (params: Filter, thunkAPI) => {
     try {
-      const response = await instance.get(`notices/?$`, { params });
+      const response = await instance.get(`notices/?`, { params });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
