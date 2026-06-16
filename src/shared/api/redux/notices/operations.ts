@@ -15,13 +15,18 @@ export const getNotices = createAsyncThunk(
   "notices/getAll",
   async (params: Filter, thunkAPI) => {
     try {
-      const response = await instance.get(`notices/?`, { params });
+      const response = await instance.get(`notices/`, { params });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
   },
 );
+
+export const getNotice = async (id: string) => {
+  const response = await instance.get(`notices/${id}`);
+  return response.data;
+};
 
 export const getCategory = createAsyncThunk(
   "category/getAll",

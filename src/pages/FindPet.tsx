@@ -5,6 +5,7 @@ import { SearchPetForm } from "../feature/search-pet/SearchPetForm";
 import {
   getCategory,
   getGender,
+  getNotice,
   getNotices,
   getSpecies,
 } from "../shared/api/redux/notices/operations";
@@ -40,6 +41,7 @@ const initialState = {
 
 export const FindPets = () => {
   const [filter, setFilter] = useState<Filter>(initialState);
+  const [cardID, setCardId] = useState("");
 
   const dispatch = useAppDispatch();
 
@@ -70,6 +72,19 @@ export const FindPets = () => {
     setFilter(initialState);
   };
 
+  useEffect(() => {
+    async function getInfById() {
+      try {
+        const data = await getNotice(cardID);
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    getInfById();
+  }, [cardID]);
+
   return (
     <section className="py-13.5">
       <div className="container">
@@ -81,7 +96,11 @@ export const FindPets = () => {
           <div className="flex justify-center">
             <ul className="tablet-l:grid-cols-2 desktop-l:grid-cols-3 desktop-l:gap-8 grid gap-5">
               {data?.results.map((notice) => (
-                <PetCard key={notice._id} notice={notice} />
+                <PetCard
+                  key={notice._id}
+                  notice={notice}
+                  setCardId={setCardId}
+                />
               ))}
             </ul>
           </div>

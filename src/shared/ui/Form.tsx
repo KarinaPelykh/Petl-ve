@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import { createContext, useContext, useMemo, type ComponentProps } from "react";
+import { FormProvider, useFormContext } from "react-hook-form";
 
 type FormItemsProps = {
   className?: string;
@@ -13,7 +14,7 @@ type FormContextProps = {
 const FormContext = createContext<null | FormContextProps>(null);
 
 // eslint-disable-next-line react-refresh/only-export-components
-export const useFormContext = () => {
+export const useFormCont = () => {
   const form = useContext(FormContext);
 
   if (!form) {
@@ -22,15 +23,17 @@ export const useFormContext = () => {
   return form;
 };
 
-export const Form = ({ className, ...props }: ComponentProps<"form">) => {
+export const Form = ({ form, className, ...props }: ComponentProps<"form">) => {
   return (
-    <form
-      className={clsx(
-        "rounded-ms my-auto flex flex-col bg-white px-5 py-7",
-        className,
-      )}
-      {...props}
-    />
+    <FormProvider {...form}>
+      <form
+        className={clsx(
+          "rounded-ms my-auto flex flex-col bg-white px-5 py-7",
+          className,
+        )}
+        {...props}
+      />
+    </FormProvider>
   );
 };
 
@@ -64,7 +67,11 @@ export const Input = ({
   className,
   ...props
 }: ComponentProps<"input">) => {
-  const { name } = useFormContext();
+  const { name } = useFormCont();
+  const {
+    formState: { errors },
+  } = useFormContext();
+  const message = errors[name]?.message;
   return (
     <input
       {...props}
@@ -73,13 +80,19 @@ export const Input = ({
       className={clsx(
         "desktop-l:p-4 text-ms rounded-ms h-10.5 w-full border border-black/50 p-3 text-black/50 shadow-lg placeholder:text-black/50 placeholder:capitalize",
         className,
+        message && "border-red",
       )}
     />
   );
 };
 
 export const MessageText = () => {
-  // const { name } = useFormContext();
+  const { name } = useFormCont();
 
-  return <p></p>;
+  const {
+    formState: { errors },
+  } = useFormContext();
+
+  const message = errors[name]?.message;
+  return <p className="text-red text-s mt-1 px-4">{message}</p>;
 };
