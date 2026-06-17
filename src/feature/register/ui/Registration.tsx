@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { Button } from "../../../shared/ui/Button";
 import {
   Form,
@@ -10,28 +10,36 @@ import {
 import { Heading } from "../../../shared/ui/Heading";
 import { PasswordInput } from "../../../shared/ui/PasswordInput";
 import { zodResolver } from "@hookform/resolvers/zod";
-// import { useAppDispatch } from "../../../shared/hooks/reduxHooks";
+import { useAppDispatch } from "../../../shared/hooks/reduxHooks";
 import { useForm } from "react-hook-form";
-import { schema, type Signup } from "../model/contract";
-// import { signup } from "../../../shared/api/redux/user/operations";
+import { signupSchema, type Signup } from "../model/contract";
+import { signup } from "../../../shared/api/redux/user/operations";
+
+const defaultValues = {
+  name: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};
 
 export const RegistrationForm = () => {
   const form = useForm<Signup>({
-    defaultValues: { name: "", email: "", password: "", confirmPassword: "" },
-    resolver: zodResolver(schema),
+    defaultValues,
+    resolver: zodResolver(signupSchema),
   });
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = form;
-  // console.log(errors);
+  const { register, handleSubmit, reset } = form;
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
-  // const dispatch = useAppDispatch();
-  const onSubmit = (credentials) => {
-    // console.log(credentials);
-    // dispatch(signup(credentials));
+  const onSubmit = ({ name, email, confirmPassword }: Signup) => {
+    try {
+      dispatch(signup({ name, email, password: confirmPassword }));
+      reset();
+      navigate("/profile");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

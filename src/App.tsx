@@ -22,7 +22,7 @@ function App() {
         <Route path="findPet" element={<FindPets />} />
         <Route path="friends" element={<OurFriends />} />
         {/* private routes */}
-        {/* <Route path="profile" element={<p>user profile</p>} /> */}
+        <Route path="profile" element={<p>user profile</p>} />
       </Route>
 
       {/* public routes */}

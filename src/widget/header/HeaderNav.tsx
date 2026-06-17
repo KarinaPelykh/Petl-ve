@@ -2,10 +2,14 @@ import { Link, useLocation } from "react-router";
 import { Icon } from "../../shared/ui/Icon";
 import { HeaderNavList } from "./HeaderNavList";
 import { HeaderBurgerMenu } from "./HeaderBurgerMenu";
+import { useAppSelector } from "../../shared/hooks/reduxHooks";
+import { isLoggedIn } from "../../shared/api/redux/user/selectors";
+import { User } from "../user/User";
 
 export const HeaderNav = () => {
   const location = useLocation();
   const homePage = location.pathname === "/";
+  const isLog = useAppSelector(isLoggedIn);
   return (
     <nav className="flex items-center justify-between">
       <Link to="/" className="transition-all duration-500 hover:scale-105">
@@ -15,7 +19,7 @@ export const HeaderNav = () => {
         />
       </Link>
       <HeaderNavList className="desktop-l:flex hidden" />
-      <HeaderBurgerMenu />
+      {isLog ? <User /> : <HeaderBurgerMenu />}
     </nav>
   );
 };

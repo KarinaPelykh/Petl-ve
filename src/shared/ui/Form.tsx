@@ -1,6 +1,10 @@
 import clsx from "clsx";
 import { createContext, useContext, useMemo, type ComponentProps } from "react";
-import { FormProvider, useFormContext } from "react-hook-form";
+import {
+  FormProvider,
+  useFormContext,
+  type UseFormReturn,
+} from "react-hook-form";
 
 type FormItemsProps = {
   className?: string;
@@ -23,7 +27,11 @@ export const useFormCont = () => {
   return form;
 };
 
-export const Form = ({ form, className, ...props }: ComponentProps<"form">) => {
+export const Form = ({
+  form,
+  className,
+  ...props
+}: { form: UseFormReturn } & ComponentProps<"form">) => {
   return (
     <FormProvider {...form}>
       <form
@@ -78,7 +86,7 @@ export const Input = ({
       name={name}
       onChange={onChange}
       className={clsx(
-        "desktop-l:p-4 text-ms rounded-ms h-10.5 w-full border border-black/50 p-3 text-black/50 shadow-lg placeholder:text-black/50 placeholder:capitalize",
+        "desktop-l:p-4 text-ms rounded-ms h-10.5 w-full border border-black/50 p-3 text-black/80 shadow-lg outline-none placeholder:text-black/50 placeholder:capitalize",
         className,
         message && "border-red",
       )}
@@ -93,6 +101,6 @@ export const MessageText = () => {
     formState: { errors },
   } = useFormContext();
 
-  const message = errors[name]?.message;
+  const message = errors[name]?.message as string;
   return <p className="text-red text-s mt-1 px-4">{message}</p>;
 };
