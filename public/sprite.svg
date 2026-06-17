@@ -113,4 +113,15 @@
 <symbol id="slider-1" viewBox="0 0 32 32">
 <path d="M17.018 16.516c0.068-0.068 0.122-0.148 0.159-0.237s0.056-0.184 0.056-0.28-0.019-0.191-0.056-0.28c-0.037-0.089-0.091-0.169-0.159-0.237l-3.338-3.331c-0.068-0.068-0.122-0.148-0.159-0.237s-0.056-0.184-0.056-0.28c0-0.096 0.019-0.191 0.056-0.28s0.091-0.169 0.159-0.237c0.136-0.136 0.321-0.211 0.513-0.211s0.377 0.076 0.513 0.211l3.338 3.338c0.409 0.409 0.638 0.964 0.638 1.542s-0.23 1.133-0.638 1.542l-3.338 3.338c-0.135 0.134-0.318 0.21-0.509 0.211-0.096 0-0.191-0.018-0.279-0.054s-0.169-0.089-0.237-0.157c-0.068-0.068-0.122-0.148-0.159-0.237s-0.056-0.184-0.056-0.28 0.019-0.191 0.056-0.28c0.037-0.089 0.091-0.169 0.159-0.237l3.338-3.331z"></path>
 </symbol>
+
+<symbol id="plus" viewBox="0 0 32 32">
+<path fill="none" stroke="#fff" style="stroke: var(--color2, #fff)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M16 6.667v18.667"></path>
+<path fill="none" stroke="#fff" style="stroke: var(--color2, #fff)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M6.667 16h18.667"></path>
+</symbol>
+
+
+<symbol id="user-2" viewBox="0 0 32 32">
+<path fill="#fff" style="fill: var(--color2, #fff); stroke: var(--color2, #fff)" stroke="#fff" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3.5556" d="M16.001 20c-4.227 0-7.986 2.041-10.379 5.208-0.515 0.682-0.773 1.022-0.764 1.483 0.007 0.356 0.23 0.805 0.51 1.025 0.362 0.284 0.865 0.284 1.869 0.284h17.527c1.004 0 1.507 0 1.869-0.284 0.28-0.22 0.503-0.669 0.51-1.025 0.009-0.461-0.249-0.801-0.764-1.483-2.393-3.167-6.152-5.208-10.379-5.208z"></path>
+<path fill="#fff" style="fill: var(--color2, #fff); stroke: var(--color2, #fff)" stroke="#fff" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3.5556" d="M16 16c3.314 0 6-2.686 6-6s-2.686-6-6-6c-3.314 0-6 2.686-6 6s2.686 6 6 6z"></path>
+</symbol>
 </defs></svg>

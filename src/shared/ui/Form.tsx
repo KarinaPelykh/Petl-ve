@@ -76,7 +76,7 @@ export const Input = ({
   ...props
 }: ComponentProps<"input">) => {
   const { name } = useFormContext();
-  const { errors, isValid } = useFormState();
+  const { errors } = useFormState();
 
   const message = errors[name]?.message as string;
   return (
@@ -88,7 +88,7 @@ export const Input = ({
         "desktop-l:p-4 text-ms rounded-ms h-10.5 w-full border border-black/50 p-3 text-black/80 shadow-lg outline-none placeholder:text-black/50 placeholder:capitalize",
         className,
         message && "border-red",
-        isValid && "border-green",
+        // isValid && "border-green",
       )}
     />
   );

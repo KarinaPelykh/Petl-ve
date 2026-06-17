@@ -7,6 +7,7 @@ import { NotFound } from "./pages/NotFound";
 import { News } from "./pages/News";
 import { OurFriends } from "./pages/OurFriends";
 import { FindPets } from "./pages/FindPet";
+import { UserProfile } from "./pages/Profile";
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
         <Route path="findPet" element={<FindPets />} />
         <Route path="friends" element={<OurFriends />} />
         {/* private routes */}
-        <Route path="profile" element={<p>user profile</p>} />
+        <Route path="profile" element={<UserProfile />} />
       </Route>
 
       {/* public routes */}
