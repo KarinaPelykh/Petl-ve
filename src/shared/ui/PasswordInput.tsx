@@ -4,15 +4,13 @@ import { Button } from "./Button";
 import { Input } from "./Form";
 import { Icon } from "./Icon";
 import clsx from "clsx";
-import { useFormContext } from "react-hook-form";
+import { useFormState } from "react-hook-form";
 
 type PasswordInputProps = ComponentProps<"input"> & {};
 
 export const PasswordInput = ({ ...props }: PasswordInputProps) => {
   const { isOpen, toggle } = useToggle();
-  const {
-    formState: { errors },
-  } = useFormContext();
+  const { errors } = useFormState();
 
   return (
     <div className="relative">

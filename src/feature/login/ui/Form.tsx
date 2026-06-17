@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { Button } from "../../../shared/ui/Button";
 import {
   Form,
@@ -9,32 +9,65 @@ import {
 } from "../../../shared/ui/Form";
 import { Heading } from "../../../shared/ui/Heading";
 import { PasswordInput } from "../../../shared/ui/PasswordInput";
+import { useForm } from "react-hook-form";
+import { signinSchema, type Signin } from "../model/contract";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useAppDispatch } from "../../../shared/hooks/reduxHooks";
+import { signin } from "../../../shared/api/redux/user/operations";
+
+const defaultValues = {
+  email: "",
+  password: "",
+};
 
 export const LoginForm = () => {
+  const form = useForm<Signin>({
+    defaultValues,
+    resolver: zodResolver(signinSchema),
+  });
+  const { register, handleSubmit, reset } = form;
+  const dispatch = useAppDispatch();
+  const navigation = useNavigate();
+  const submitForm = (data: Signin) => {
+    try {
+      dispatch(signin(data));
+      reset();
+      navigation("/profile");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
-    <Form className="py-15 tablet-l:rounded-m tablet-l:py-17.75 tablet-l:px-35 desktop-l:px-21 desktop-l:py-29.5 desktop-l:w-1/2">
+    <Form
+      onSubmit={handleSubmit(submitForm)}
+      form={form}
+      className="tablet-l:rounded-m tablet-l:py-17.75 tablet-l:px-35 desktop-l:px-21 desktop-l:py-29.5 desktop-l:w-1/2 py-15"
+    >
       <Heading className="tablet-l:text-5xl tablet-l:mb-4" as="h1">
         Log in
       </Heading>
-      <p className="text-ms mb-6 tablet-l:text-m desktop-l:mb-8">
+      <p className="text-ms tablet-l:text-m desktop-l:mb-8 mb-6">
         Welcome! Please enter your credentials to login to the platform:
       </p>
       <FormField name="email">
         <Label htmlFor="email" />
-        <Input type="text" placeholder="Email" />
+        <Input type="text" placeholder="Email" {...register("email")} />
         <MessageText />
       </FormField>
       <FormField name="password">
         <Label htmlFor="email" />
-        <PasswordInput placeholder="Password" />
+        <PasswordInput placeholder="Password" {...register("password")} />
         <MessageText />
       </FormField>
-      <Button className="bg-yellow w-full text-white uppercase mb-3 tablet-l:mt-16 desktop-l:py-4">
+      <Button
+        type="submit"
+        className="bg-yellow tablet-l:mt-16 desktop-l:py-4 mb-3 w-full text-white uppercase"
+      >
         Log In
       </Button>
-      <p className="text-black/50 text-s text-center  tablet-l:text-ms">
+      <p className="text-s tablet-l:text-ms text-center text-black/50">
         Don’t have an account?{" "}
-        <Link className="text-yellow underline cursor-pointer" to="/register">
+        <Link className="text-yellow cursor-pointer underline" to="/register">
           Register
         </Link>
       </p>

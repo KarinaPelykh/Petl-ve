@@ -2,6 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { clearToken, instance, setToken } from "../../axios";
 
 type Credential = { name: string; email: string; password: string };
+type Signin = Pick<Credential, "email" | "password">;
 
 export const signup = createAsyncThunk(
   "auth/signup",
@@ -19,7 +20,7 @@ export const signup = createAsyncThunk(
 
 export const signin = createAsyncThunk(
   "auth/signin",
-  async (params, thunkAPI) => {
+  async (params: Signin, thunkAPI) => {
     try {
       const response = await instance.post("users/signin", { ...params });
 

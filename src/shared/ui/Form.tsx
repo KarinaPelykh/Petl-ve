@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { createContext, useContext, useMemo, type ComponentProps } from "react";
 import {
   FormProvider,
-  useFormContext,
+  useFormState,
   type UseFormReturn,
 } from "react-hook-form";
 
@@ -18,7 +18,7 @@ type FormContextProps = {
 const FormContext = createContext<null | FormContextProps>(null);
 
 // eslint-disable-next-line react-refresh/only-export-components
-export const useFormCont = () => {
+export const useFormContext = () => {
   const form = useContext(FormContext);
 
   if (!form) {
@@ -75,11 +75,10 @@ export const Input = ({
   className,
   ...props
 }: ComponentProps<"input">) => {
-  const { name } = useFormCont();
-  const {
-    formState: { errors },
-  } = useFormContext();
-  const message = errors[name]?.message;
+  const { name } = useFormContext();
+  const { errors, isValid } = useFormState();
+
+  const message = errors[name]?.message as string;
   return (
     <input
       {...props}
@@ -89,18 +88,16 @@ export const Input = ({
         "desktop-l:p-4 text-ms rounded-ms h-10.5 w-full border border-black/50 p-3 text-black/80 shadow-lg outline-none placeholder:text-black/50 placeholder:capitalize",
         className,
         message && "border-red",
+        isValid && "border-green",
       )}
     />
   );
 };
 
 export const MessageText = () => {
-  const { name } = useFormCont();
-
-  const {
-    formState: { errors },
-  } = useFormContext();
+  const { name } = useFormContext();
+  const { errors } = useFormState();
 
   const message = errors[name]?.message as string;
-  return <p className="text-red text-s mt-1 px-4">{message}</p>;
+  return <p className={clsx("text-red text-s mt-1 px-4")}>{message}</p>;
 };
