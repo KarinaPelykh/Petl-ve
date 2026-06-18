@@ -8,7 +8,6 @@ import { useAppDispatch, useAppSelector } from "../shared/hooks/reduxHooks";
 export const OurFriends = () => {
   const dispatch = useAppDispatch();
   const data = useAppSelector(friends);
-  console.log(data);
 
   useEffect(() => {
     dispatch(getFriends());
@@ -17,7 +16,7 @@ export const OurFriends = () => {
   return (
     <section className="pt-15 pb-11">
       <div className="container">
-        <Heading as="h1" variant="first" className="mb-5  desktop-l:mb-15">
+        <Heading as="h1" variant="first" className="desktop-l:mb-15 mb-5">
           Our friends
         </Heading>
         <PartnerList data={data} />

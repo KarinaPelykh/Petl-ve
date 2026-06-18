@@ -1,20 +1,25 @@
+import type { ReactNode } from "react";
 import { auth } from "../../shared/api/redux/user/selectors";
 import { useAppSelector } from "../../shared/hooks/reduxHooks";
-import { Button } from "../../shared/ui/Button";
+
 import { Icon } from "../../shared/ui/Icon";
 
-export const User = () => {
+type UserProps = {
+  children: ReactNode;
+};
+
+export const User = ({ children }: UserProps) => {
   const { user } = useAppSelector(auth);
 
   return (
     <div className="flex items-center justify-center gap-2">
-      <Button className="bg-yellow text-m w-fit px-8.75 py-3.5 text-white uppercase">
-        Log out
-      </Button>
+      {children}
       <div className="bg-cream flex size-12.5 items-center justify-center rounded-[50%]">
         <Icon name="user" className="size-6" />
       </div>
-      <p className="text-1xl capitalize">{user.name || "unknown"}</p>
+      <p className="text-1xl tablet-l:flex hidden capitalize">
+        {user.name || "unknown"}
+      </p>
     </div>
   );
 };

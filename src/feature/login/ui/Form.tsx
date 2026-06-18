@@ -25,9 +25,11 @@ export const LoginForm = () => {
     defaultValues,
     resolver: zodResolver(signinSchema),
   });
+
   const { register, handleSubmit, reset } = form;
   const dispatch = useAppDispatch();
   const navigation = useNavigate();
+
   const submitForm = (data: Signin) => {
     try {
       dispatch(signin(data));
@@ -37,6 +39,7 @@ export const LoginForm = () => {
       console.log(error);
     }
   };
+
   return (
     <Form
       onSubmit={handleSubmit(submitForm)}
@@ -61,12 +64,13 @@ export const LoginForm = () => {
       </FormField>
       <Button
         type="submit"
-        className="bg-yellow tablet-l:mt-16 desktop-l:py-4 mb-3 w-full text-white uppercase"
+        variant="primary"
+        className="tablet-l:mt-16 text-ms desktop-l:py-4 mb-3 py-3 uppercase"
       >
         Log In
       </Button>
       <p className="text-s tablet-l:text-ms text-center text-black/50">
-        Don’t have an account?{" "}
+        Don’t have an account?
         <Link className="text-yellow cursor-pointer underline" to="/register">
           Register
         </Link>

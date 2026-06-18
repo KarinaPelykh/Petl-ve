@@ -76,9 +76,9 @@ export const Input = ({
   ...props
 }: ComponentProps<"input">) => {
   const { name } = useFormContext();
-  const { errors } = useFormState();
+  // const { errors } = useFormState();
 
-  const message = errors[name]?.message as string;
+  // const message = errors[name]?.message as string;
   return (
     <input
       {...props}
@@ -87,7 +87,7 @@ export const Input = ({
       className={clsx(
         "desktop-l:p-4 text-ms rounded-ms h-10.5 w-full border border-black/50 p-3 text-black/80 shadow-lg outline-none placeholder:text-black/50 placeholder:capitalize",
         className,
-        message && "border-red",
+        // message && "border-red",
         // isValid && "border-green",
       )}
     />
@@ -96,8 +96,8 @@ export const Input = ({
 
 export const MessageText = () => {
   const { name } = useFormContext();
-  const { errors } = useFormState();
+  // const { errors  } = useFormState();
 
-  const message = errors[name]?.message as string;
-  return <p className={clsx("text-red text-s mt-1 px-4")}>{message}</p>;
+  // const message = errors[name]?.message as string;
+  return <p className={clsx("text-red text-s mt-1 px-4")}>{}</p>;
 };

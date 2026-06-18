@@ -79,7 +79,8 @@ export const RegistrationForm = () => {
       </FormField>
       <Button
         type="submit"
-        className="bg-yellow desktop-l:py-4 text-ms mb-3 w-full text-white uppercase"
+        variant="primary"
+        className="desktop-l:py-4 text-ms mb-3 py-3 uppercase"
       >
         Registration
       </Button>

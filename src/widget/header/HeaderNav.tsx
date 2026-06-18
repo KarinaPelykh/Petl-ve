@@ -2,9 +2,11 @@ import { Link, useLocation } from "react-router";
 import { Icon } from "../../shared/ui/Icon";
 import { HeaderNavList } from "./HeaderNavList";
 import { HeaderBurgerMenu } from "./HeaderBurgerMenu";
+
+import { User } from "../user/User";
+import { Button } from "../../shared/ui/Button";
 import { useAppSelector } from "../../shared/hooks/reduxHooks";
 import { isLoggedIn } from "../../shared/api/redux/user/selectors";
-import { User } from "../user/User";
 
 export const HeaderNav = () => {
   const location = useLocation();
@@ -19,7 +21,19 @@ export const HeaderNav = () => {
         />
       </Link>
       <HeaderNavList className="desktop-l:flex hidden" />
-      {isLog ? <User /> : <HeaderBurgerMenu />}
+      <div className="flex gap-3">
+        {isLog && (
+          <User>
+            <Button
+              variant="primary"
+              className="text-m tablet-l:flex hidden w-fit px-8.75 py-3.5 uppercase"
+            >
+              Log out
+            </Button>
+          </User>
+        )}
+        <HeaderBurgerMenu />
+      </div>
     </nav>
   );
 };
