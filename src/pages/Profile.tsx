@@ -34,7 +34,20 @@ export const UserProfile = () => {
           </div>
           <div className="tablet-l:mb-5 mb-7 flex flex-col items-center justify-center gap-2">
             <Icon name="user" className="tablet-l:size-27.5 size-23.5" />
-            <input type="file" placeholder="Upload photo" accept="image/png" />
+
+            <input
+              type="file"
+              id="file"
+              className="hidden"
+              data-size="lg"
+              name="upload"
+              id="bannerimage"
+              accept="image/png"
+              ngf-max-size="2MB"
+            />
+            <label for="file" className="underline">
+              Upload photo
+            </label>
           </div>
 
           <div className="tablet-l:mb-20 mb-10 w-full">

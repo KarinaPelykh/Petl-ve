@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { PetCard } from "../entities/pet/ui/PetCard";
 import { Heading } from "../shared/ui/Heading";
 import { SearchPetForm } from "../feature/search-pet/SearchPetForm";
 import {
@@ -12,6 +11,20 @@ import {
 import { notices } from "../shared/api/redux/notices/selectors";
 import { useAppDispatch, useAppSelector } from "../shared/hooks/reduxHooks";
 import { Pagination } from "../shared/ui/Pagination";
+import { isLoggedIn } from "../shared/api/redux/user/selectors";
+import { AttentionDialog } from "../components/find-pet/AttentionDialog";
+import { NoticeDialog } from "../components/find-pet/NoticeDialog";
+import { Modal } from "../shared/ui/Modal";
+import { Dialog } from "radix-ui";
+import {
+  PetCard,
+  PetControl,
+  PetDescription,
+  PetImage,
+  PetInfoTable,
+  PetPrice,
+  PetTitle,
+} from "../entities";
 
 type Option = {
   locationId: string;
@@ -42,9 +55,12 @@ const initialState = {
 export const FindPets = () => {
   const [filter, setFilter] = useState<Filter>(initialState);
   const [cardID, setCardId] = useState("");
+  const [cardData, setCardData] = useState(null);
+
+  const [open, setOpen] = useState(false);
 
   const dispatch = useAppDispatch();
-
+  const isLoggIn = useAppSelector(isLoggedIn);
   const data = useAppSelector(notices);
 
   useEffect(() => {
@@ -76,7 +92,7 @@ export const FindPets = () => {
     async function getInfById() {
       try {
         const data = await getNotice(cardID);
-        console.log(data);
+        setCardData(data);
       } catch (error) {
         console.log(error);
       }
@@ -94,15 +110,34 @@ export const FindPets = () => {
         <SearchPetForm filter={filter} setFilter={setFilter} />
         {data?.results.length !== 0 ? (
           <div className="flex justify-center">
-            <ul className="tablet-l:grid-cols-2 desktop-l:grid-cols-3 desktop-l:gap-8 grid gap-5">
-              {data?.results.map((notice) => (
-                <PetCard
-                  key={notice._id}
-                  notice={notice}
-                  setCardId={setCardId}
-                />
-              ))}
-            </ul>
+            <Dialog.Root open={open} onOpenChange={setOpen}>
+              <ul className="tablet-l:grid-cols-2 desktop-l:grid-cols-3 desktop-l:gap-8 grid gap-5">
+                {data?.results.map((notice) => (
+                  <PetCard
+                    key={notice._id}
+                    notice={notice}
+                    setCardId={setCardId}
+                    className="desktop-l:w-90.75"
+                  >
+                    <PetImage />
+                    <div>
+                      <PetTitle />
+                      <PetInfoTable />
+                      <PetDescription />
+                      <PetPrice />
+                      <PetControl />
+                    </div>
+                  </PetCard>
+                ))}
+              </ul>
+              <Modal>
+                {isLoggIn && cardID ? (
+                  <NoticeDialog data={cardData} />
+                ) : (
+                  <AttentionDialog />
+                )}
+              </Modal>
+            </Dialog.Root>
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center px-4 py-16 text-center">

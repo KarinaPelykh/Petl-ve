@@ -9,7 +9,6 @@ export const signup = createAsyncThunk(
   async (params: Credential, thunkAPI) => {
     try {
       const response = await instance.post("users/signup", { ...params });
-
       setToken(response.data.token);
       return response.data;
     } catch (error) {
@@ -23,7 +22,7 @@ export const signin = createAsyncThunk(
   async (params: Signin, thunkAPI) => {
     try {
       const response = await instance.post("users/signin", { ...params });
-
+      setToken(response.data.token);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

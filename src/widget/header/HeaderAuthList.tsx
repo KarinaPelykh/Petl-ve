@@ -6,9 +6,12 @@ const authNav = [
   { link: "register", name: "Registration" },
 ];
 
-type HeaderAuthListProps = { className: string };
+type HeaderAuthListProps = { className?: string; btnClassName?: string };
 
-export const HeaderAuthList = ({ className }: HeaderAuthListProps) => {
+export const HeaderAuthList = ({
+  className,
+  btnClassName,
+}: HeaderAuthListProps) => {
   const location = useLocation();
   const homePage = location.pathname === "/";
 
@@ -24,6 +27,7 @@ export const HeaderAuthList = ({ className }: HeaderAuthListProps) => {
                 ? "bg-yellow px-8.75 text-white"
                 : "text-yellow bg-cream",
               homePage && "border border-white",
+              btnClassName,
             )}
           >
             {item.name}
