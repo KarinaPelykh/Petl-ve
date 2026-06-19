@@ -30,9 +30,7 @@ export const PetCard = ({
 }: PetCardProps) => {
   return (
     <PetCardContext.Provider value={{ notice, setCardId }}>
-      <article
-        className={clsx(" rounded-s bg-white p-6", className)}
-      >
+      <article className={clsx("w-full rounded-s bg-white p-6", className)}>
         {children}
       </article>
     </PetCardContext.Provider>

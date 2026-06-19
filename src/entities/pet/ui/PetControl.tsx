@@ -19,7 +19,10 @@ export const PetControl = () => {
         type="button"
         className="bg-cream rounded-[50% ] size-11.5 p-3.5 text-white"
       >
-        <Icon name="heart" className="size-4.5" />
+        <Icon
+          name="heart"
+          className="stroke-yellow size-4.5 fill-transparent"
+        />
       </Button>
     </div>
   );

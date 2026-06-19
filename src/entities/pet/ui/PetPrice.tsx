@@ -1,8 +1,11 @@
+import clsx from "clsx";
 import { usePetContext } from "../api/usePetContex";
 
-export const PetPrice = () => {
+export const PetPrice = ({ className }) => {
   const { notice } = usePetContext();
   return (
-    <span className="text-m mb-3 block"> {notice?.price || "40.99"}$</span>
+    <span className={clsx("text-m mb-3 block", className)}>
+      ${notice?.price || "40.99"}
+    </span>
   );
 };
