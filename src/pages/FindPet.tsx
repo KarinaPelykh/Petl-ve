@@ -12,19 +12,13 @@ import { notices } from "../shared/api/redux/notices/selectors";
 import { useAppDispatch, useAppSelector } from "../shared/hooks/reduxHooks";
 import { Pagination } from "../shared/ui/Pagination";
 import { isLoggedIn } from "../shared/api/redux/user/selectors";
-import { AttentionDialog } from "../components/find-pet/AttentionDialog";
+import { AttentionDialog } from "../entities/pet/ui/AttentionDialog";
 import { NoticeDialog } from "../components/find-pet/NoticeDialog";
 import { Modal } from "../shared/ui/Modal";
 import { Dialog } from "radix-ui";
-import {
-  PetCard,
-  PetControl,
-  PetDescription,
-  PetImage,
-  PetInfoTable,
-  PetPrice,
-  PetTitle,
-} from "../entities";
+
+import { PetList } from "../components/find-pet/PetList";
+import { PetListMock } from "../components/find-pet/PetListMock";
 
 type Option = {
   locationId: string;
@@ -54,8 +48,10 @@ const initialState = {
 
 export const FindPets = () => {
   const [filter, setFilter] = useState<Filter>(initialState);
+
   const [cardID, setCardId] = useState("");
   const [cardData, setCardData] = useState(null);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const [open, setOpen] = useState(false);
 
@@ -108,63 +104,29 @@ export const FindPets = () => {
           Find your favorite pet
         </Heading>
         <SearchPetForm filter={filter} setFilter={setFilter} />
-        {data?.results.length !== 0 ? (
+        {data?.results.length ? (
           <div className="flex justify-center">
             <Dialog.Root open={open} onOpenChange={setOpen}>
-              <ul className="tablet-l:grid-cols-2 desktop-l:grid-cols-3 desktop-l:gap-8 grid gap-5">
-                {data?.results.map((notice) => (
-                  <PetCard
-                    key={notice._id}
-                    notice={notice}
-                    setCardId={setCardId}
-                    className="desktop-l:w-90.75"
-                  >
-                    <PetImage />
-                    <div>
-                      <PetTitle />
-                      <PetInfoTable />
-                      <PetDescription />
-                      <PetPrice />
-                      <PetControl />
-                    </div>
-                  </PetCard>
-                ))}
-              </ul>
-              <Modal>
-                {isLoggIn && cardID ? (
-                  <NoticeDialog data={cardData} />
-                ) : (
-                  <AttentionDialog />
-                )}
-              </Modal>
+              <PetList setIsFavorite={setIsFavorite} setCardId={setCardId} />
+              {isFavorite ? (
+                !isLoggIn && (
+                  <Modal>
+                    <AttentionDialog />
+                  </Modal>
+                )
+              ) : (
+                <Modal>
+                  {isLoggIn ? (
+                    <NoticeDialog data={cardData} />
+                  ) : (
+                    <AttentionDialog />
+                  )}
+                </Modal>
+              )}
             </Dialog.Root>
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center px-4 py-16 text-center">
-            <div className="relative mb-6 h-74 w-74">
-              <img
-                src="/image/ChatGPT.png"
-                alt="No data"
-                className="relative h-full w-full object-contain"
-              />
-            </div>
-
-            <h2 className="mb-2 text-2xl font-bold text-gray-800 md:text-3xl">
-              No pets found
-            </h2>
-
-            <p className="mb-6 max-w-md text-gray-500">
-              We couldn’t find any results for your filters. Try changing search
-              or reset filters to see more pets.
-            </p>
-
-            <button
-              className="bg-yellow rounded-full px-6 py-3 font-semibold text-white shadow-md transition hover:bg-yellow-500"
-              onClick={resetFilter}
-            >
-              Reset filters
-            </button>
-          </div>
+          <PetListMock resetFilter={resetFilter} />
         )}
         <div className="desktop-l:mt-15 flex justify-center">
           <Pagination

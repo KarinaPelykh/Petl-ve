@@ -69,6 +69,17 @@ export const getSpecies = createAsyncThunk(
   },
 );
 
+export const addFavorite = createAsyncThunk(
+  "notices/addFavorite",
+  async (id: string, thunkAPI) => {
+    try {
+      const response = await instance.post(`notices/favorites/add/${id}`);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  },
+);
 // export const getCities = createAsyncThunk(
 //   "cities/getAll",
 //   async ({ keyword }: { keyword?: string }, thunkAPI) => {

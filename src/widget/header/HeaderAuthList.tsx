@@ -2,8 +2,8 @@ import clsx from "clsx";
 import { Link, useLocation } from "react-router";
 
 const authNav = [
-  { link: "login", name: "Log in" },
-  { link: "register", name: "Registration" },
+  { link: "/login", name: "Log in" },
+  { link: "/register", name: "Registration" },
 ];
 
 type HeaderAuthListProps = { className?: string; btnClassName?: string };

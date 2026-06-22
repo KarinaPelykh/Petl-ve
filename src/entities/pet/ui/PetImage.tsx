@@ -1,7 +1,11 @@
 import clsx from "clsx";
 import { usePetContext } from "../api/usePetContex";
 
-export const PetImage = ({ imgClassName }) => {
+type PetImageProps = {
+  imgClassName?: string;
+};
+
+export const PetImage = ({ imgClassName }: PetImageProps) => {
   const { notice } = usePetContext();
   return (
     <div className={clsx("mb-6 overflow-hidden rounded-s", imgClassName)}>
