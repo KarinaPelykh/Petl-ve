@@ -10,12 +10,48 @@ import {
 import { Button } from "../../shared/ui/Button";
 import { Icon } from "../../shared/ui/Icon";
 import { PetPopularity } from "../../entities/pet/ui/PetPopularity";
+import { useAppDispatch, useAppSelector } from "../../shared/hooks/reduxHooks";
+import {
+  addFavorite,
+  deleteFavorite,
+} from "../../shared/api/redux/notices/operations";
+import { useNavigate } from "react-router";
+import type { Notice } from "../../entities/pet/ui/PetCard";
+import { favorite } from "../../shared/api/redux/notices/selectors";
 
-export const NoticeDialog = ({ data }) => {
+type NoticeDialogProps = {
+  data?: Notice | null;
+};
+
+export const NoticeDialog = ({ data }: NoticeDialogProps) => {
+  const dispatch = useAppDispatch();
+
+  const navigate = useNavigate();
+
+  const favoriteNotices = useAppSelector(favorite);
+
+  if (!data) return;
+
+  const idFavoriteNotice = favoriteNotices.find((notice) =>
+    notice.includes(data._id),
+  );
+
+  const handelAddFavorite = () => {
+    if (idFavoriteNotice) {
+      return;
+    }
+    dispatch(addFavorite(data._id));
+    navigate("/profile");
+  };
+
+  const deleteFromFavorite = () => {
+    dispatch(deleteFavorite(data._id));
+  };
+
   return (
     <>
       <PetCard notice={data} className="p-0!">
-        <div className="tablet-l:size-[150px] relative mx-auto mb-4 size-30">
+        <div className="tablet-l:size-37.5 relative mx-auto mb-4 size-30">
           <div
             data-content={data?.category}
             className={clsx(
@@ -34,12 +70,13 @@ export const NoticeDialog = ({ data }) => {
       </PetCard>
       <div className="flex w-full items-center justify-center gap-2">
         <Button
+          onClick={idFavoriteNotice ? handelAddFavorite : deleteFromFavorite}
           variant="primary"
           className="flex w-full items-center justify-center gap-2"
         >
-          Add
+          {idFavoriteNotice === data._id ? "Delete" : "Add"}
           <Icon
-            name="heart"
+            name={idFavoriteNotice === data._id ? "trash" : "heart"}
             className="size-4.5 fill-transparent stroke-white"
           />
         </Button>

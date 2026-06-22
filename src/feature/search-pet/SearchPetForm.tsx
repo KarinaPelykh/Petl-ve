@@ -38,7 +38,10 @@ export const SearchPetForm = ({ filter, setFilter }: SearchPetFormProps) => {
   const speciesData = useAppSelector(species);
 
   return (
-    <Form className="bg-cream! tablet-l:py-10 tablet-l:px-8 desktop-l:p-10 desktop-l:w-304 mb-10 p-5">
+    <Form
+      className="bg-cream! tablet-l:py-10 tablet-l:px-8 desktop-l:p-10 desktop-l:w-304 mb-10 p-5"
+      form={null}
+    >
       <div className="tablet-l:flex-row tablet-l:flex-wrap flex w-full flex-col gap-3">
         <SearchField
           type="search"

@@ -80,15 +80,16 @@ export const addFavorite = createAsyncThunk(
     }
   },
 );
-// export const getCities = createAsyncThunk(
-//   "cities/getAll",
-//   async ({ keyword }: { keyword?: string }, thunkAPI) => {
-//     try {
-//       const response = await instance.get(`cities/?keyword=${keyword}`);
 
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error);
-//     }
-//   },
-// );
+export const deleteFavorite = createAsyncThunk(
+  "notices/deleteFav",
+  async (id: string, thunkAPI) => {
+    try {
+      const response = await instance.delete(`notices/favorites/delete/${id}`);
+
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  },
+);

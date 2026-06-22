@@ -2,6 +2,17 @@ import { useForm } from "react-hook-form";
 import { Button } from "../shared/ui/Button";
 import { Form, FormField, Input, Label, MessageText } from "../shared/ui/Form";
 import { Icon } from "../shared/ui/Icon";
+import { useAppSelector } from "../shared/hooks/reduxHooks";
+import { favorite, notices } from "../shared/api/redux/notices/selectors";
+// import {
+//   PetCard,
+//   PetControl,
+//   PetDescription,
+//   PetImage,
+//   PetInfoTable,
+//   PetPrice,
+//   PetTitle,
+// } from "../entities";
 
 const defaultValues = {
   name: "",
@@ -11,6 +22,13 @@ const defaultValues = {
 
 export const UserProfile = () => {
   const form = useForm({ defaultValues });
+  const data = useAppSelector(favorite);
+  const getNotices = useAppSelector(notices);
+
+  const filteredData = getNotices.results.filter((notice) =>
+    data.includes(notice._id),
+  );
+  console.log(filteredData);
 
   return (
     <section className="desktop-l:pb-8 tablet-l:pb-45.5 pb-35">
@@ -41,11 +59,10 @@ export const UserProfile = () => {
               className="hidden"
               data-size="lg"
               name="upload"
-              id="bannerimage"
               accept="image/png"
               ngf-max-size="2MB"
             />
-            <label for="file" className="underline">
+            <label htmlFor="file" className="underline">
               Upload photo
             </label>
           </div>
@@ -58,7 +75,7 @@ export const UserProfile = () => {
                 <Input
                   type="text"
                   placeholder="Name"
-                  className="max-desktop-l:w-[305px]!"
+                  className="max-desktop-l:w-76.25!"
                 />
                 <MessageText />
               </FormField>
@@ -67,7 +84,7 @@ export const UserProfile = () => {
                 <Input
                   type="text"
                   placeholder="name00@gmail.com"
-                  className="max-desktop-l:w-[305px]!"
+                  className="max-desktop-l:w-76.25!"
                 />
                 <MessageText />
               </FormField>
@@ -78,7 +95,7 @@ export const UserProfile = () => {
               <Input
                 type="text"
                 placeholder="+380"
-                className="max-desktop-l:w-[305px]!"
+                className="max-desktop-l:w-76.25!"
               />
               <MessageText />
             </FormField>
@@ -100,11 +117,34 @@ export const UserProfile = () => {
             Log out
           </Button>
         </Form>
-        <div className="max-tablet-l:w-[335px] max-desktop-l:w-[704px] desktop-l:mx-0 flexflex-col mx-auto mt-10">
+        <div className="max-tablet-l:w-83.75 max-desktop-l:w-176 desktop-l:mx-0 mx-auto mt-10 flex flex-col">
           <div className="mb-20 flex items-center gap-2.5">
             <Button className="bg-yellow text-ms w-fit p-3 text-white">
               My favorite pets
             </Button>
+            {/* <ul>
+              {filter.map((item) => (
+                <PetCard
+                  key={item._id}
+                  notice={item}
+                  setCardId={setCardId}
+                  className="desktop-l:w-90.75"
+                >
+                  <PetImage />
+                  <div>
+                    <PetTitle />
+                    <PetInfoTable />
+                    <PetDescription />
+                    <PetPrice />
+                    <PetControl
+                    setIsFavorite={setIsFavorite}
+                    onClick={(id: string) => isLoggIn && dispatch(addFavorite(id))}
+                    />
+                  </div>
+                </PetCard>
+              ))}
+            </ul> */}
+
             <Button className="desktop-l:py-3 text-ms w-30.75 bg-white text-black capitalize">
               Viewed
             </Button>

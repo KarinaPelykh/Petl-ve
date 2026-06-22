@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { createContext, useContext, useMemo, type ComponentProps } from "react";
 import {
   FormProvider,
-  useFormState,
+  type FieldValues,
   type UseFormReturn,
 } from "react-hook-form";
 
@@ -27,11 +27,11 @@ export const useFormContext = () => {
   return form;
 };
 
-export const Form = ({
+export const Form = <T extends FieldValues>({
   form,
   className,
   ...props
-}: { form: UseFormReturn } & ComponentProps<"form">) => {
+}: { form: UseFormReturn<T> } & ComponentProps<"form">) => {
   return (
     <FormProvider {...form}>
       <form
@@ -95,7 +95,7 @@ export const Input = ({
 };
 
 export const MessageText = () => {
-  const { name } = useFormContext();
+  // const { name } = useFormContext();
   // const { errors  } = useFormState();
 
   // const message = errors[name]?.message as string;

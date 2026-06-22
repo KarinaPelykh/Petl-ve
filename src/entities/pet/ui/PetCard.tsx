@@ -13,7 +13,7 @@ export type Notice = {
   sex: string;
   species: string;
   category: string;
-  price: string;
+  price?: string;
 };
 
 type PetCardProps = {

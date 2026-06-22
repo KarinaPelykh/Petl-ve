@@ -19,6 +19,7 @@ import { Dialog } from "radix-ui";
 
 import { PetList } from "../components/find-pet/PetList";
 import { PetListMock } from "../components/find-pet/PetListMock";
+import type { Notice } from "../entities/pet/ui/PetCard";
 
 type Option = {
   locationId: string;
@@ -50,7 +51,7 @@ export const FindPets = () => {
   const [filter, setFilter] = useState<Filter>(initialState);
 
   const [cardID, setCardId] = useState("");
-  const [cardData, setCardData] = useState(null);
+  const [cardData, setCardData] = useState<Notice | null>(null);
   const [isFavorite, setIsFavorite] = useState(false);
 
   const [open, setOpen] = useState(false);
