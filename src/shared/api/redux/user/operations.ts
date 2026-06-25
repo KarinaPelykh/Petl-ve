@@ -38,3 +38,23 @@ export const signout = createAsyncThunk("auth/signout", async (_, thunkAPI) => {
     return thunkAPI.rejectWithValue(error);
   }
 });
+
+export const refresh = createAsyncThunk(
+  "auth/refresh",
+  async (_, { rejectWithValue, getState }) => {
+    const persisted = getState().auth.user.token;
+
+    if (!persisted) {
+      return rejectWithValue("None");
+    }
+
+    try {
+      setToken(persisted);
+      const response = await instance.get("users/current");
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);

@@ -25,8 +25,6 @@ export const getNotices = createAsyncThunk(
 
 export const getNotice = async (id: string) => {
   const response = await instance.get(`notices/${id}`);
-  console.log(response.data);
-
   return response.data;
 };
 

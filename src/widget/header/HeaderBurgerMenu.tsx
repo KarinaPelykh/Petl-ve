@@ -12,7 +12,9 @@ export const HeaderBurgerMenu = () => {
   const { isOpen, close, open } = useToggle();
   const location = useLocation();
   const homePage = location.pathname === "/";
+
   const isLog = useAppSelector(isLoggedIn);
+
   return (
     <>
       <div className="flex items-center gap-4">

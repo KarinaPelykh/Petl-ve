@@ -32,7 +32,7 @@ const rootReducer = combineReducers({
   friends: friendsReducer,
   news: newsReducer,
 });
-console.log("storage =", storage);
+
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
