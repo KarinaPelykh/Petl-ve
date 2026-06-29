@@ -1,30 +1,28 @@
 import Select from "react-select";
 import clsx from "clsx";
 
-type SelectProps = {
+type MySelectProps = {
   data: string[];
   onChange: (value: string) => void;
   className?: string;
   field: string;
 };
 
-export const MySelect = ({ data, onChange, field, className }: SelectProps) => {
-  const defaultOptions = { value: "Show all", label: "Show all" };
-
+export const MySelect = ({
+  data,
+  onChange,
+  field,
+  className,
+}: MySelectProps) => {
   const optionsN = [
-    defaultOptions,
+    { value: "Show all", label: "Show all" },
     ...data.map((item) => ({ value: item, label: item })),
   ];
 
   return (
     <Select
       options={optionsN}
-      onChange={(selected) => {
-        if (!selected) {
-          return;
-        }
-        onChange(selected.value);
-      }}
+      onChange={(selected) => selected && onChange(selected.value)}
       classNamePrefix="react-select"
       unstyled
       placeholder={field}

@@ -33,7 +33,7 @@ export const SearchPetForm = () => {
           type="search"
           value={filter.keyword}
           onChange={(val) => onChangeInput(val, "keyword")}
-          className="desktop-l:w-66.25 outline-yellow border-0 bg-white"
+          className="tablet-l:w-66.25 desktop-l:w-66.25 outline-yellow border-0 bg-white"
         />
         <div className="flex gap-2">
           <MySelect

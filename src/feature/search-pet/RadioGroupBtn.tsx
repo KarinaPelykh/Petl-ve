@@ -1,8 +1,7 @@
 import clsx from "clsx";
-import { RadioBtn } from "../../shared/ui/RadioBtn";
 import { RadioGroup } from "radix-ui";
 
-type Data = { value: boolean; name: string };
+type Data = { name: string; value: boolean };
 
 type RadioGroupBtnProps = {
   filter: boolean;
@@ -11,8 +10,8 @@ type RadioGroupBtnProps = {
 };
 
 export const RadioGroupBtn = ({
-  filter,
   data,
+  filter,
   onChange,
 }: RadioGroupBtnProps) => {
   return (
@@ -29,7 +28,9 @@ export const RadioGroupBtn = ({
               "text-m rounded-ms desktop-l:p-3.5 w-fit cursor-pointer items-center justify-between border border-transparent bg-white font-normal text-black transition-all duration-200 hover:shadow-lg",
             )}
           >
-            <RadioBtn value={String(value)} name={name} />
+            <RadioGroup.Item value={String(value)} id={name}>
+              {name}
+            </RadioGroup.Item>
           </li>
         ))}
       </ul>
