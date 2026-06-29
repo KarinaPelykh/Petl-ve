@@ -4,15 +4,15 @@ import { Form, FormField, Input, Label, MessageText } from "../shared/ui/Form";
 import { Icon } from "../shared/ui/Icon";
 import { useAppSelector } from "../shared/hooks/reduxHooks";
 import { favorite, notices } from "../shared/api/redux/notices/selectors";
-// import {
-//   PetCard,
-//   PetControl,
-//   PetDescription,
-//   PetImage,
-//   PetInfoTable,
-//   PetPrice,
-//   PetTitle,
-// } from "../entities";
+import {
+  PetCard,
+  PetControl,
+  PetDescription,
+  PetImage,
+  PetInfoTable,
+  PetPrice,
+  PetTitle,
+} from "../entities";
 
 const defaultValues = {
   name: "",
@@ -32,10 +32,10 @@ export const UserProfile = () => {
 
   return (
     <section className="desktop-l:pb-8 tablet-l:pb-45.5 pb-35">
-      <div className="desktop-l:flex desktop-l:gap-8 container">
+      <div className="desktop-l:flex desktop-l:gap-8 container items-start">
         <Form
           form={form}
-          className="max-tablet-l:w-83.75 max-desktop-l:w-176 desktop-l:rounded-m desktop-l:w-130! tablet-l:p-10 desktop-l:mx-0 mx-auto px-5 pt-5 pb-10"
+          className="max-tablet-l:w-83.75 max-desktop-l:w-176 desktop-l:rounded-m desktop-l:w-130! tablet-l:p-10 desktop-l:m-0 mx-auto px-5 pt-5 pb-10"
         >
           <div className="mb-5 flex items-center justify-between">
             <div className="bg-yellow rounded-ms flex h-9.5 w-20 items-center justify-center gap-1">
@@ -122,12 +122,18 @@ export const UserProfile = () => {
             <Button className="bg-yellow text-ms w-fit p-3 text-white">
               My favorite pets
             </Button>
-            {/* <ul>
-              {filter.map((item) => (
+
+            <Button className="desktop-l:py-3 text-ms w-30.75 bg-white text-black capitalize">
+              Viewed
+            </Button>
+          </div>
+          {filteredData.length ? (
+            <ul className="flex flex-row gap-2.5">
+              {filteredData.map((item) => (
                 <PetCard
                   key={item._id}
                   notice={item}
-                  setCardId={setCardId}
+                  // setCardId={setCardId}
                   className="desktop-l:w-90.75"
                 >
                   <PetImage />
@@ -136,27 +142,26 @@ export const UserProfile = () => {
                     <PetInfoTable />
                     <PetDescription />
                     <PetPrice />
-                    <PetControl
-                    setIsFavorite={setIsFavorite}
-                    onClick={(id: string) => isLoggIn && dispatch(addFavorite(id))}
-                    />
+                    {/* <PetControl
+                      setIsFavorite={setIsFavorite}
+                      onClick={(id: string) =>
+                        isLoggIn && dispatch(addFavorite(id))
+                      }
+                    /> */}
                   </div>
                 </PetCard>
               ))}
-            </ul> */}
-
-            <Button className="desktop-l:py-3 text-ms w-30.75 bg-white text-black capitalize">
-              Viewed
-            </Button>
-          </div>
-          <p className="text-ms tablet-l:w-114.5 desktop-l:mt-45 mx-auto text-center">
-            Oops,
-            <span className="text-yellow">
-              looks like there aren't any furries
-            </span>
-            on our adorable page yet. Do not worry! View your pets on the "find
-            your favorite pet" page and add them to your favorites.
-          </p>
+            </ul>
+          ) : (
+            <p className="text-ms tablet-l:w-114.5 desktop-l:mt-45 mx-auto text-center">
+              Oops,
+              <span className="text-yellow">
+                looks like there aren't any furries
+              </span>
+              on our adorable page yet. Do not worry! View your pets on the
+              "find your favorite pet" page and add them to your favorites.
+            </p>
+          )}
         </div>
       </div>
     </section>

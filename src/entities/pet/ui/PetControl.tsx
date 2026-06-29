@@ -1,16 +1,34 @@
 import { Dialog } from "radix-ui";
 import { usePetContext } from "../api/usePetContex";
 import { Icon } from "../../../shared/ui/Icon";
+import { useAppSelector } from "../../../shared/hooks/reduxHooks";
+import { favorite } from "../../../shared/api/redux/notices/selectors";
 
-export const PetControl = ({ onClick, setIsFavorite }) => {
+type PetControlProps = {
+  handelAddFavorite: (val: string) => void;
+  deleteFromFavorite: (val: string) => void;
+  setIsFavorite: (val: boolean) => void;
+};
+
+export const PetControl = ({
+  handelAddFavorite,
+  deleteFromFavorite,
+  setIsFavorite,
+}: PetControlProps) => {
   const { setCardId, notice } = usePetContext();
 
+  const favoriteNotices = useAppSelector(favorite);
+
+  const idFavoriteNotice = favoriteNotices.find((item) => item === notice._id);
+
   return (
-    <div className="flex gap-2.5">
+    <div
+      className="mt-auto flex gap-2.5"
+      onClick={() => setCardId?.(notice._id)}
+    >
       <Dialog.Trigger
         onClick={() => {
           setIsFavorite(false);
-          setCardId?.(notice._id);
         }}
         type="button"
         className="bg-yellow rounded-ms w-full cursor-pointer p-3.5 text-white"
@@ -20,13 +38,16 @@ export const PetControl = ({ onClick, setIsFavorite }) => {
       <Dialog.Trigger
         onClick={() => {
           setIsFavorite(true);
-          onClick(notice._id);
+          // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+          idFavoriteNotice
+            ? deleteFromFavorite(notice._id)
+            : handelAddFavorite(notice._id);
         }}
         type="button"
         className="bg-cream size-11.5 cursor-pointer rounded-[50%] p-3.5 text-white"
       >
         <Icon
-          name="heart"
+          name={idFavoriteNotice ? "trash" : "heart"}
           className="stroke-yellow size-4.5 fill-transparent"
         />
       </Dialog.Trigger>

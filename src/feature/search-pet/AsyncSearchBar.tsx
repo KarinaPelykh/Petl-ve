@@ -1,11 +1,6 @@
 import clsx from "clsx";
 import AsyncSelect from "react-select/async";
-
-type Option = {
-  locationId: string;
-  value: string;
-  label: string;
-};
+import type { Option } from "./types/select.type";
 
 type Locations = {
   _id: string;
@@ -13,6 +8,7 @@ type Locations = {
   cityEn: string;
   countyEn: string;
 };
+
 type AsyncSearchBarProps = {
   onChange: (value: Option | null) => void;
   className?: string;
@@ -34,8 +30,6 @@ export const AsyncSearchBar = ({
     )
       .then((data) => data.json())
       .then((data) => {
-        console.log(data);
-
         return data.map(({ _id, stateEn, cityEn, countyEn }: Locations) => ({
           locationId: _id,
           value: `${stateEn},${cityEn}`,

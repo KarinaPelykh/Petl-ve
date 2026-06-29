@@ -1,8 +1,8 @@
-type PetListMockProps = {
-  resetFilter: () => void;
-};
+// type PetListMockProps = {
+//   resetFilter: () => void;
+// };
 
-export const PetListMock = ({ resetFilter }: PetListMockProps) => {
+export const PetListMock = () => {
   return (
     <div className="flex flex-col items-center justify-center px-4 py-16 text-center">
       <div className="relative mb-6 h-74 w-74">
@@ -21,13 +21,13 @@ export const PetListMock = ({ resetFilter }: PetListMockProps) => {
         We couldn’t find any results for your filters. Try changing search or
         reset filters to see more pets.
       </p>
-
+      {/* 
       <button
         className="bg-yellow rounded-full px-6 py-3 font-semibold text-white shadow-md transition hover:bg-yellow-500"
         onClick={resetFilter}
       >
         Reset filters
-      </button>
+      </button> */}
     </div>
   );
 };

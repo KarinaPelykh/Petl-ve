@@ -83,7 +83,7 @@ export const deleteFavorite = createAsyncThunk(
   "notices/deleteFav",
   async (id: string, thunkAPI) => {
     try {
-      const response = await instance.delete(`notices/favorites/delete/${id}`);
+      const response = await instance.delete(`notices/favorites/remove/${id}`);
 
       return response.data;
     } catch (error) {

@@ -10,43 +10,27 @@ import {
 import { Button } from "../../shared/ui/Button";
 import { Icon } from "../../shared/ui/Icon";
 import { PetPopularity } from "../../entities/pet/ui/PetPopularity";
-import { useAppDispatch, useAppSelector } from "../../shared/hooks/reduxHooks";
-import {
-  addFavorite,
-  deleteFavorite,
-} from "../../shared/api/redux/notices/operations";
-import { useNavigate } from "react-router";
+
 import type { Notice } from "../../entities/pet/ui/PetCard";
+import { useAppSelector } from "../../shared/hooks/reduxHooks";
 import { favorite } from "../../shared/api/redux/notices/selectors";
 
 type NoticeDialogProps = {
   data?: Notice | null;
+  handelAddFavorite: (val: string) => void;
+  deleteFromFavorite: (val: string) => void;
 };
 
-export const NoticeDialog = ({ data }: NoticeDialogProps) => {
-  const dispatch = useAppDispatch();
-
-  const navigate = useNavigate();
-
+export const NoticeDialog = ({
+  data,
+  handelAddFavorite,
+  deleteFromFavorite,
+}: NoticeDialogProps) => {
   const favoriteNotices = useAppSelector(favorite);
-
   if (!data) return;
-
   const idFavoriteNotice = favoriteNotices.find((notice) =>
     notice.includes(data._id),
   );
-
-  const handelAddFavorite = () => {
-    if (idFavoriteNotice) {
-      return;
-    }
-    dispatch(addFavorite(data._id));
-    navigate("/profile");
-  };
-
-  const deleteFromFavorite = () => {
-    dispatch(deleteFavorite(data._id));
-  };
 
   return (
     <>
@@ -70,17 +54,24 @@ export const NoticeDialog = ({ data }: NoticeDialogProps) => {
       </PetCard>
       <div className="flex w-full items-center justify-center gap-2">
         <Button
-          onClick={idFavoriteNotice ? handelAddFavorite : deleteFromFavorite}
+          type="button"
+          onClick={() => {
+            // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+            !idFavoriteNotice
+              ? handelAddFavorite(data._id)
+              : deleteFromFavorite(data._id);
+          }}
           variant="primary"
           className="flex w-full items-center justify-center gap-2"
         >
-          {idFavoriteNotice === data._id ? "Delete" : "Add"}
+          {idFavoriteNotice ? "Delete" : "Add"}
           <Icon
-            name={idFavoriteNotice === data._id ? "trash" : "heart"}
+            name={idFavoriteNotice ? "trash" : "heart"}
             className="size-4.5 fill-transparent stroke-white"
           />
         </Button>
-        <Button variant="secondary" className="w-full">
+
+        <Button variant="secondary" className="w-full" type="button">
           Contact
         </Button>
       </div>

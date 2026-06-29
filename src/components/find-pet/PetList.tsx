@@ -7,19 +7,22 @@ import {
   PetPrice,
   PetTitle,
 } from "../../entities";
-import { addFavorite } from "../../shared/api/redux/notices/operations";
 import { notices } from "../../shared/api/redux/notices/selectors";
-import { isLoggedIn } from "../../shared/api/redux/user/selectors";
-import { useAppDispatch, useAppSelector } from "../../shared/hooks/reduxHooks";
+import { useAppSelector } from "../../shared/hooks/reduxHooks";
 
 type PetListProps = {
   setCardId: (val: string) => void;
   setIsFavorite: (val: boolean) => void;
+  handelAddFavorite: (val: string) => void;
+  deleteFromFavorite: (val: string) => void;
 };
 
-export const PetList = ({ setCardId, setIsFavorite }: PetListProps) => {
-  const dispatch = useAppDispatch();
-  const isLoggIn = useAppSelector(isLoggedIn);
+export const PetList = ({
+  setCardId,
+  setIsFavorite,
+  handelAddFavorite,
+  deleteFromFavorite,
+}: PetListProps) => {
   const { results } = useAppSelector(notices);
 
   return (
@@ -32,16 +35,15 @@ export const PetList = ({ setCardId, setIsFavorite }: PetListProps) => {
           className="desktop-l:w-90.75"
         >
           <PetImage />
-          <div>
-            <PetTitle />
-            <PetInfoTable />
-            <PetDescription />
-            <PetPrice />
-            <PetControl
-              setIsFavorite={setIsFavorite}
-              onClick={(id: string) => isLoggIn && dispatch(addFavorite(id))}
-            />
-          </div>
+          <PetTitle />
+          <PetInfoTable />
+          <PetDescription />
+          <PetPrice />
+          <PetControl
+            setIsFavorite={setIsFavorite}
+            handelAddFavorite={handelAddFavorite}
+            deleteFromFavorite={deleteFromFavorite}
+          />
         </PetCard>
       ))}
     </ul>

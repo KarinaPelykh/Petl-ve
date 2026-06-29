@@ -1,8 +1,6 @@
 import Select from "react-select";
 import clsx from "clsx";
 
-type Option = { value: string; label: string };
-
 type SelectProps = {
   data: string[];
   onChange: (value: string) => void;
@@ -19,7 +17,7 @@ export const MySelect = ({ data, onChange, field, className }: SelectProps) => {
   ];
 
   return (
-    <Select<Option>
+    <Select
       options={optionsN}
       onChange={(selected) => {
         if (!selected) {

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Heading } from "../shared/ui/Heading";
 import { SearchPetForm } from "../feature/search-pet/SearchPetForm";
 import {
+  addFavorite,
+  deleteFavorite,
   getCategory,
   getGender,
   getNotice,
@@ -20,36 +22,9 @@ import { Dialog } from "radix-ui";
 import { PetList } from "../components/find-pet/PetList";
 import { PetListMock } from "../components/find-pet/PetListMock";
 import type { Notice } from "../entities/pet/ui/PetCard";
-
-type Option = {
-  locationId: string;
-  value: string;
-  label: string;
-};
-
-export type Filter = {
-  keyword: string;
-  sex: string;
-  category: string;
-  species: string;
-  location: Option | null;
-  byPrice: boolean;
-  byPopularity: boolean;
-};
-
-const initialState = {
-  keyword: "",
-  sex: "",
-  category: "",
-  species: "",
-  location: null,
-  byPrice: false,
-  byPopularity: false,
-};
+import { useNavigate } from "react-router";
 
 export const FindPets = () => {
-  const [filter, setFilter] = useState<Filter>(initialState);
-
   const [cardID, setCardId] = useState("");
   const [cardData, setCardData] = useState<Notice | null>(null);
   const [isFavorite, setIsFavorite] = useState(false);
@@ -67,25 +42,6 @@ export const FindPets = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    const params = {
-      page: 1,
-      keyword: filter.keyword,
-      sex: filter.sex,
-      category: filter.category,
-      species: filter.species,
-      locationId: filter.location?.locationId || "",
-      byPrice: filter.byPrice,
-      byPopularity: filter.byPopularity,
-    };
-
-    dispatch(getNotices(params));
-  }, [filter, dispatch]);
-
-  const resetFilter = () => {
-    setFilter(initialState);
-  };
-
-  useEffect(() => {
     async function getInfById() {
       try {
         const data = await getNotice(cardID);
@@ -98,17 +54,33 @@ export const FindPets = () => {
     getInfById();
   }, [cardID]);
 
+  const navigate = useNavigate();
+
+  const handelAddFavorite = (id: string) => {
+    dispatch(addFavorite(id));
+    navigate("/profile");
+  };
+
+  const deleteFromFavorite = (id: string) => {
+    dispatch(deleteFavorite(id));
+  };
+
   return (
     <section className="py-13.5">
       <div className="container">
         <Heading as="h1" variant="first" className="mb-10">
           Find your favorite pet
         </Heading>
-        <SearchPetForm filter={filter} setFilter={setFilter} />
+        <SearchPetForm />
         {data?.results.length ? (
           <div className="flex justify-center">
             <Dialog.Root open={open} onOpenChange={setOpen}>
-              <PetList setIsFavorite={setIsFavorite} setCardId={setCardId} />
+              <PetList
+                setIsFavorite={setIsFavorite}
+                setCardId={setCardId}
+                handelAddFavorite={handelAddFavorite}
+                deleteFromFavorite={deleteFromFavorite}
+              />
               {isFavorite ? (
                 !isLoggIn && (
                   <Modal>
@@ -118,7 +90,11 @@ export const FindPets = () => {
               ) : (
                 <Modal>
                   {isLoggIn ? (
-                    <NoticeDialog data={cardData} />
+                    <NoticeDialog
+                      data={cardData}
+                      handelAddFavorite={handelAddFavorite}
+                      deleteFromFavorite={deleteFromFavorite}
+                    />
                   ) : (
                     <AttentionDialog />
                   )}
@@ -127,7 +103,7 @@ export const FindPets = () => {
             </Dialog.Root>
           </div>
         ) : (
-          <PetListMock resetFilter={resetFilter} />
+          <PetListMock />
         )}
         <div className="desktop-l:mt-15 flex justify-center">
           <Pagination

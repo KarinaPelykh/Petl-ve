@@ -50,8 +50,7 @@ export const refresh = createAsyncThunk(
 
     try {
       setToken(persisted);
-      const response = await instance.get("users/current");
-
+      const response = await instance.get("users/current/full");
       return response.data;
     } catch (error) {
       return rejectWithValue(error);
