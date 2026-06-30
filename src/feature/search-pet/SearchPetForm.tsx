@@ -1,12 +1,6 @@
 import { Form } from "../../shared/ui/Form";
 import { SearchField } from "../../shared/ui/SearchField";
 
-import { useAppSelector } from "../../shared/hooks/reduxHooks";
-import {
-  category,
-  gender,
-  species,
-} from "../../shared/api/redux/notices/selectors";
 import { MySelect } from "./Select";
 import { AsyncSearchBar } from "./AsyncSearchBar";
 import { RadioGroupBtn } from "./RadioGroupBtn";
@@ -16,15 +10,37 @@ import {
 } from "./constants/searchPet.constants";
 import { usePetsFilter } from "./hook/usePetsFilter";
 import { useGetFilteredNotices } from "./api/useGetFilteredNotices";
+// import {
+//   getCategory,
+//   getGender,
+//   getSpecies,
+// } from "../../shared/api/redux/notices/operations";
+// import { useEffect, useState } from "react";
 
 export const SearchPetForm = () => {
   const { filter, onChangeInput } = usePetsFilter();
-
   useGetFilteredNotices({ filter });
 
-  const categoryData = useAppSelector(category);
-  const genderData = useAppSelector(gender);
-  const speciesData = useAppSelector(species);
+  // const [selectData, setSelectData] = useState({
+  //   category: [],
+  //   gender: [],
+  //   species: [],
+  // });
+
+  // useEffect(() => {
+  //   async function gedDataForSelect() {
+  //     try {
+  //       const category = await getCategory();
+  //       const gender = await getGender();
+  //       const species = await getSpecies();
+  //       setSelectData({ category, gender, species });
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   }
+
+  //   gedDataForSelect();
+  // }, []);
 
   return (
     <Form className="bg-cream! tablet-l:py-10 tablet-l:px-8 desktop-l:p-10 desktop-l:w-304 mb-10 p-5">
@@ -37,20 +53,20 @@ export const SearchPetForm = () => {
         />
         <div className="flex gap-2">
           <MySelect
-            data={categoryData}
+            data={selectData?.category}
             onChange={(val) => onChangeInput(val, "category")}
             field="Category"
             className="desktop-l:w-50"
           />
           <MySelect
-            data={genderData}
+            data={selectData?.gender}
             onChange={(val) => onChangeInput(val, "sex")}
             field="By gender"
             className="desktop-l:w-47.5"
           />
         </div>
         <MySelect
-          data={speciesData}
+          data={selectData?.species}
           onChange={(val) => onChangeInput(val, "species")}
           field="By type"
           className="tablet-l:w-47.5"

@@ -1,58 +1,42 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Heading } from "../shared/ui/Heading";
 import { SearchPetForm } from "../feature/search-pet/SearchPetForm";
 import {
   addFavorite,
   deleteFavorite,
-  getCategory,
-  getGender,
-  getNotice,
   getNotices,
-  getSpecies,
 } from "../shared/api/redux/notices/operations";
 import { notices } from "../shared/api/redux/notices/selectors";
 import { useAppDispatch, useAppSelector } from "../shared/hooks/reduxHooks";
 import { Pagination } from "../shared/ui/Pagination";
-import { isLoggedIn } from "../shared/api/redux/user/selectors";
-import { AttentionDialog } from "../entities/pet/ui/AttentionDialog";
-import { NoticeDialog } from "../components/find-pet/NoticeDialog";
-import { Modal } from "../shared/ui/Modal";
-import { Dialog } from "radix-ui";
-
-import { PetList } from "../components/find-pet/PetList";
+import {
+  PetCard,
+  PetControl,
+  PetDescription,
+  PetImage,
+  PetInfoTable,
+  PetPrice,
+  PetTitle,
+} from "../entities";
 import { PetListMock } from "../components/find-pet/PetListMock";
-import type { Notice } from "../entities/pet/ui/PetCard";
 import { useNavigate } from "react-router";
+import { PetListDialog } from "../components/find-pet/PetListDialog";
+
+type DialogMode = "details" | "favorite";
+
+type DialogState = {
+  mode: DialogMode;
+  id: string;
+};
+
+const initState = {
+  mode: "details",
+  id: "",
+};
 
 export const FindPets = () => {
-  const [cardID, setCardId] = useState("");
-  const [cardData, setCardData] = useState<Notice | null>(null);
-  const [isFavorite, setIsFavorite] = useState(false);
-
-  const [open, setOpen] = useState(false);
-
   const dispatch = useAppDispatch();
-  const isLoggIn = useAppSelector(isLoggedIn);
   const data = useAppSelector(notices);
-
-  useEffect(() => {
-    dispatch(getCategory());
-    dispatch(getGender());
-    dispatch(getSpecies());
-  }, [dispatch]);
-
-  useEffect(() => {
-    async function getInfById() {
-      try {
-        const data = await getNotice(cardID);
-        setCardData(data);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
-    getInfById();
-  }, [cardID]);
 
   const navigate = useNavigate();
 
@@ -65,6 +49,8 @@ export const FindPets = () => {
     dispatch(deleteFavorite(id));
   };
 
+  const [dialogState, setDialogState] = useState<DialogState>(initState);
+
   return (
     <section className="py-13.5">
       <div className="container">
@@ -74,33 +60,32 @@ export const FindPets = () => {
         <SearchPetForm />
         {data?.results.length ? (
           <div className="flex justify-center">
-            <Dialog.Root open={open} onOpenChange={setOpen}>
-              <PetList
-                setIsFavorite={setIsFavorite}
-                setCardId={setCardId}
-                handelAddFavorite={handelAddFavorite}
-                deleteFromFavorite={deleteFromFavorite}
-              />
-              {isFavorite ? (
-                !isLoggIn && (
-                  <Modal>
-                    <AttentionDialog />
-                  </Modal>
-                )
-              ) : (
-                <Modal>
-                  {isLoggIn ? (
-                    <NoticeDialog
-                      data={cardData}
+            <PetListDialog
+              dialogState={dialogState}
+              handelAddFavorite={handelAddFavorite}
+              deleteFromFavorite={deleteFromFavorite}
+            >
+              <ul className="tablet-l:grid-cols-2 desktop-l:grid-cols-3 desktop-l:gap-8 grid gap-5">
+                {data?.results.map((notice) => (
+                  <PetCard
+                    key={notice._id}
+                    notice={notice}
+                    className="desktop-l:w-90.75"
+                  >
+                    <PetImage />
+                    <PetTitle />
+                    <PetInfoTable />
+                    <PetDescription />
+                    <PetPrice />
+                    <PetControl
+                      setDialogState={setDialogState}
                       handelAddFavorite={handelAddFavorite}
                       deleteFromFavorite={deleteFromFavorite}
                     />
-                  ) : (
-                    <AttentionDialog />
-                  )}
-                </Modal>
-              )}
-            </Dialog.Root>
+                  </PetCard>
+                ))}
+              </ul>
+            </PetListDialog>
           </div>
         ) : (
           <PetListMock />

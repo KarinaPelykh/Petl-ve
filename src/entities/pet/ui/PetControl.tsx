@@ -7,28 +7,25 @@ import { favorite } from "../../../shared/api/redux/notices/selectors";
 type PetControlProps = {
   handelAddFavorite: (val: string) => void;
   deleteFromFavorite: (val: string) => void;
-  setIsFavorite: (val: boolean) => void;
+  setDialogState: (val: { mode: string; id: string }) => void;
 };
 
 export const PetControl = ({
   handelAddFavorite,
   deleteFromFavorite,
-  setIsFavorite,
+  setDialogState,
 }: PetControlProps) => {
-  const { setCardId, notice } = usePetContext();
+  const { notice } = usePetContext();
 
   const favoriteNotices = useAppSelector(favorite);
 
   const idFavoriteNotice = favoriteNotices.find((item) => item === notice._id);
 
   return (
-    <div
-      className="mt-auto flex gap-2.5"
-      onClick={() => setCardId?.(notice._id)}
-    >
+    <div className="mt-auto flex gap-2.5">
       <Dialog.Trigger
         onClick={() => {
-          setIsFavorite(false);
+          setDialogState({ mode: "details", id: notice._id });
         }}
         type="button"
         className="bg-yellow rounded-ms w-full cursor-pointer p-3.5 text-white"
@@ -37,7 +34,7 @@ export const PetControl = ({
       </Dialog.Trigger>
       <Dialog.Trigger
         onClick={() => {
-          setIsFavorite(true);
+          setDialogState({ mode: "favorite", id: notice._id });
           // eslint-disable-next-line @typescript-eslint/no-unused-expressions
           idFavoriteNotice
             ? deleteFromFavorite(notice._id)

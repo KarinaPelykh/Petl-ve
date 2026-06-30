@@ -18,19 +18,17 @@ export type Notice = {
 
 type PetCardProps = {
   notice: Notice;
-  setCardId?: (val: string) => void;
   children: ReactNode;
   className: string;
 };
 
-export const PetCard = ({
-  notice,
-  setCardId,
-  children,
-  className,
-}: PetCardProps) => {
+export const PetCard = ({ notice, children, className }: PetCardProps) => {
   return (
-    <PetCardContext.Provider value={{ notice, setCardId }}>
+    <PetCardContext.Provider
+      value={{
+        notice,
+      }}
+    >
       <article
         className={clsx(
           "flex w-full flex-col rounded-s bg-white p-6",
