@@ -3,11 +3,12 @@ import { usePetContext } from "../api/usePetContex";
 import { Icon } from "../../../shared/ui/Icon";
 import { useAppSelector } from "../../../shared/hooks/reduxHooks";
 import { favorite } from "../../../shared/api/redux/notices/selectors";
+import type { DialogMode } from "../../../pages/FindPet";
 
 type PetControlProps = {
   handelAddFavorite: (val: string) => void;
   deleteFromFavorite: (val: string) => void;
-  setDialogState: (val: { mode: string; id: string }) => void;
+  setDialogState: (val: { mode: DialogMode; id: string }) => void;
 };
 
 export const PetControl = ({

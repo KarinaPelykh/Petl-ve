@@ -1,12 +1,5 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import {
-  addFavorite,
-  deleteFavorite,
-  // getCategory,
-  // getGender,
-  getNotices,
-  // getSpecies,
-} from "./operations";
+import { addFavorite, deleteFavorite, getNotices } from "./operations";
 import type { Data } from "../news/types";
 
 export type Notice = {
@@ -24,9 +17,7 @@ export type Notice = {
 
 type State = {
   notices: Data<Notice>;
-  // categories: [];
-  // gender: [];
-  // species: [];
+
   isLoading: boolean;
   favorite: string[];
 };
@@ -39,9 +30,7 @@ const initialState: State = {
     results: [],
   },
   favorite: [],
-  // categories: [],
-  // gender: [],
-  // species: [],
+
   isLoading: false,
 };
 
@@ -57,15 +46,6 @@ const noticesSlice = createSlice({
           state.notices = action.payload;
         },
       )
-      // .addCase(getCategory.fulfilled, (state, action) => {
-      //   state.categories = action.payload;
-      // })
-      // .addCase(getGender.fulfilled, (state, action) => {
-      //   state.gender = action.payload;
-      // })
-      // .addCase(getSpecies.fulfilled, (state, action) => {
-      //   state.species = action.payload;
-      // })
       .addCase(addFavorite.fulfilled, (state, action) => {
         state.favorite = action.payload;
       })

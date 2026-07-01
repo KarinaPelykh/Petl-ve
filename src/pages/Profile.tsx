@@ -28,7 +28,6 @@ export const UserProfile = () => {
   const filteredData = getNotices.results.filter((notice) =>
     data.includes(notice._id),
   );
-  console.log(filteredData);
 
   return (
     <section className="desktop-l:pb-8 tablet-l:pb-45.5 pb-35">

@@ -1,15 +1,5 @@
 import { useState } from "react";
-import type { Option } from "../types/select.type";
-
-type Filter = {
-  keyword: string;
-  sex: string;
-  category: string;
-  species: string;
-  location: Option | null;
-  byPrice: boolean;
-  byPopularity: boolean;
-};
+import type { Filter } from "../types/select.type";
 
 const initialState = {
   keyword: "",
@@ -23,6 +13,7 @@ const initialState = {
 
 export const usePetsFilter = () => {
   const [filter, setFilter] = useState<Filter>(initialState);
+  console.log(filter);
 
   const onChangeInput = <K extends keyof Filter>(val: Filter[K], key: K) => {
     setFilter((prev) => ({ ...prev, [key]: val }));

@@ -1,19 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { instance } from "../../axios";
+import type { Filter } from "../../../../feature/search-pet/types/select.type";
 
-type Filter = { page: number } & {
-  keyword?: string;
-  sex?: string;
-  category?: string;
-  species?: string;
-  locationId?: string;
-  byPrice?: boolean;
-  byPopularity?: boolean;
-};
+type Params = { page: number; locationId?: string } & Filter;
 
 export const getNotices = createAsyncThunk(
   "notices/getAll",
-  async (params: Filter, thunkAPI) => {
+  async (params: Params, thunkAPI) => {
     try {
       const response = await instance.get(`notices/`, { params });
       return response.data;
@@ -71,41 +64,8 @@ export const getSpecies = async () => {
   return response.data;
 };
 
-// export const getCategory = createAsyncThunk(
-//   "category/getAll",
-//   async (_, thunkAPI) => {
-//     try {
-//       const response = await instance.get("notices/categories");
+export const getLocations = async () => {
+  const response = await instance.get("/cities/locations");
 
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error);
-//     }
-//   },
-// );
-
-// export const getGender = createAsyncThunk(
-//   "gender/getAll",
-//   async (_, thunkAPI) => {
-//     try {
-//       const response = await instance.get("notices/sex");
-
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error);
-//     }
-//   },
-// );
-
-// export const getSpecies = createAsyncThunk(
-//   "species/getAll",
-//   async (_, thunkAPI) => {
-//     try {
-//       const response = await instance.get("notices/species");
-
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error);
-//     }
-//   },
-// );
+  return response.data;
+};

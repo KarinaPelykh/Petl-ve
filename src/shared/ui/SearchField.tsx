@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { Button } from "./Button";
-import { FormField, Input, ItemLabel, Label, MessageText } from "./Form";
+import { FormField, Input, ItemLabel } from "./Form";
 import { Icon } from "./Icon";
 
 type SearchFieldProps = {
@@ -19,14 +19,12 @@ export const SearchField = ({
   return (
     <FormField name={type} className="relative mb-0!">
       <ItemLabel>
-        <Label htmlFor={type} />
         <Input
           placeholder={type}
           value={value}
           onChange={(e) => onChange(e.target.value)}
           className={className}
         />
-        <MessageText />
       </ItemLabel>
       <Button
         type="submit"
