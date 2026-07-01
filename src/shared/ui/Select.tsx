@@ -1,28 +1,24 @@
 import Select from "react-select";
 import clsx from "clsx";
+import type { Option } from "../../feature/search-pet/types/select.type";
 
 type MySelectProps = {
-  data: string[];
+  options: Pick<Option, "label" | "value">[];
   onChange: (value: string) => void;
   className?: string;
   field: string;
 };
 
 export const MySelect = ({
-  data,
+  options,
   onChange,
   field,
   className,
 }: MySelectProps) => {
-  const optionsN = [
-    { value: "Show all", label: "Show all" },
-    ...data.map((item) => ({ value: item, label: item })),
-  ];
-
   return (
     <Select
-      options={optionsN}
-      onChange={(selected) => selected && onChange(selected.value)}
+      options={options}
+      onChange={(selected) => selected && onChange(selected?.value)}
       classNamePrefix="react-select"
       unstyled
       placeholder={field}

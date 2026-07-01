@@ -9,10 +9,13 @@ export type Filter = {
   sex: string;
   category: string;
   species: string;
-  location?: Option | null;
+  locationId: string;
   byPrice: boolean;
   byPopularity: boolean;
+  page?: number;
 };
+
+export type FilterKey = keyof Filter;
 
 export type LocationResponse = {
   cityEn: string;

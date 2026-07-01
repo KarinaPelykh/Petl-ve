@@ -2,12 +2,12 @@ import {
   checkboxesExpensive,
   checkboxesPopular,
 } from "../constants/searchPet.constants";
-import { RadioGroupBtn } from "../RadioGroupBtn";
-import type { Filter } from "../types/select.type";
+import { RadioGroupBtn } from "../../../shared/ui/RadioGroupBtn";
+import type { Filter, FilterKey } from "../types/select.type";
 
 type PetRadioBtnProps = {
   filter: Filter;
-  onChangeInput: <K extends keyof Filter>(val: Filter[K], key: K) => void;
+  onChangeInput: (key: FilterKey, val: Filter[FilterKey]) => void;
 };
 
 export const PetRadioBtn = ({ filter, onChangeInput }: PetRadioBtnProps) => {
@@ -16,13 +16,13 @@ export const PetRadioBtn = ({ filter, onChangeInput }: PetRadioBtnProps) => {
       <RadioGroupBtn
         filter={filter.byPopularity}
         data={checkboxesPopular}
-        onChange={(val) => onChangeInput(val, "byPopularity")}
+        onChange={(val) => onChangeInput("byPopularity", val)}
       />
 
       <RadioGroupBtn
         filter={filter.byPrice}
         data={checkboxesExpensive}
-        onChange={(val) => onChangeInput(val, "byPrice")}
+        onChange={(val) => onChangeInput("byPrice", val)}
       />
     </div>
   );

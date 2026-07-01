@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { instance } from "../../axios";
 import type { Filter } from "../../../../feature/search-pet/types/select.type";
 
-type Params = { page: number; locationId?: string } & Filter;
+type Params = { locationId?: string } & Filter;
 
 export const getNotices = createAsyncThunk(
   "notices/getAll",

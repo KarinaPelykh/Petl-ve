@@ -13,15 +13,12 @@ export const usePetSelect = () => {
   });
 
   useEffect(() => {
-    async function gedDataForSelect() {
+    async function getDataForSelect() {
       try {
-        const category = getCategory();
-        const gender = getGender();
-        const specis = getSpecies();
         const [categories, genders, species] = await Promise.all([
-          category,
-          gender,
-          specis,
+          getCategory(),
+          getGender(),
+          getSpecies(),
         ]);
 
         setSelectData({ categories, genders, species });
@@ -30,8 +27,8 @@ export const usePetSelect = () => {
       }
     }
 
-    gedDataForSelect();
+    getDataForSelect();
   }, []);
 
-  return { selectData };
+  return selectData;
 };

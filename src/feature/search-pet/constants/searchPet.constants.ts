@@ -4,6 +4,6 @@ export const checkboxesPopular = [
 ];
 
 export const checkboxesExpensive = [
-  { name: "Cheap", value: true },
-  { name: "Expensive", value: false },
+  { name: "Cheap", value: false },
+  { name: "Expensive", value: true },
 ];

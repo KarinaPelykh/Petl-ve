@@ -31,18 +31,17 @@ export const Form = <T extends FieldValues>({
   form,
   className,
   ...props
-}: { form: UseFormReturn<T> } & ComponentProps<"form">) => {
-  return (
-    <FormProvider {...form}>
-      <form
-        className={clsx(
-          "rounded-ms my-auto flex flex-col bg-white px-5 py-7",
-          className,
-        )}
-        {...props}
-      />
-    </FormProvider>
+}: { form?: UseFormReturn<T> } & ComponentProps<"form">) => {
+  const content = (
+    <form
+      className={clsx(
+        "rounded-ms my-auto flex flex-col bg-white px-5 py-7",
+        className,
+      )}
+      {...props}
+    />
   );
+  return form ? <FormProvider {...form}>{content}</FormProvider> : content;
 };
 
 export const FormField = ({

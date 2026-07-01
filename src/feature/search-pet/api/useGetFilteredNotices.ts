@@ -8,12 +8,12 @@ export const useGetFilteredNotices = ({ filter }: { filter: Filter }) => {
 
   useEffect(() => {
     const params = {
-      page: 1,
+      page: filter.page,
       keyword: filter.keyword,
       sex: filter.sex,
       category: filter.category,
       species: filter.species,
-      locationId: filter.location?.locationId || "",
+      locationId: filter.locationId,
       byPrice: filter.byPrice,
       byPopularity: filter.byPopularity,
     };
