@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { Filter, FilterKey } from "../types/select.type";
+import { useGetFilteredNotices } from "../api/useGetFilteredNotices";
 
 const initialState = {
   keyword: "",
@@ -18,6 +19,8 @@ export const usePetsFilter = () => {
   const onChangeInput = (key: FilterKey, val: Filter[FilterKey]) => {
     setFilter((prev) => ({ ...prev, [key]: val }));
   };
+
+  useGetFilteredNotices(filter);
 
   return { filter, onChangeInput };
 };

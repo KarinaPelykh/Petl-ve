@@ -1,15 +1,19 @@
 import clsx from "clsx";
 import AsyncSelect from "react-select/async";
 import { useCreateLocationOptions } from "../hook/useCreateLocationOptions";
-import type { Option } from "../types/select.type";
+import type { Filter, FilterKey } from "../types/select.type";
 
 type LocationSearchBarProps = {
   className?: string;
+  method: {
+    filter: Filter;
+    onChangeInput: (key: FilterKey, val: Filter[FilterKey]) => void;
+  };
 };
 
 export const LocationSearchBar = ({
   className,
-  ...props
+  method,
 }: LocationSearchBarProps) => {
   const { options } = useCreateLocationOptions();
 
@@ -19,15 +23,20 @@ export const LocationSearchBar = ({
     );
   };
 
-  const promiseOptions = (inputValue: string) => {
-    return new Promise<Option[]>((resolve) => {
-      resolve(filterOptions(inputValue));
-    });
+  const promiseOptions = async (inputValue: string) => {
+    return filterOptions(inputValue);
   };
+
+  const selectedOption =
+    options.find((item) => item.locationId === method.filter.locationId) ||
+    null;
 
   return (
     <AsyncSelect
-      {...props}
+      value={selectedOption}
+      onChange={(option) => {
+        method.onChangeInput("locationId", option?.locationId as string);
+      }}
       cacheOptions
       isClearable={true}
       defaultOptions={options}

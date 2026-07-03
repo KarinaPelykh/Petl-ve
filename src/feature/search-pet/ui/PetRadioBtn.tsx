@@ -6,23 +6,25 @@ import { RadioGroupBtn } from "../../../shared/ui/RadioGroupBtn";
 import type { Filter, FilterKey } from "../types/select.type";
 
 type PetRadioBtnProps = {
-  filter: Filter;
-  onChangeInput: (key: FilterKey, val: Filter[FilterKey]) => void;
+  method: {
+    filter: Filter;
+    onChangeInput: (key: FilterKey, val: Filter[FilterKey]) => void;
+  };
 };
 
-export const PetRadioBtn = ({ filter, onChangeInput }: PetRadioBtnProps) => {
+export const PetRadioBtn = ({ method }: PetRadioBtnProps) => {
   return (
     <div className="flex gap-2">
       <RadioGroupBtn
-        filter={filter.byPopularity}
+        filter={method.filter.byPopularity}
         data={checkboxesPopular}
-        onChange={(val) => onChangeInput("byPopularity", val)}
+        onChange={(val) => method.onChangeInput("byPopularity", val)}
       />
 
       <RadioGroupBtn
-        filter={filter.byPrice}
+        filter={method.filter.byPrice}
         data={checkboxesExpensive}
-        onChange={(val) => onChangeInput("byPrice", val)}
+        onChange={(val) => method.onChangeInput("byPrice", val)}
       />
     </div>
   );

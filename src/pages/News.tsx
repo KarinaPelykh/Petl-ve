@@ -1,5 +1,5 @@
-import { useEffect, useState, type SubmitEvent } from "react";
-import { SearchForm } from "../feature/search-form/SearchForm";
+import { useEffect } from "react";
+import { SearchNews } from "../feature/search-news/SearchNews";
 
 import { Heading } from "../shared/ui/Heading";
 import { NewsList } from "../widget/news-list/NewsList";
@@ -9,19 +9,12 @@ import { news } from "../shared/api/redux/news/selectors";
 import { Pagination } from "../shared/ui/Pagination";
 
 export const News = () => {
-  const [search, setSearch] = useState("");
-
   const dispatch = useAppDispatch();
   const data = useAppSelector(news);
 
   useEffect(() => {
     dispatch(getNews({ page: 1 }));
   }, [dispatch]);
-
-  const onSubmit = (e: SubmitEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    dispatch(getNews({ page: 1, search }));
-  };
 
   return (
     <section className="pt-15 pb-11">
@@ -30,11 +23,7 @@ export const News = () => {
           <Heading as="h1" variant="first" className="tablet-l:mb-0 mb-5">
             News
           </Heading>
-          <SearchForm
-            search={search}
-            setSearch={setSearch}
-            onSubmit={onSubmit}
-          />
+          <SearchNews />
         </div>
         <NewsList newsData={data.results} />
         {data?.results?.length !== 0 ? (

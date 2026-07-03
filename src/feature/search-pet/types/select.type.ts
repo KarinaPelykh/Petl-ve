@@ -12,7 +12,7 @@ export type Filter = {
   locationId: string;
   byPrice: boolean;
   byPopularity: boolean;
-  page?: number;
+  page: number;
 };
 
 export type FilterKey = keyof Filter;
