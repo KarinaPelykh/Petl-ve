@@ -6,28 +6,32 @@ import {
   PetInfoTable,
   PetPrice,
   PetTitle,
-} from "../../entities";
-import { Button } from "../../shared/ui/Button";
-import { Icon } from "../../shared/ui/Icon";
-import { PetPopularity } from "../../entities/pet/ui/PetPopularity";
+} from "../../../entities";
+import { Button } from "../../../shared/ui/Button";
+import { Icon } from "../../../shared/ui/Icon";
+import { PetPopularity } from "../../../entities/pet/ui/PetPopularity";
 
-import type { Notice } from "../../entities/pet/ui/PetCard";
-import { useAppSelector } from "../../shared/hooks/reduxHooks";
-import { favorite } from "../../shared/api/redux/notices/selectors";
+import type { Notice } from "../../../entities/pet/ui/PetCard";
+import { useAppSelector } from "../../../shared/hooks/reduxHooks";
+import { favorite } from "../../../shared/api/redux/notices/selectors";
+import { useFavorite } from "../hook/useFavorite";
+import { useRemoveFavorite } from "../hook/useRemoveFavorite";
 
 type NoticeDialogProps = {
   data?: Notice | null;
-  handelAddFavorite: (val: string) => void;
-  deleteFromFavorite: (val: string) => void;
 };
 
-export const NoticeDialog = ({
-  data,
-  handelAddFavorite,
-  deleteFromFavorite,
-}: NoticeDialogProps) => {
+export const NoticeDialog = ({ data }: NoticeDialogProps) => {
   const favoriteNotices = useAppSelector(favorite);
-  if (!data) return;
+
+  const add = useFavorite();
+
+  const remove = useRemoveFavorite();
+
+  if (!data) {
+    return;
+  }
+
   const idFavoriteNotice = favoriteNotices.find((notice) =>
     notice.includes(data._id),
   );
@@ -57,9 +61,7 @@ export const NoticeDialog = ({
           type="button"
           onClick={() => {
             // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-            !idFavoriteNotice
-              ? handelAddFavorite(data._id)
-              : deleteFromFavorite(data._id);
+            !idFavoriteNotice ? add(data._id) : remove(data._id);
           }}
           variant="primary"
           className="flex w-full items-center justify-center gap-2"

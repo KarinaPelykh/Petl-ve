@@ -1,21 +1,66 @@
 import { Heading } from "../shared/ui/Heading";
 
-import { PetList } from "../components/find-pet/PetList";
+import { PetList } from "../widget/pet-list/ui/PetList";
 
 import { PetSearchFilter } from "../widget/pet-search-filter/PetSearchFilter";
 import { PaginationWrap } from "../widget/pagination/Pagination";
+import { useState } from "react";
+import { NoticeDialogWrap } from "../feature/dialog-content/ui/NoticeDialogWrap";
+import { useAppSelector } from "../shared/hooks/reduxHooks";
+import { isLoggedIn } from "../shared/api/redux/user/selectors";
+import { useGetNoticeDetails } from "../feature/dialog-content/api/useGetNoticeDetails";
+import { Modal } from "../shared/ui/Modal";
+import { NoticeDialog } from "../feature/dialog-content/ui/NoticeDialog";
+import { AttentionDialog } from "../entities/pet/ui/AttentionDialog";
+
+export type DialogMode = "details" | "favorite";
+
+type DialogState = {
+  mode: DialogMode;
+  id: string;
+};
+
+const initState: DialogState = {
+  mode: "details",
+  id: "",
+};
 
 export const FindPets = () => {
+  const [dialogState, setDialogState] = useState<DialogState>(initState);
+
+  const [open, setOpen] = useState(false);
+
+  const isLoggIn = useAppSelector(isLoggedIn);
+
+  const { cardData } = useGetNoticeDetails(dialogState.id);
+
+  const content = {
+    details: (
+      <Modal>
+        <NoticeDialog data={cardData} />
+      </Modal>
+    ),
+    favorite: null,
+  };
+
   return (
     <section className="py-13.5">
       <div className="container">
-        <Heading as="h1" variant="first" className="mb-10">
-          Find your favorite pet
-        </Heading>
-
-        <PetSearchFilter />
-        <PetList />
-        <PaginationWrap />
+        <NoticeDialogWrap open={open} setOpen={setOpen}>
+          {!isLoggIn ? (
+            <Modal>
+              <AttentionDialog />
+            </Modal>
+          ) : (
+            content[dialogState?.mode]
+          )}
+          <Heading as="h1" variant="first" className="mb-10">
+            Find your favorite pet
+          </Heading>
+          <PetSearchFilter />
+          <PetList setDialogState={setDialogState} />
+          <PaginationWrap />
+        </NoticeDialogWrap>
       </div>
     </section>
   );

@@ -4,23 +4,22 @@ import { Icon } from "../../../shared/ui/Icon";
 import { useAppSelector } from "../../../shared/hooks/reduxHooks";
 import { favorite } from "../../../shared/api/redux/notices/selectors";
 import type { DialogMode } from "../../../pages/FindPet";
+import { useFavorite } from "../../../feature/dialog-content/hook/useFavorite";
+import { useRemoveFavorite } from "../../../feature/dialog-content/hook/useRemoveFavorite";
 
 type PetControlProps = {
-  handelAddFavorite: (val: string) => void;
-  deleteFromFavorite: (val: string) => void;
   setDialogState: (val: { mode: DialogMode; id: string }) => void;
 };
 
-export const PetControl = ({
-  handelAddFavorite,
-  deleteFromFavorite,
-  setDialogState,
-}: PetControlProps) => {
+export const PetControl = ({ setDialogState }: PetControlProps) => {
   const { notice } = usePetContext();
 
   const favoriteNotices = useAppSelector(favorite);
 
   const idFavoriteNotice = favoriteNotices.find((item) => item === notice._id);
+
+  const add = useFavorite();
+  const remove = useRemoveFavorite();
 
   return (
     <div className="mt-auto flex gap-2.5">
@@ -37,9 +36,7 @@ export const PetControl = ({
         onClick={() => {
           setDialogState({ mode: "favorite", id: notice._id });
           // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-          idFavoriteNotice
-            ? deleteFromFavorite(notice._id)
-            : handelAddFavorite(notice._id);
+          idFavoriteNotice ? remove(notice._id) : add(notice._id);
         }}
         type="button"
         className="bg-cream size-11.5 cursor-pointer rounded-[50%] p-3.5 text-white"

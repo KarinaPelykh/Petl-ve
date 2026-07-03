@@ -1,12 +1,18 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { clearToken, instance, setToken } from "../../axios";
+import type { RootState } from "../../../../app/store/store";
 
-type Credential = { name: string; email: string; password: string };
-type Signin = Pick<Credential, "email" | "password">;
+type UserSignup = { name: string; email: string; password: string };
+
+type UserSignin = Pick<UserSignup, "email" | "password">;
+
+type UserRefreshResponse = UserSignup & { token: string };
+
+type AsyncThunkConfig = { state: RootState; rejectWithValue: unknown };
 
 export const signup = createAsyncThunk(
   "auth/signup",
-  async (params: Credential, thunkAPI) => {
+  async (params: UserSignup, thunkAPI) => {
     try {
       const response = await instance.post("users/signup", { ...params });
       setToken(response.data.token);
@@ -19,7 +25,7 @@ export const signup = createAsyncThunk(
 
 export const signin = createAsyncThunk(
   "auth/signin",
-  async (params: Signin, thunkAPI) => {
+  async (params: UserSignin, thunkAPI) => {
     try {
       const response = await instance.post("users/signin", { ...params });
       setToken(response.data.token);
@@ -39,21 +45,22 @@ export const signout = createAsyncThunk("auth/signout", async (_, thunkAPI) => {
   }
 });
 
-export const refresh = createAsyncThunk(
-  "auth/refresh",
-  async (_, { rejectWithValue, getState }) => {
-    const persisted = getState().auth.user.token;
+export const refresh = createAsyncThunk<
+  UserRefreshResponse,
+  void,
+  AsyncThunkConfig
+>("auth/refresh", async (_, { rejectWithValue, getState }) => {
+  const persisted = getState().auth.user.token;
 
-    if (!persisted) {
-      return rejectWithValue("None");
-    }
+  if (!persisted) {
+    return rejectWithValue("None");
+  }
 
-    try {
-      setToken(persisted);
-      const response = await instance.get("users/current/full");
-      return response.data;
-    } catch (error) {
-      return rejectWithValue(error);
-    }
-  },
-);
+  try {
+    setToken(persisted);
+    const response = await instance.get("users/current/full");
+    return response.data;
+  } catch (error) {
+    return rejectWithValue(error);
+  }
+});
