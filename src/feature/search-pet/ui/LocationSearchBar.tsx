@@ -1,14 +1,11 @@
 import clsx from "clsx";
 import AsyncSelect from "react-select/async";
 import { useCreateLocationOptions } from "../hook/useCreateLocationOptions";
-import type { Filter, FilterKey } from "../types/select.type";
+import type { PetFilterControl } from "../hook/usePetsFilter";
 
 type LocationSearchBarProps = {
   className?: string;
-  method: {
-    filter: Filter;
-    onChangeInput: (key: FilterKey, val: Filter[FilterKey]) => void;
-  };
+  method: PetFilterControl;
 };
 
 export const LocationSearchBar = ({

@@ -1,19 +1,19 @@
-import { getNotices } from "../../shared/api/redux/notices/operations";
+import type { PetFilterControl } from "../../feature/search-pet/hook/usePetsFilter";
+
 import { notices } from "../../shared/api/redux/notices/selectors";
-import { useAppDispatch, useAppSelector } from "../../shared/hooks/reduxHooks";
+import { useAppSelector } from "../../shared/hooks/reduxHooks";
 import { Pagination } from "../../shared/ui/Pagination";
 
-export const PaginationWrap = () => {
-  const dispatch = useAppDispatch();
+type PaginationWrapProps = {
+  method: PetFilterControl;
+};
 
+export const PaginationWrap = ({ method }: PaginationWrapProps) => {
   const data = useAppSelector(notices);
 
   return (
     <div className="desktop-l:mt-15 flex justify-center">
-      <Pagination
-        data={data}
-        onPageChange={(page) => dispatch(getNotices({ page }))}
-      />
+      <Pagination method={method} data={data} />
     </div>
   );
 };

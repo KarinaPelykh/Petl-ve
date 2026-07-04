@@ -7,6 +7,7 @@ import {
   PetPrice,
   PetTitle,
 } from "../../../entities";
+import type { PetFilterControl } from "../../../feature/search-pet/hook/usePetsFilter";
 import type { DialogMode } from "../../../pages/FindPet";
 import { notices } from "../../../shared/api/redux/notices/selectors";
 import { useAppSelector } from "../../../shared/hooks/reduxHooks";
@@ -15,13 +16,14 @@ import { PetListMock } from "./PetListMock";
 
 type PetListProps = {
   setDialogState: (val: { mode: DialogMode; id: string }) => void;
+  method: PetFilterControl;
 };
 
-export const PetList = ({ setDialogState }: PetListProps) => {
+export const PetList = ({ setDialogState, method }: PetListProps) => {
   const { results } = useAppSelector(notices);
 
   return (
-    <div className="flex justify-center">
+    <div className="mb-[44px] flex justify-center">
       {results.length ? (
         <ul className="tablet-l:grid-cols-2 desktop-l:grid-cols-3 desktop-l:gap-8 grid gap-5">
           {results.map((notice) => (
@@ -40,7 +42,7 @@ export const PetList = ({ setDialogState }: PetListProps) => {
           ))}
         </ul>
       ) : (
-        <PetListMock />
+        <PetListMock method={method} />
       )}
     </div>
   );

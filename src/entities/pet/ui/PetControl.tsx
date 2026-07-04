@@ -28,7 +28,7 @@ export const PetControl = ({ setDialogState }: PetControlProps) => {
           setDialogState({ mode: "details", id: notice._id });
         }}
         type="button"
-        className="bg-yellow rounded-ms w-full cursor-pointer p-3.5 text-white"
+        className="bg-yellow rounded-ms text-ms w-full cursor-pointer p-3.5 font-normal text-white"
       >
         Learn more
       </Dialog.Trigger>

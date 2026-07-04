@@ -10,8 +10,8 @@ export type Filter = {
   category: string;
   species: string;
   locationId: string;
-  byPrice: boolean;
-  byPopularity: boolean;
+  byPrice?: boolean | null;
+  byPopularity?: boolean | null;
   page: number;
 };
 

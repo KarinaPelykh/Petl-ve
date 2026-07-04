@@ -4,13 +4,16 @@ import { PetRadioBtn } from "../../feature/search-pet/ui/PetRadioBtn";
 import { LocationSearchBar } from "../../feature/search-pet/ui/LocationSearchBar";
 import { PetSelect } from "../../feature/search-pet/ui/PetSelects";
 
-import { usePetsFilter } from "../../feature/search-pet/hook/usePetsFilter";
 import { Button } from "../../shared/ui/Button";
 import { Icon } from "../../shared/ui/Icon";
 
-export const PetSearchFilter = () => {
-  const method = usePetsFilter();
+import type { PetFilterControl } from "../../feature/search-pet/hook/usePetsFilter";
 
+type PetSearchFilterProps = {
+  method: PetFilterControl;
+};
+
+export const PetSearchFilter = ({ method }: PetSearchFilterProps) => {
   return (
     <Form className="bg-cream! tablet-l:py-10 tablet-l:px-8 desktop-l:p-10 desktop-l:w-304 mb-10 p-5">
       <div className="tablet-l:flex-row tablet-l:flex-wrap flex w-full flex-col gap-3">

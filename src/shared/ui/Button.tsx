@@ -27,7 +27,7 @@ export const Button = ({
         variant === "primary" && "bg-yellow primary text-white",
         variant === "secondary" && "bg-cream text-yellow",
 
-        variant === "tertiary",
+        variant === "tertiary" && "bg-transparent p-0!",
       )}
       onClick={onClick}
     >

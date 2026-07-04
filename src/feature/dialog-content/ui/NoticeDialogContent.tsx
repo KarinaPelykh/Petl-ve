@@ -21,7 +21,7 @@ type NoticeDialogProps = {
   data?: Notice | null;
 };
 
-export const NoticeDialog = ({ data }: NoticeDialogProps) => {
+export const NoticeDialogContent = ({ data }: NoticeDialogProps) => {
   const favoriteNotices = useAppSelector(favorite);
 
   const add = useFavorite();

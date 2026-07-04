@@ -11,7 +11,9 @@ import { signout } from "../../shared/api/redux/user/operations";
 
 export const HeaderNav = () => {
   const location = useLocation();
+
   const homePage = location.pathname === "/";
+
   const isLog = useAppSelector(isLoggedIn);
 
   const dispatch = useAppDispatch();

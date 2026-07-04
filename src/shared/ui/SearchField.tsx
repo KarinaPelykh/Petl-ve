@@ -1,7 +1,5 @@
-import type {
-  Filter,
-  FilterKey,
-} from "../../feature/search-pet/types/select.type";
+import type { PetFilterControl } from "../../feature/search-pet/hook/usePetsFilter";
+
 import { Input } from "./Form";
 
 type SearchFieldProps = {
@@ -9,10 +7,7 @@ type SearchFieldProps = {
   value?: string;
   className?: string;
   onChange?: (val: string) => void;
-  method?: {
-    filter: Filter;
-    onChangeInput: (key: FilterKey, val: Filter[FilterKey]) => void;
-  };
+  method?: PetFilterControl;
 };
 
 export const SearchField = ({

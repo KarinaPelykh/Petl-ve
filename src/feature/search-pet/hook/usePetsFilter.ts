@@ -8,8 +8,8 @@ const initialState = {
   category: "",
   species: "",
   locationId: "",
-  byPrice: false,
-  byPopularity: false,
+  byPrice: null,
+  byPopularity: null,
   page: 1,
 };
 
@@ -22,5 +22,6 @@ export const usePetsFilter = () => {
 
   useGetFilteredNotices(filter);
 
-  return { filter, onChangeInput };
+  return { filter, onChangeInput, setFilter, initialState };
 };
+export type PetFilterControl = ReturnType<typeof usePetsFilter>;

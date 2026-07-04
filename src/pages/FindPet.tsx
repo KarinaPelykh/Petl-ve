@@ -8,10 +8,11 @@ import { useState } from "react";
 import { NoticeDialogWrap } from "../feature/dialog-content/ui/NoticeDialogWrap";
 import { useAppSelector } from "../shared/hooks/reduxHooks";
 import { isLoggedIn } from "../shared/api/redux/user/selectors";
-import { useGetNoticeDetails } from "../feature/dialog-content/api/useGetNoticeDetails";
+import { useNoticeDetails } from "../feature/dialog-content/api/useNoticeDetails";
 import { Modal } from "../shared/ui/Modal";
-import { NoticeDialog } from "../feature/dialog-content/ui/NoticeDialog";
+import { NoticeDialogContent } from "../feature/dialog-content/ui/NoticeDialogContent";
 import { AttentionDialog } from "../entities/pet/ui/AttentionDialog";
+import { usePetsFilter } from "../feature/search-pet/hook/usePetsFilter";
 
 export type DialogMode = "details" | "favorite";
 
@@ -32,12 +33,14 @@ export const FindPets = () => {
 
   const isLoggIn = useAppSelector(isLoggedIn);
 
-  const { cardData } = useGetNoticeDetails(dialogState.id);
+  const method = usePetsFilter();
+
+  const { cardData } = useNoticeDetails(dialogState.id);
 
   const content = {
     details: (
       <Modal>
-        <NoticeDialog data={cardData} />
+        <NoticeDialogContent data={cardData} />
       </Modal>
     ),
     favorite: null,
@@ -57,9 +60,9 @@ export const FindPets = () => {
           <Heading as="h1" variant="first" className="mb-10">
             Find your favorite pet
           </Heading>
-          <PetSearchFilter />
-          <PetList setDialogState={setDialogState} />
-          <PaginationWrap />
+          <PetSearchFilter method={method} />
+          <PetList method={method} setDialogState={setDialogState} />
+          <PaginationWrap method={method} />
         </NoticeDialogWrap>
       </div>
     </section>

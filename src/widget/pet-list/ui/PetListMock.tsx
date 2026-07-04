@@ -1,8 +1,12 @@
-// type PetListMockProps = {
-//   resetFilter: () => void;
-// };
+import type { PetFilterControl } from "../../../feature/search-pet/hook/usePetsFilter";
 
-export const PetListMock = () => {
+type PetListMockProps = {
+  method: PetFilterControl;
+};
+
+export const PetListMock = ({ method }: PetListMockProps) => {
+  const { setFilter, initialState } = method;
+
   return (
     <div className="flex flex-col items-center justify-center px-4 py-16 text-center">
       <div className="relative mb-6 h-74 w-74">
@@ -21,13 +25,13 @@ export const PetListMock = () => {
         We couldn’t find any results for your filters. Try changing search or
         reset filters to see more pets.
       </p>
-      {/* 
+
       <button
         className="bg-yellow rounded-full px-6 py-3 font-semibold text-white shadow-md transition hover:bg-yellow-500"
-        onClick={resetFilter}
+        onClick={() => setFilter(initialState)}
       >
         Reset filters
-      </button> */}
+      </button>
     </div>
   );
 };

@@ -3,18 +3,15 @@ import {
   checkboxesPopular,
 } from "../constants/searchPet.constants";
 import { RadioGroupBtn } from "../../../shared/ui/RadioGroupBtn";
-import type { Filter, FilterKey } from "../types/select.type";
+import type { PetFilterControl } from "../hook/usePetsFilter";
 
 type PetRadioBtnProps = {
-  method: {
-    filter: Filter;
-    onChangeInput: (key: FilterKey, val: Filter[FilterKey]) => void;
-  };
+  method: PetFilterControl;
 };
 
 export const PetRadioBtn = ({ method }: PetRadioBtnProps) => {
   return (
-    <div className="flex gap-2">
+    <div className="flex flex-wrap justify-start gap-2.5">
       <RadioGroupBtn
         filter={method.filter.byPopularity}
         data={checkboxesPopular}

@@ -4,6 +4,10 @@ import { Button } from "./Button";
 import { Icon } from "./Icon";
 import clsx from "clsx";
 import type { Notice } from "../api/redux/notices/slice";
+import type {
+  Filter,
+  FilterKey,
+} from "../../feature/search-pet/types/select.type";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const ReactPaginateComponent = (ReactPaginate as any).default || ReactPaginate;
@@ -12,30 +16,34 @@ type T = Notice | New;
 
 type PaginationProps = {
   data: Data<T>;
-  onPageChange: (page: number) => void;
+  method: {
+    filter: Filter;
+    onChangeInput: (key: FilterKey, val: Filter[FilterKey]) => void;
+  };
 };
 
-export function Pagination({ data, onPageChange }: PaginationProps) {
-  const isFirstPage = data.page === 1;
+export function Pagination({ method, data }: PaginationProps) {
+  const isFirstPage = method.filter.page === 1;
+
   const isLastPage = data.page === data.totalPages;
 
   const handlePageClick = (event: { selected: number }) => {
     const page = event.selected + 1;
-    onPageChange(page);
+    method.onChangeInput("page", page);
   };
 
   const handelClikOnFirstPage = () => {
     if (isFirstPage) {
       return;
     }
-    onPageChange(1);
+    method.onChangeInput("page", 1);
   };
 
   const handleLastPage = () => {
     if (isLastPage) {
       return;
     }
-    onPageChange(data.totalPages);
+    method.onChangeInput("page", data.totalPages);
   };
 
   return (
@@ -43,7 +51,7 @@ export function Pagination({ data, onPageChange }: PaginationProps) {
       <Button
         onClick={handelClikOnFirstPage}
         className={clsx(
-          "mr-2.5 flex size-11 cursor-pointer items-center justify-center rounded-[50%] border border-black/20 bg-transparent p-0! shadow-lg",
+          "desktop-l:size-11 mr-2.5 flex size-10 cursor-pointer items-center justify-center rounded-[50%] border border-black/20 bg-transparent p-0! shadow-lg",
           isFirstPage && "pointer-events-none opacity-50",
         )}
       >
@@ -53,29 +61,29 @@ export function Pagination({ data, onPageChange }: PaginationProps) {
         breakLabel="..."
         nextLabel={<Icon name="slider-1" className="size-11" />}
         onPageChange={handlePageClick}
-        pageRangeDisplayed={3}
+        pageRangeDisplayed={2}
         marginPagesDisplayed={0}
         forcePage={data.page - 1}
         pageCount={data.totalPages}
         previousLabel={<Icon name="slider-1" className="size-11 rotate-180" />}
         renderOnZeroPageCount={null}
         className="mr-2.5 flex"
-        breakClassName=" shadow-lg border border-black/20 rounded-[50%] size-11 mr-2.5 flex justify-center items-center"
+        breakClassName=" shadow-lg border border-black/20 rounded-[50%] desktop-l:size-11 size-10 mr-2.5 flex justify-center items-center"
         previousClassName={clsx(
-          " border border-black/20 rounded-[50%] shadow-lg  size-11 mr-2.5 flex justify-center items-center cursor-pointer",
+          " border border-black/20 rounded-[50%] shadow-lg  desktop-l:size-11 size-10 mr-2.5 flex justify-center items-center cursor-pointer",
           isFirstPage && "opacity-50 pointer-events-none",
         )}
         nextClassName={clsx(
           isLastPage && "opacity-50 pointer-events-none",
-          "border border-black/20  shadow-lg rounded-[50%] size-11 flex justify-center items-center cursor-pointer",
+          "border border-black/20  shadow-lg rounded-[50%] desktop-l:size-11 size-10 flex justify-center items-center cursor-pointer",
         )}
-        activeClassName="border-0 bg-yellow shadow-lg rounded-[50%] text-white size-11 mr-2.5  flex justify-center items-center"
-        pageClassName="border  shadow-lg mr-2.5 border-black/20 rounded-[50%] size-11 flex justify-center items-center cursor-pointer"
+        activeClassName="border-0 bg-yellow shadow-lg rounded-[50%] text-white desktop-l:size-11 size-10 mr-2.5  flex justify-center items-center"
+        pageClassName="border  shadow-lg mr-2.5 border-black/20 rounded-[50%] desktop-l:size-11 size-10 flex justify-center items-center cursor-pointer"
       />
       <Button
         onClick={handleLastPage}
         className={clsx(
-          "mr-2.5 flex size-11 cursor-pointer items-center justify-center rounded-[50%] border border-black/20 bg-transparent p-0! shadow-lg",
+          "desktop-l:size-11 mr-2.5 flex size-10 cursor-pointer items-center justify-center rounded-[50%] border border-black/20 bg-transparent p-0! shadow-lg",
           isLastPage && "pointer-events-none opacity-50",
         )}
       >
