@@ -1,9 +1,10 @@
-export const checkboxesPopular = [
-  { name: "Popular", value: true },
-  { name: "Unpopular", value: false },
-];
+type FilterKey = "byPopularity" | "byPrice";
 
-export const checkboxesExpensive = [
-  { name: "Cheap", value: false },
-  { name: "Expensive", value: true },
+type Data = { name: string; value: boolean; key: FilterKey };
+
+export const checkboxes: Data[] = [
+  { key: "byPrice", name: "Cheap", value: false },
+  { key: "byPrice", name: "Expensive", value: true },
+  { key: "byPopularity", name: "Popular", value: true },
+  { key: "byPopularity", name: "Unpopular", value: false },
 ];
