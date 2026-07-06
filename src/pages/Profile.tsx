@@ -141,12 +141,12 @@ export const UserProfile = () => {
                     <PetInfoTable />
                     <PetDescription />
                     <PetPrice />
-                    {/* <PetControl
+                    <PetControl
                       setIsFavorite={setIsFavorite}
                       onClick={(id: string) =>
                         isLoggIn && dispatch(addFavorite(id))
                       }
-                    /> */}
+                    />
                   </div>
                 </PetCard>
               ))}

@@ -12,6 +12,8 @@ import { useAppDispatch, useAppSelector } from "./shared/hooks/reduxHooks";
 import { isRefresh } from "./shared/api/redux/user/selectors";
 import { useEffect } from "react";
 import { refresh } from "./shared/api/redux/user/operations";
+import { PrivateRoute } from "./app/guards/PrivateRout";
+import { PublicRoute } from "./app/guards/PublicRoute";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -26,20 +28,82 @@ function App() {
   ) : (
     <Routes>
       <Route path="/" element={<Layout />}>
-        {/* public routes for authUser */}
-        <Route path="*" element={<NotFound />} />
-        <Route index element={<HomePage />} />
-        <Route path="login" element={<LoginPage />} />
-        <Route path="register" element={<RegisterPage />} />
-        {/* public routes  */}
-        <Route path="news" element={<News />} />
-        <Route path="findPet" element={<FindPets />} />
-        <Route path="friends" element={<OurFriends />} />
-        {/* private routes */}
-        <Route path="profile" element={<UserProfile />} />
-      </Route>
+        <Route
+          path="*"
+          element={
+            <PublicRoute>
+              <NotFound />
+            </PublicRoute>
+          }
+        />
+        <Route
+          index
+          element={
+            <PublicRoute>
+              <HomePage />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="login"
+          element={
+            <PublicRoute>
+              <LoginPage />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="register"
+          element={
+            <PublicRoute>
+              <RegisterPage />
+            </PublicRoute>
+          }
+        />
 
-      {/* public routes */}
+        <Route
+          path="news"
+          element={
+            <PublicRoute>
+              <News />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="findPet"
+          element={
+            <PublicRoute>
+              <FindPets />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="friends"
+          element={
+            <PublicRoute>
+              <OurFriends />
+            </PublicRoute>
+          }
+        />
+
+        <Route
+          path="profile"
+          element={
+            <PrivateRoute>
+              <UserProfile />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="add-pets"
+          element={
+            <PrivateRoute>
+              <UserProfile />
+            </PrivateRoute>
+          }
+        />
+      </Route>
     </Routes>
   );
 }
