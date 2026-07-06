@@ -3,14 +3,14 @@ import { Heading } from "../shared/ui/Heading";
 
 export const NotFound = () => {
   return (
-    <section className="container w-full h-dvh pb-5 ">
-      <div className="bg-yellow  rounded-ms p-7.75 h-full flex flex-col  justify-center gap-5 items-center ">
+    <section className="container h-dvh w-full pb-5">
+      <div className="bg-yellow rounded-ms flex h-full flex-col items-center justify-center gap-5 p-7.75">
         <Heading
           as="h1"
-          className="text-9xl flex text-white justify-center items-center tablet-l:text-10xl desktop-l:mb-10"
+          className="tablet-l:text-10xl desktop-l:mb-10 flex items-center justify-center text-9xl text-white"
         >
           4
-          <div className=" bg-white/10 rounded-[50%] overflow-hidden">
+          <div className="overflow-hidden rounded-[50%] bg-white/10">
             <img
               src="/image/pet-webP/cat2x.webp"
               width={109}
@@ -20,10 +20,10 @@ export const NotFound = () => {
           </div>
           4
         </Heading>
-        <p className=" text-white text-m desktop-l:text-3xl desktop-l:mb-5">
+        <p className="text-m desktop-l:text-3xl desktop-l:mb-5 text-white">
           Ooops! This page not found :(
         </p>
-        <Link to="/" className="bg-cream text-yellow rounded-m py-3 px-7.5">
+        <Link to="/" className="bg-cream text-yellow rounded-m px-7.5 py-3">
           To home page
         </Link>
       </div>

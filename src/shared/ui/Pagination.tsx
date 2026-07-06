@@ -16,34 +16,38 @@ type T = Notice | New;
 
 type PaginationProps = {
   data: Data<T>;
-  method: {
+  onPageChange: (val: number) => void;
+  method?: {
     filter: Filter;
     onChangeInput: (key: FilterKey, val: Filter[FilterKey]) => void;
   };
 };
 
-export function Pagination({ method, data }: PaginationProps) {
-  const isFirstPage = method.filter.page === 1;
+export function Pagination({ method, data, onPageChange }: PaginationProps) {
+  const isFirstPage = method?.filter.page === 1;
 
   const isLastPage = data.page === data.totalPages;
 
   const handlePageClick = (event: { selected: number }) => {
     const page = event.selected + 1;
-    method.onChangeInput("page", page);
+    method?.onChangeInput("page", page);
+    onPageChange?.(page);
   };
 
   const handelClikOnFirstPage = () => {
     if (isFirstPage) {
       return;
     }
-    method.onChangeInput("page", 1);
+    method?.onChangeInput("page", 1);
+    onPageChange?.(1);
   };
 
   const handleLastPage = () => {
     if (isLastPage) {
       return;
     }
-    method.onChangeInput("page", data.totalPages);
+    method?.onChangeInput("page", data.totalPages);
+    onPageChange?.(data.totalPages);
   };
 
   return (

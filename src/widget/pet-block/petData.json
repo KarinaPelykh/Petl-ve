@@ -3,16 +3,14 @@
     "id": "dog",
     "name": "Rich",
     "date": "21.09.2020",
-    "description":
-      "Rich would be the perfect addition to an active family that loves to play and go on walks. I bet he would love having a doggy playmate too!",
+    "description": "Rich would be the perfect addition to an active family that loves to play and go on walks. I bet he would love having a doggy playmate too!",
     "image": "/image/dog.png"
   },
   {
     "id": "cat",
     "name": "Jack",
     "date": "18.10.2021",
-    "description":
-      "Jack is a gray Persian cat with green eyes. He loves to be pampered and groomed, and enjoys playing with toys.",
+    "description": "Jack is a gray Persian cat with green eyes. He loves to be pampered and groomed, and enjoys playing with toys.",
     "image": "/image/cat.png"
   }
 ]

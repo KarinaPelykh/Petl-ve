@@ -17,7 +17,7 @@ type PartnerListProps = {
 
 export const PartnerList = ({ data }: PartnerListProps) => {
   return (
-    <ul className="grid gap-5 grid-cols-1 tablet-l:grid-cols-2 desktop-l:grid-cols-3 ">
+    <ul className="tablet-l:grid-cols-2 desktop-l:grid-cols-3 grid grid-cols-1 gap-5">
       {data.map((item) => (
         <PartnerCard key={item._id} item={item} />
       ))}

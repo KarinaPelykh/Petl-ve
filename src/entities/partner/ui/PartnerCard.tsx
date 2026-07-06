@@ -7,13 +7,13 @@ type PartnerCardProps = {
 
 export const PartnerCard = ({ item }: PartnerCardProps) => {
   return (
-    <li className="bg-white rounded-xs  p-5 pb-10  flex flex-col tablet-l:relative tablet-l:py-10 ">
-      <span className="rounded-ms text-yellow bg-cream p-2 w-fit ml-auto text-s tablet-l:text-ms tablet-l:absolute tablet-l:top-3 tablet-l:right-3">
+    <li className="tablet-l:relative tablet-l:py-10 flex flex-col rounded-xs bg-white p-5 pb-10">
+      <span className="rounded-ms text-yellow bg-cream text-s tablet-l:text-ms tablet-l:absolute tablet-l:top-3 tablet-l:right-3 ml-auto w-fit p-2">
         08:00 - 19:00
       </span>
-      <div className="flex gap-3.5 tablet-l:gap-4">
+      <div className="tablet-l:gap-4 flex gap-3.5">
         <img
-          className="size-20 rounded-[50%] tablet-l:size-22.5"
+          className="tablet-l:size-22.5 size-20 rounded-[50%]"
           alt=""
           src={item.imageUrl}
           width={80}
@@ -22,11 +22,11 @@ export const PartnerCard = ({ item }: PartnerCardProps) => {
         <div>
           <Heading
             as="h3"
-            className="text-m mb-3.5 tablet-l:text-1xl tablet-l:mb-5"
+            className="text-m tablet-l:text-1xl tablet-l:mb-5 mb-3.5"
           >
             {item.title}
           </Heading>
-          <ul className="flex flex-col gap-2 text-ms">
+          <ul className="text-ms flex flex-col gap-2">
             <li className="text-black/50">
               Email:
               <a href="mailto:whiskas@gmail.com" className="text-black">
