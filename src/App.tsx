@@ -24,26 +24,13 @@ function App() {
   }, [dispatch]);
 
   return isRefreshed ? (
-    <p>LOader</p>
+    <p>Loader</p>
   ) : (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route
-          path="*"
-          element={
-            <PublicRoute>
-              <NotFound />
-            </PublicRoute>
-          }
-        />
-        <Route
-          index
-          element={
-            <PublicRoute>
-              <HomePage />
-            </PublicRoute>
-          }
-        />
+        <Route index element={<HomePage />} />
+        <Route path="*" element={<NotFound />} />
+
         <Route
           path="login"
           element={
@@ -61,30 +48,9 @@ function App() {
           }
         />
 
-        <Route
-          path="news"
-          element={
-            <PublicRoute>
-              <News />
-            </PublicRoute>
-          }
-        />
-        <Route
-          path="findPet"
-          element={
-            <PublicRoute>
-              <FindPets />
-            </PublicRoute>
-          }
-        />
-        <Route
-          path="friends"
-          element={
-            <PublicRoute>
-              <OurFriends />
-            </PublicRoute>
-          }
-        />
+        <Route path="news" element={<News />} />
+        <Route path="findPet" element={<FindPets />} />
+        <Route path="friends" element={<OurFriends />} />
 
         <Route
           path="profile"

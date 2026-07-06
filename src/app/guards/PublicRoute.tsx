@@ -10,8 +10,7 @@ export const PublicRoute = ({ children }: PublicRouteProps) => {
   const { isLoggedIn, location } = useAuthState();
 
   if (isLoggedIn) {
-    return <Navigate to={location.state.from ?? "/"} />;
+    return <Navigate to={location.state?.from ?? "/"} />;
   }
-
   return children;
 };

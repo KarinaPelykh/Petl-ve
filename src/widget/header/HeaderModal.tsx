@@ -27,7 +27,7 @@ export const HeaderModal = ({ close, isOpen }: HeaderModalProps) => {
         </Button>
         <HeaderNavList
           className="desktop-l:flex-row flex flex-col items-center"
-          itemClassName="w-[119px]! justify-center  border-black/40 text-black"
+          itemClassName="w-[119px]! justify-center  border-black/40! text-black!"
         />
         {isLog ? (
           <Button
