@@ -23,7 +23,7 @@ export const PetList = ({ setDialogState, method }: PetListProps) => {
   const { results } = useAppSelector(notices);
 
   return (
-    <div className="mb-[44px] flex justify-center">
+    <div className="mb-11 flex justify-center">
       {results.length ? (
         <ul className="tablet-l:grid-cols-2 desktop-l:grid-cols-3 desktop-l:gap-8 grid gap-5">
           {results.map((notice) => (

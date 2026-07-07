@@ -1,38 +1,55 @@
-import { useForm } from "react-hook-form";
+// import { useFrm } from "rea ct -h ook-form";
+// import { Button } from "../shared/ui/Button";
+// import { Form, FormField, Input, Label, MessageText } from "../shared/ui/Form";
+// import { Icon } from "../shared/ui/Icon";
+// import { useAppDispatch, useAppSelector } from "../shared/hooks/reduxHooks";
+// import { favorite, notices } from "../shared/api/redux/notices/selectors";
+// import {
+//   PetCard,
+//   PetControl,
+//   PetDescription,
+//   PetImage,
+//   PetInfoTable,
+//   PetPrice,
+//   PetTitle,
+// } from "../entities";
+// import { useNavigate } from "react-router";
+
+// const defaultValues = {
+//   name: "",
+//   email: "",
+//   phone: "",
+// };
+
+import { UserBlock } from "../entities/user/UserBlock";
+import { AddAnimals } from "../feature/add-animals/AddAnimals";
+import { UserNoticesTab } from "../feature/user-notices-tab/UserNoticesTab";
 import { Button } from "../shared/ui/Button";
-import { Form, FormField, Input, Label, MessageText } from "../shared/ui/Form";
-import { Icon } from "../shared/ui/Icon";
-import { useAppSelector } from "../shared/hooks/reduxHooks";
-import { favorite, notices } from "../shared/api/redux/notices/selectors";
-import {
-  PetCard,
-  PetControl,
-  PetDescription,
-  PetImage,
-  PetInfoTable,
-  PetPrice,
-  PetTitle,
-} from "../entities";
-
-const defaultValues = {
-  name: "",
-  email: "",
-  phone: "",
-};
-
 export const UserProfile = () => {
-  const form = useForm({ defaultValues });
-  const data = useAppSelector(favorite);
-  const getNotices = useAppSelector(notices);
+  // const form = useForm({ defaultValues });
+  // const data = useAppSelector(favorite);
+  // const getNotices = useAppSelector(notices);
+  // const navigate = useNavigate();
+  // const filteredData = getNotices.results.filter((notice) =>
+  //   data.includes(notice._id),
+  // );
 
-  const filteredData = getNotices.results.filter((notice) =>
-    data.includes(notice._id),
-  );
+  // const dispatch = useAppDispatch();
 
   return (
     <section className="desktop-l:pb-8 tablet-l:pb-45.5 pb-35">
       <div className="desktop-l:flex desktop-l:gap-8 container items-start">
-        <Form
+        <div className="rounded-ms max-tablet-l:w-83.75 max-desktop-l:w-176 desktop-l:rounded-m desktop-l:w-130! tablet-l:p-10 desktop-l:m-0 mx-auto my-auto flex flex-col bg-white px-5 py-7 pt-5 pb-10">
+          <UserBlock />
+          <AddAnimals />
+          <Button
+            variant="secondary"
+            className="w-fit rounded-[50%] px-7 py-3 uppercase"
+          >
+            Log out
+          </Button>
+        </div>
+        {/* <Form
           form={form}
           className="max-tablet-l:w-83.75 max-desktop-l:w-176 desktop-l:rounded-m desktop-l:w-130! tablet-l:p-10 desktop-l:m-0 mx-auto px-5 pt-5 pb-10"
         >
@@ -101,32 +118,29 @@ export const UserProfile = () => {
 
             <div className="mt-10 flex items-center justify-between">
               <p className="text-m">My pets</p>
-              <Button
-                variant="primary"
-                className="flex w-fit items-center justify-between gap-2 rounded-[50%]"
+              <Link
+                to="/add-pet"
+                className="bg-yellow primary rounded-ms flex w-[118px] items-center justify-center gap-2 p-2.5 text-white"
               >
                 Add pet <Icon name="plus" className="size-4.5" />
-              </Button>
+              </Link>
             </div>
           </div>
           <Button
+            // onClick={() => {
+            //   dispatch(signout());
+            //   navigate("/");
+            // }}
             variant="secondary"
             className="w-fit rounded-[50%] px-7 py-3 uppercase"
           >
             Log out
           </Button>
-        </Form>
-        <div className="max-tablet-l:w-83.75 max-desktop-l:w-176 desktop-l:mx-0 mx-auto mt-10 flex flex-col">
-          <div className="mb-20 flex items-center gap-2.5">
-            <Button className="bg-yellow text-ms w-fit p-3 text-white">
-              My favorite pets
-            </Button>
+        </Form> */}
 
-            <Button className="desktop-l:py-3 text-ms w-30.75 bg-white text-black capitalize">
-              Viewed
-            </Button>
-          </div>
-          {filteredData.length ? (
+        <UserNoticesTab />
+        {/* <div className="max-tablet-l:w-83.75 max-desktop-l:w-176 desktop-l:mx-0 mx-auto mt-10 flex flex-col"> */}
+        {/* {filteredData.length ? (
             <ul className="flex flex-row gap-2.5">
               {filteredData.map((item) => (
                 <PetCard
@@ -142,26 +156,17 @@ export const UserProfile = () => {
                     <PetDescription />
                     <PetPrice />
                     <PetControl
-                      setIsFavorite={setIsFavorite}
-                      onClick={(id: string) =>
-                        isLoggIn && dispatch(addFavorite(id))
-                      }
+                    // setIsFavorite={setIsFavorite}
+                    // onClick={(id: string) =>
+                    //   isLoggIn && dispatch(addFavorite(id))
+                    // }
                     />
                   </div>
                 </PetCard>
-              ))}
-            </ul>
-          ) : (
-            <p className="text-ms tablet-l:w-114.5 desktop-l:mt-45 mx-auto text-center">
-              Oops,
-              <span className="text-yellow">
-                looks like there aren't any furries
-              </span>
-              on our adorable page yet. Do not worry! View your pets on the
-              "find your favorite pet" page and add them to your favorites.
-            </p>
-          )}
-        </div>
+              ))} )
+            </ul>    : (  )}*/}
+
+        {/* </div> */}
       </div>
     </section>
   );

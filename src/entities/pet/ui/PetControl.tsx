@@ -8,7 +8,7 @@ import { useFavorite } from "../../../feature/dialog-content/hook/useFavorite";
 import { useRemoveFavorite } from "../../../feature/dialog-content/hook/useRemoveFavorite";
 
 type PetControlProps = {
-  setDialogState: (val: { mode: DialogMode; id: string }) => void;
+  setDialogState?: (val: { mode: DialogMode; id: string }) => void;
 };
 
 export const PetControl = ({ setDialogState }: PetControlProps) => {
@@ -25,7 +25,7 @@ export const PetControl = ({ setDialogState }: PetControlProps) => {
     <div className="mt-auto flex gap-2.5">
       <Dialog.Trigger
         onClick={() => {
-          setDialogState({ mode: "details", id: notice._id });
+          setDialogState?.({ mode: "details", id: notice._id });
         }}
         type="button"
         className="bg-yellow rounded-ms text-ms w-full cursor-pointer p-3.5 font-normal text-white"
@@ -34,7 +34,7 @@ export const PetControl = ({ setDialogState }: PetControlProps) => {
       </Dialog.Trigger>
       <Dialog.Trigger
         onClick={() => {
-          setDialogState({ mode: "favorite", id: notice._id });
+          setDialogState?.({ mode: "favorite", id: notice._id });
           // eslint-disable-next-line @typescript-eslint/no-unused-expressions
           idFavoriteNotice ? remove(notice._id) : add(notice._id);
         }}

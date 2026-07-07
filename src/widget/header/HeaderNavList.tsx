@@ -18,27 +18,23 @@ export const HeaderNavList = ({
 
   return (
     <ul className={clsx(className, "gap-2")}>
-      {nav.map((item, i) => {
-        console.log(location.pathname === `/${item.link}`, i);
+      {nav.map((item) => (
+        <Link key={item.name} to={item.link}>
+          <li
+            className={clsx(
+              "rounded-ms text-ms hover:border-yellow flex w-fit items-center border border-black/15 px-5 py-3.75 shadow-lg transition-all duration-500 hover:scale-105",
+              itemClassName,
+              homePage && "border-white text-white",
 
-        return (
-          <Link key={item.name} to={item.link}>
-            <li
-              className={clsx(
-                "rounded-ms text-ms hover:border-yellow flex w-fit items-center border border-black/15 px-5 py-3.75 shadow-lg transition-all duration-500 hover:scale-105",
-                itemClassName,
-                homePage && "border-white text-white",
-
-                !homePage &&
-                  location.pathname === `/${item.link}` &&
-                  "border-yellow!",
-              )}
-            >
-              {item.name}
-            </li>
-          </Link>
-        );
-      })}
+              !homePage &&
+                location.pathname === `/${item.link}` &&
+                "border-yellow!",
+            )}
+          >
+            {item.name}
+          </li>
+        </Link>
+      ))}
     </ul>
   );
 };

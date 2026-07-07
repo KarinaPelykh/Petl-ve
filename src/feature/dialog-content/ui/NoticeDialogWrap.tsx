@@ -1,4 +1,4 @@
-import { Dialog } from "radix-ui";
+import * as Dialog from "@radix-ui/react-dialog";
 import type { ReactNode } from "react";
 
 type NoticeDialogWrapProps = {

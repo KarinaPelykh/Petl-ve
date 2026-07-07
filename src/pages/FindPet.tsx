@@ -48,8 +48,8 @@ export const FindPets = () => {
 
   return (
     <section className="py-13.5">
-      <div className="container">
-        <NoticeDialogWrap open={open} setOpen={setOpen}>
+      <NoticeDialogWrap open={open} setOpen={setOpen}>
+        <div className="container">
           {!isLoggIn ? (
             <Modal>
               <AttentionDialog />
@@ -63,8 +63,8 @@ export const FindPets = () => {
           <PetSearchFilter method={method} />
           <PetList method={method} setDialogState={setDialogState} />
           <PaginationWrap method={method} />
-        </NoticeDialogWrap>
-      </div>
+        </div>{" "}
+      </NoticeDialogWrap>
     </section>
   );
 };
