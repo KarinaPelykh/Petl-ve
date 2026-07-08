@@ -14,7 +14,10 @@ export const PetImage = ({ imgClassName }: PetImageProps) => {
         alt={notice.name}
         width={287}
         height={178}
-        className="desktop-l:h-44.5 desktop-l:w-78.75 tablet-l:h-auto block h-44.5 w-full object-cover"
+        className={clsx(
+          imgClassName,
+          "desktop-l:h-44.5 desktop-l:w-78.75 tablet-l:h-auto block h-44.5 w-full object-cover",
+        )}
       />
     </div>
   );

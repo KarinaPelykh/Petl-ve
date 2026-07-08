@@ -1,25 +1,11 @@
 import { Tabs } from "radix-ui";
-import {
-  PetCard,
-  // PetControl,
-  PetDescription,
-  PetImage,
-  PetInfoTable,
-  PetPrice,
-  PetTitle,
-} from "../../entities";
-import { favorite, notices } from "../../shared/api/redux/notices/selectors";
-import { useAppSelector } from "../../shared/hooks/reduxHooks";
+
+import { FavoriteNoticesList } from "./FavoriteNoticesList";
+import { ViewedNoticesList } from "./ViewedNoticesList";
 
 export const UserNoticesTab = () => {
-  const data = useAppSelector(favorite);
-  const getNotices = useAppSelector(notices);
-  const filteredData = getNotices.results.filter((notice) =>
-    data.includes(notice._id),
-  );
-
   return (
-    <Tabs.Root defaultValue="favorite">
+    <Tabs.Root defaultValue="favorite" className="desktop-l:w-166">
       <Tabs.List className="mb-20 flex items-center gap-2.5">
         <Tabs.Trigger
           value="favorite"
@@ -35,23 +21,10 @@ export const UserNoticesTab = () => {
         </Tabs.Trigger>
       </Tabs.List>
       <Tabs.Content value="favorite">
-        <ul className="flex flex-wrap gap-2.5">
-          {filteredData.map((item) => (
-            <PetCard key={item._id} notice={item} className="desktop-l:w-90.75">
-              <PetImage />
-              <div>
-                <PetTitle />
-                <PetInfoTable />
-                <PetDescription />
-                <PetPrice />
-                {/* <PetControl /> */}
-              </div>
-            </PetCard>
-          ))}
-        </ul>
+        <FavoriteNoticesList />
       </Tabs.Content>
       <Tabs.Content value="viewed">
-        <p>I watched notices</p>
+        <ViewedNoticesList />
       </Tabs.Content>
 
       {/* <p className="text-ms tablet-l:w-114.5 desktop-l:mt-45 mx-auto text-center">

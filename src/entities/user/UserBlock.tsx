@@ -9,7 +9,7 @@ export const UserBlock = () => {
 
   return (
     <>
-      <div className="desktop-l:w-[520px] mb-5 flex items-center justify-between">
+      <div className="mb-5 flex items-center justify-between">
         <div className="bg-yellow rounded-ms flex h-9.5 w-20 items-center justify-center gap-1">
           <p className="text-ms text-white">User</p>
           <Icon name="user-2" className="size-4.5" />
@@ -40,7 +40,7 @@ export const UserBlock = () => {
         </label>
       </div>
 
-      <div className="tablet-l:mb-20 mb-10 w-full">
+      <div className="desktop-l:10 tablet-l:mb-20 mb-10 w-full">
         <p className="text-m mb-5">My information</p>
         <div className="tablet-l:flex tablet-l:flex-wrap tablet-l:gap-3.5 tablet-l:justify-between desktop-l:flex-col desktop-l:gap-3.5">
           <p
