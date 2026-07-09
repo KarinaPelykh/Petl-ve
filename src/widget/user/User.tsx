@@ -12,6 +12,7 @@ type UserProps = {
 
 export const User = ({ children }: UserProps) => {
   const { user } = useAppSelector(auth);
+  console.log(user);
 
   const homePage = location.pathname === "/";
 

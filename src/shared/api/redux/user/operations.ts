@@ -10,6 +10,13 @@ type UserRefreshResponse = UserSignup & { token: string };
 
 type AsyncThunkConfig = { state: RootState; rejectWithValue: unknown };
 
+type EditUserParams = Partial<{
+  name: string;
+  email: string;
+  avatar: string;
+  phone: string;
+}>;
+
 export const signup = createAsyncThunk(
   "auth/signup",
   async (params: UserSignup, thunkAPI) => {
@@ -64,3 +71,15 @@ export const refresh = createAsyncThunk<
     return rejectWithValue(error);
   }
 });
+
+export const editUser = createAsyncThunk(
+  "user/edit",
+  async (params: EditUserParams, thunkAPI) => {
+    try {
+      const data = await instance.patch("users/current/edit", { ...params });
+      return data.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  },
+);

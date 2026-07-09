@@ -20,16 +20,23 @@ export const UserBlock = ({ setDialogState }: UserBlockProps) => {
         </div>
 
         <Dialog.Trigger
-          className="bg-yellow flex size-9.5 items-center justify-center rounded-[50%]"
+          className="bg-cream flex size-9.5 items-center justify-center rounded-[50%]"
           onClick={() => setDialogState({ mode: "edit", id: "" })}
         >
-          <Icon name="edit" className="fill-cream size-4.5" />
+          <Icon name="edit" className="size-4.5" />
         </Dialog.Trigger>
       </div>
 
       <div className="tablet-l:mb-5 mb-7 flex flex-col items-center justify-center gap-2">
-        <Icon name="user" className="tablet-l:size-27.5 size-23.5" />
-
+        {user.avatar ? (
+          <img
+            src={user.avatar}
+            alt="avatar"
+            className="tablet-l:size-27.5 size-23.5 rounded-[50%]"
+          />
+        ) : (
+          <Icon name="user" className="tablet-l:size-27.5 size-23.5" />
+        )}
         <input
           type="file"
           id="file"
@@ -68,11 +75,11 @@ export const UserBlock = ({ setDialogState }: UserBlockProps) => {
 
         <p
           className={clsx(
-            user?.number && "border-yellow",
+            user.phone && "border-yellow",
             "max-desktop-l:w-76.25! desktop-l:p-4 text-ms rounded-ms desktop-l:mt-3.5 flex h-10.5 w-full items-center border border-black/50 p-3 text-black/80 shadow-lg outline-none placeholder:text-black/50 placeholder:capitalize",
           )}
         >
-          {user?.number || "+380"}
+          {user.phone || "+380"}
         </p>
       </div>
     </>

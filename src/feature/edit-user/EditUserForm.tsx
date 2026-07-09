@@ -12,12 +12,14 @@ import { Modal } from "../../shared/ui/Modal";
 import { Heading } from "../../shared/ui/Heading";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { editedUserSchema, type EditedUser } from "./model/contracts";
+import { useAppDispatch } from "../../shared/hooks/reduxHooks";
+import { editUser } from "../../shared/api/redux/user/operations";
 
 const defaultValues = {
   name: "",
   email: "",
   phone: "",
-  img: "",
+  avatar: "",
 };
 
 export const EditUserForm = () => {
@@ -26,15 +28,22 @@ export const EditUserForm = () => {
     resolver: zodResolver(editedUserSchema),
   });
 
-  const onSubmit = () => {};
+  const dispatch = useAppDispatch();
+
+  const onSubmit = (data) => {
+    try {
+      dispatch(editUser(data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Modal className="p-12.5!">
       <Form
         form={form}
-        onSubmit={onSubmit}
+        onSubmit={form.handleSubmit(onSubmit)}
         className="w-full p-0!"
-        // className="max-tablet-l:w-83.75 max-desktop-l:w-176 desktop-l:rounded-m desktop-l:w-130! tablet-l:p-10 desktop-l:m-0 mx-auto px-5 pt-5 pb-10"
       >
         <Heading className="mb-5 text-xl" as="h3">
           Edit information
@@ -42,13 +51,13 @@ export const EditUserForm = () => {
         <div className="tablet-l:mb-5 mb-7 flex flex-col items-center justify-center gap-2">
           <Icon name="user" className="tablet-l:size-27.5 size-23.5" />
           <div className="flex w-full items-center gap-2">
-            <FormField name="image" className="m-0!">
+            <FormField name="avatar" className="m-0!">
               <Input
                 type="text"
                 placeholder="url"
-                id="image"
+                id="avatar"
                 className="border-yellow m-0! h-10.5 w-56.5!"
-                name="upload"
+                {...form.register("avatar")}
               />
             </FormField>
 
@@ -63,17 +72,21 @@ export const EditUserForm = () => {
         <div className="mb-10 w-full">
           <FormField name="name">
             <Label htmlFor="name" />
-            <Input type="text" placeholder="Name" />
+            <Input type="text" placeholder="Name" {...form.register("name")} />
             <MessageText />
           </FormField>
           <FormField name="email">
             <Label htmlFor="email" />
-            <Input type="text" placeholder="name00@gmail.com" />
+            <Input
+              type="text"
+              placeholder="name00@gmail.com"
+              {...form.register("email")}
+            />
             <MessageText />
           </FormField>
           <FormField name="phone">
             <Label htmlFor="phone" />
-            <Input type="text" placeholder="+380" />
+            <Input type="text" placeholder="+380" {...form.register("phone")} />
             <MessageText />
           </FormField>
         </div>
