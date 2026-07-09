@@ -11,3 +11,5 @@ export const setToken = (token: string) => {
 export const clearToken = () => {
   instance.defaults.headers.common.Authorization = "";
 };
+
+

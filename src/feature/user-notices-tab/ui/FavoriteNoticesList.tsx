@@ -8,15 +8,12 @@ import {
   PetTitle,
 } from "../../../entities";
 import { favorite, notices } from "../../../shared/api/redux/notices/selectors";
-// import { auth } from "../../../shared/api/redux/user/selectors";
 import { useAppSelector } from "../../../shared/hooks/reduxHooks";
 
-export const FavoriteNoticesList = () => {
-  //   const { user } = useAppSelector(auth);
-
+export const FavoriteNoticesList = ({ dialog }) => {
   const data = useAppSelector(favorite);
   const getNotices = useAppSelector(notices);
-  // const navigate = useNavigate();
+
   const filteredData = getNotices.results.filter((notice) =>
     data.includes(notice._id),
   );
@@ -35,7 +32,7 @@ export const FavoriteNoticesList = () => {
             <PetInfoTable />
             <PetDescription />
             <PetPrice />
-            <PetControl />
+            <PetControl setDialogState={dialog.setDialogState} />
           </div>
         </PetCard>
       ))}

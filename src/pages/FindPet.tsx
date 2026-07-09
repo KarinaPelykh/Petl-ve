@@ -26,11 +26,7 @@ export const FindPets = () => {
   const { cardData } = useNoticeDetails(dialog.dialogState.id);
 
   const content = {
-    details: (
-      <Modal>
-        <NoticeDialogContent data={cardData} />
-      </Modal>
-    ),
+    details: <NoticeDialogContent data={cardData} />,
     favorite: null,
   };
 

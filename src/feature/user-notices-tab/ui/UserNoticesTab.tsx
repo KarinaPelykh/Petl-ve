@@ -3,7 +3,7 @@ import { Tabs } from "radix-ui";
 import { FavoriteNoticesList } from "./FavoriteNoticesList";
 import { ViewedNoticesList } from "./ViewedNoticesList";
 
-export const UserNoticesTab = () => {
+export const UserNoticesTab = ({ dialog }) => {
   return (
     <Tabs.Root defaultValue="favorite" className="desktop-l:w-166">
       <Tabs.List className="mb-20 flex items-center gap-2.5">
@@ -21,10 +21,10 @@ export const UserNoticesTab = () => {
         </Tabs.Trigger>
       </Tabs.List>
       <Tabs.Content value="favorite">
-        <FavoriteNoticesList />
+        <FavoriteNoticesList dialog={dialog} />
       </Tabs.Content>
       <Tabs.Content value="viewed">
-        <ViewedNoticesList />
+        <ViewedNoticesList dialog={dialog} />
       </Tabs.Content>
 
       {/* <p className="text-ms tablet-l:w-114.5 desktop-l:mt-45 mx-auto text-center">

@@ -1,10 +1,14 @@
 import clsx from "clsx";
 import { auth } from "../../shared/api/redux/user/selectors";
 import { useAppSelector } from "../../shared/hooks/reduxHooks";
-import { Button } from "../../shared/ui/Button";
 import { Icon } from "../../shared/ui/Icon";
+import { Dialog } from "radix-ui";
 
-export const UserBlock = () => {
+type UserBlockProps = {
+  setDialogState: (val: { mode: string; id: string }) => void;
+};
+
+export const UserBlock = ({ setDialogState }: UserBlockProps) => {
   const { user } = useAppSelector(auth);
 
   return (
@@ -15,12 +19,12 @@ export const UserBlock = () => {
           <Icon name="user-2" className="size-4.5" />
         </div>
 
-        <Button
-          variant="secondary"
-          className="flex size-9.5 items-center justify-center rounded-[50%] p-0!"
+        <Dialog.Trigger
+          className="bg-yellow flex size-9.5 items-center justify-center rounded-[50%]"
+          onClick={() => setDialogState({ mode: "edit", id: "" })}
         >
-          <Icon name="edit" className="size-4.5" />
-        </Button>
+          <Icon name="edit" className="fill-cream size-4.5" />
+        </Dialog.Trigger>
       </div>
 
       <div className="tablet-l:mb-5 mb-7 flex flex-col items-center justify-center gap-2">

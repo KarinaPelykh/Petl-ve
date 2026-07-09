@@ -16,6 +16,7 @@ import { useAppSelector } from "../../../shared/hooks/reduxHooks";
 import { favorite } from "../../../shared/api/redux/notices/selectors";
 import { useFavorite } from "../hook/useFavorite";
 import { useRemoveFavorite } from "../hook/useRemoveFavorite";
+import { Modal } from "../../../shared/ui/Modal";
 
 type NoticeDialogProps = {
   data?: Notice | null;
@@ -37,7 +38,7 @@ export const NoticeDialogContent = ({ data }: NoticeDialogProps) => {
   );
 
   return (
-    <>
+    <Modal>
       <PetCard notice={data} className="p-0!">
         <div className="tablet-l:size-37.5 relative mx-auto mb-4 size-30">
           <div
@@ -77,6 +78,6 @@ export const NoticeDialogContent = ({ data }: NoticeDialogProps) => {
           Contact
         </Button>
       </div>
-    </>
+    </Modal>
   );
 };

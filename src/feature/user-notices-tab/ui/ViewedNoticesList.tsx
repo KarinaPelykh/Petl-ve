@@ -1,5 +1,6 @@
 import {
   PetCard,
+  PetControl,
   PetDescription,
   PetImage,
   PetInfoTable,
@@ -9,7 +10,7 @@ import {
 import { auth } from "../../../shared/api/redux/user/selectors";
 import { useAppSelector } from "../../../shared/hooks/reduxHooks";
 
-export const ViewedNoticesList = () => {
+export const ViewedNoticesList = ({ dialog }) => {
   const { user } = useAppSelector(auth);
 
   return (
@@ -26,7 +27,10 @@ export const ViewedNoticesList = () => {
             <PetInfoTable />
             <PetDescription />
             <PetPrice />
-            {/* <PetControl /> */}
+            <PetControl
+              setDialogState={dialog.setDialogState}
+              btnClassName="hidden"
+            />
           </div>
         </PetCard>
       ))}

@@ -2,7 +2,7 @@ import { useState } from "react";
 
 export type DialogMode = "details" | "favorite";
 
-type DialogState = {
+export type DialogState = {
   mode: DialogMode;
   id: string;
 };
