@@ -35,3 +35,22 @@
     background-position: bottom;
   }
 }
+
+.bgSecondDog {
+  background-image: url("/image/pet-webP/mob/dog2@x2.webp");
+  background-reaped: no-repeat;
+
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+
+  @media screen and (min-width: 768px) {
+    background-image: url("/image/pet-webP/tablet/dog2@x2.webp");
+
+    background-position: 70%;
+  }
+  @media screen and (min-width: 1440px) {
+    background-image: url("/image/pet-webP/desktop/dog2@x2.webp");
+    background-position: bottom;
+  }
+}

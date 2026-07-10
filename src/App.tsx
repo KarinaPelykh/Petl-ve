@@ -14,6 +14,7 @@ import { useEffect } from "react";
 import { refresh } from "./shared/api/redux/user/operations";
 import { PrivateRoute } from "./app/guards/PrivateRout";
 import { PublicRoute } from "./app/guards/PublicRoute";
+import { AddPetPage } from "./pages/AddPet";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -62,10 +63,10 @@ function App() {
         />
 
         <Route
-          path="add-pets"
+          path="add-pet"
           element={
             <PrivateRoute>
-              <UserProfile />
+              <AddPetPage />
             </PrivateRoute>
           }
         />
