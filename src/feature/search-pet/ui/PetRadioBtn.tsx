@@ -1,14 +1,21 @@
-import { RadioGroupBtn } from "../../../shared/ui/RadioGroupBtn";
-import type { PetFilterControl } from "../hook/usePetsFilter";
+// import { RadioGroupBtn } from "../../../shared/ui/RadioGroupBtn";
+// import type { FilterKey } from "../constants/searchPet.constants";
 
-type PetRadioBtnProps = {
-  method: PetFilterControl;
-};
+// type Data = {
+//   key: string;
+//   name: string;
+//   value: string;
+// };
 
-export const PetRadioBtn = ({ method }: PetRadioBtnProps) => {
-  return (
-    <div className="flex flex-wrap justify-start gap-2.5">
-      <RadioGroupBtn method={method} />
-    </div>
-  );
-};
+// type PetRadioBtnProps = {
+//   data: Data[];
+//   filterKey: FilterKey;
+// };
+
+// export const PetRadioBtn = ({ onChange, data, value }: PetRadioBtnProps) => {
+//   return (
+//     <div className="flex flex-wrap justify-start gap-2.5">
+//       <RadioGroupBtn onChange={onChange} data={data} value={value} />
+//     </div>
+//   );
+// };

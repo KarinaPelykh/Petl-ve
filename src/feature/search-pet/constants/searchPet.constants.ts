@@ -1,10 +1,13 @@
-type FilterKey = "byPopularity" | "byPrice";
+export type FilterKey = "byPopularity" | "byPrice";
 
-type Data = { name: string; value: boolean; key: FilterKey };
+type Data = { label: string; value: boolean };
 
-export const checkboxes: Data[] = [
-  { key: "byPrice", name: "Cheap", value: false },
-  { key: "byPrice", name: "Expensive", value: true },
-  { key: "byPopularity", name: "Popular", value: true },
-  { key: "byPopularity", name: "Unpopular", value: false },
+export const priceOption: Data[] = [
+  { label: "Cheap", value: false },
+  { label: "Expensive", value: true },
+];
+
+export const popularOption: Data[] = [
+  { label: "Popular", value: true },
+  { label: "Unpopular", value: false },
 ];

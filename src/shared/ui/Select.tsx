@@ -23,7 +23,7 @@ export const MySelect = ({
       unstyled
       placeholder={field}
       className={clsx(
-        "text-ms desktop-l:p-4 tablet-l:w-42.5 rounded-ms absolute flex h-10.5 w-full items-center justify-between border-none bg-white p-3 text-black shadow-lg outline-none placeholder:text-black/50",
+        "text-ms desktop-l:p-4 tablet-l:w-42.5 rounded-ms absolute flex h-10.5 w-full items-center justify-between bg-white p-3 text-black shadow-lg outline-none placeholder:text-black/50",
         className,
       )}
     />

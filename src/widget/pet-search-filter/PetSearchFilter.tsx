@@ -1,6 +1,5 @@
 import { Form, FormField, ItemLabel } from "../../shared/ui/Form";
 import { SearchField } from "../../shared/ui/SearchField";
-import { PetRadioBtn } from "../../feature/search-pet/ui/PetRadioBtn";
 import { LocationSearchBar } from "../../feature/search-pet/ui/LocationSearchBar";
 import { PetSelect } from "../../feature/search-pet/ui/PetSelects";
 
@@ -8,6 +7,11 @@ import { Button } from "../../shared/ui/Button";
 import { Icon } from "../../shared/ui/Icon";
 
 import type { PetFilterControl } from "../../feature/search-pet/hook/usePetsFilter";
+import {
+  popularOption,
+  priceOption,
+} from "../../feature/search-pet/constants/searchPet.constants";
+import { RadioGroupBtn } from "../../shared/ui/RadioGroupBtn";
 
 type PetSearchFilterProps = {
   method: PetFilterControl;
@@ -40,7 +44,30 @@ export const PetSearchFilter = ({ method }: PetSearchFilterProps) => {
         />
       </div>
       <div className="my-5 h-px w-full bg-black/10" />
-      <PetRadioBtn method={method} />
+
+      <div className="flex flex-wrap justify-start gap-2.5">
+        <RadioGroupBtn
+          filterValue={method.filter.byPrice}
+          onChange={(val) => method.onChangeInput("byPrice", val)}
+          data={priceOption}
+          reset={() => {
+            method?.setFilter((prev) => ({ ...prev, byPrice: null }));
+          }}
+          activeClassName="bg-yellow text-white"
+          variant="text"
+        />
+        <RadioGroupBtn
+          onChange={(val) => method.onChangeInput("byPopularity", val)}
+          data={popularOption}
+          filterValue={method.filter.byPopularity}
+
+          reset={() => {
+            method?.setFilter((prev) => ({ ...prev, byPopularity: null }));
+          }}
+          activeClassName="bg-yellow text-white"
+          variant="text"
+        />
+      </div>
     </Form>
   );
 };
