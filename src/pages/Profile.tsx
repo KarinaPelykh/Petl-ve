@@ -19,7 +19,7 @@ export const UserProfile = () => {
   const content = {
     details: <NoticeDialogContent data={cardData} />,
     favorite: null,
-    edit: <EditUserForm />,
+    edit: <EditUserForm setOpen={dialog.setOpen} />,
     logout: <UserSignout setOpen={dialog.setOpen} />,
   };
 

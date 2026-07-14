@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export type DialogMode = "details" | "favorite";
+export type DialogMode = "details" | "favorite" | "edit" | "logout";
 
 export type DialogState = {
   mode: DialogMode;

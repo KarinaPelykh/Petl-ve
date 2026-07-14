@@ -3,9 +3,11 @@ import { auth } from "../../shared/api/redux/user/selectors";
 import { useAppSelector } from "../../shared/hooks/reduxHooks";
 import { Icon } from "../../shared/ui/Icon";
 import { Dialog } from "radix-ui";
+import type { Dispatch, SetStateAction } from "react";
+import type { DialogState } from "../../feature/dialog-content/hook/useManageDialog";
 
 type UserBlockProps = {
-  setDialogState: (val: { mode: string; id: string }) => void;
+  setDialogState: Dispatch<SetStateAction<DialogState>>;
 };
 
 export const UserBlock = ({ setDialogState }: UserBlockProps) => {

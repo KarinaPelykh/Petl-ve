@@ -5,6 +5,7 @@ import {
   Form,
   FormField,
   Input,
+  ItemLabel,
   Label,
   MessageText,
 } from "../../shared/ui/Form";
@@ -12,17 +13,26 @@ import { Modal } from "../../shared/ui/Modal";
 import { Heading } from "../../shared/ui/Heading";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { editedUserSchema, type EditedUser } from "./model/contracts";
-import { useAppDispatch } from "../../shared/hooks/reduxHooks";
+import { useAppDispatch, useAppSelector } from "../../shared/hooks/reduxHooks";
 import { editUser } from "../../shared/api/redux/user/operations";
+import { auth } from "../../shared/api/redux/user/selectors";
+import { useEffect } from "react";
 
-const defaultValues = {
-  name: "",
-  email: "",
-  phone: "",
-  avatar: "",
+type EditUserFormProps = {
+  setOpen: (val: boolean) => void;
 };
 
-export const EditUserForm = () => {
+export const EditUserForm = ({ setOpen }: EditUserFormProps) => {
+  const { user } = useAppSelector(auth);
+
+  const defaultValues = {
+    name: user.name,
+    email: user.email,
+    phone: user.phone,
+    avatarUrl: user.avatar,
+    avatarFile: undefined,
+  };
+
   const form = useForm<EditedUser>({
     defaultValues,
     resolver: zodResolver(editedUserSchema),
@@ -30,55 +40,117 @@ export const EditUserForm = () => {
 
   const dispatch = useAppDispatch();
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: EditedUser) => {
+    const { name, email, phone, avatarUrl, avatarFile } = data;
+
+    const avatar = avatarFile || avatarUrl;
+
     try {
-      dispatch(editUser(data));
+      dispatch(editUser({ name, email, phone, avatar })).unwrap();
+      setOpen(false);
     } catch (error) {
       console.log(error);
     }
   };
+  // eslint-disable-next-line react-hooks/incompatible-library
+  const avatarFile = form.watch("avatarFile");
+  const avatarUrl = form.watch("avatarUrl");
+
+  useEffect(() => {
+    if (avatarFile) {
+      form.setValue("avatarUrl", "");
+    }
+  }, [avatarFile]);
+
+  useEffect(() => {
+    if (avatarUrl) {
+      form.setValue("avatarFile", undefined);
+    }
+  }, [avatarUrl]);
 
   return (
-    <Modal className="p-12.5!">
+    <Modal className="desktop-l:p-12.5! px-5 py-10">
       <Form
         form={form}
-        onSubmit={form.handleSubmit(onSubmit)}
+        onSubmit={form.handleSubmit((data) => {
+          console.log(data);
+          onSubmit(data);
+        })}
         className="w-full p-0!"
       >
-        <Heading className="mb-5 text-xl" as="h3">
+        <Heading className="text-1xl! desktop-l:text-xl mb-5" as="h3">
           Edit information
         </Heading>
-        <div className="tablet-l:mb-5 mb-7 flex flex-col items-center justify-center gap-2">
-          <Icon name="user" className="tablet-l:size-27.5 size-23.5" />
+        <div className="tablet-l:mb-5 desktop-l:gap-2 mb-2.5 flex flex-col items-center justify-center gap-3">
+          <div className="size-20">
+            {user.avatar ? (
+              <img
+                src={user.avatar}
+                alt="avatar"
+                width={80}
+                height={80}
+                className="block size-full rounded-[50%] object-cover"
+              />
+            ) : (
+              <Icon
+                name="user"
+                className="tablet-l:size-27.5 desktop-l:size-23.5 size-20"
+              />
+            )}
+          </div>
+
           <div className="flex w-full items-center gap-2">
-            <FormField name="avatar" className="m-0!">
+            <FormField name="avatarUrl" className="m-0!">
+              <Label htmlFor="avatarUrl" />
               <Input
                 type="text"
                 placeholder="url"
-                id="avatar"
-                className="border-yellow m-0! h-10.5 w-56.5!"
-                {...form.register("avatar")}
+                className="border-yellow desktop-l:w-56.5! m-0! h-10.5 w-full! py-3.25"
+                {...form.register("avatarUrl")}
               />
+              <MessageText />
             </FormField>
 
-            <div className="rounded-ms bg-cream flex h-10.5 w-fit items-center px-4">
-              <label htmlFor="file" className="">
-                Upload photo
-              </label>
-            </div>
+            <FormField name="avatarFile" className="m-0!">
+              <ItemLabel className="bg-cream rounded-ms flex h-10.5 w-36.5 cursor-pointer items-center justify-center gap-2 px-3 py-3.25">
+                <Label htmlFor="avatarFile" className="text-s">
+                  Upload photo
+                  <Input
+                    {...form.register("avatarFile")}
+                    type="file"
+                    className="hidden"
+                    id="avatarFile"
+                    accept="image/png"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+                      form.setValue("avatarFile", file);
+                    }}
+                  />
+                </Label>
+                <Icon name="upload-cloud" className="size-4.5!" />
+              </ItemLabel>
+              <MessageText />
+            </FormField>
           </div>
         </div>
 
-        <div className="mb-10 w-full">
+        <div className="desktop-l:mb-10 mb-5.25 w-full">
           <FormField name="name">
             <Label htmlFor="name" />
-            <Input type="text" placeholder="Name" {...form.register("name")} />
+            <Input
+              type="text"
+              placeholder="Name"
+              className="border-yellow"
+              {...form.register("name")}
+            />
             <MessageText />
           </FormField>
           <FormField name="email">
             <Label htmlFor="email" />
             <Input
               type="text"
+              className="border-yellow"
+
               placeholder="name00@gmail.com"
               {...form.register("email")}
             />
@@ -86,7 +158,13 @@ export const EditUserForm = () => {
           </FormField>
           <FormField name="phone">
             <Label htmlFor="phone" />
-            <Input type="text" placeholder="+380" {...form.register("phone")} />
+
+            <Input
+              type="text"
+              placeholder="+380"
+              className="border-yellow"
+              {...form.register("phone")}
+            />
             <MessageText />
           </FormField>
         </div>

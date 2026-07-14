@@ -13,7 +13,7 @@ type AsyncThunkConfig = { state: RootState; rejectWithValue: unknown };
 type EditUserParams = Partial<{
   name: string;
   email: string;
-  avatar: string;
+  avatar: string | File;
   phone: string;
 }>;
 

@@ -25,7 +25,8 @@ export const PetSearchFilter = ({ method }: PetSearchFilterProps) => {
           <ItemLabel>
             <SearchField
               field="search"
-              method={method}
+              value={method?.filter.keyword}
+              onChange={(val) => method?.onChangeInput("keyword", val)}
               className="tablet-l:w-66.25 desktop-l:w-66.25 outline-yellow border-0 bg-white"
             />
             <Button type="button" className="absolute top-0 right-0">

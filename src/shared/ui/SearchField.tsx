@@ -1,29 +1,25 @@
-import type { PetFilterControl } from "../../feature/search-pet/hook/usePetsFilter";
-
 import { Input } from "./Form";
 
 type SearchFieldProps = {
   field: "search";
-  value?: string;
+  // value?: string;
   className?: string;
-  onChange?: (val: string) => void;
-  method?: PetFilterControl;
+  // onChange?: (val: string) => void;
 };
 
 export const SearchField = ({
-  method,
   className,
+  // value,
   field,
-  onChange,
+  // onChange,
+  ...props
 }: SearchFieldProps) => {
   return (
     <Input
+      {...props}
       placeholder={field}
-      value={method?.filter.keyword}
-      onChange={(e) => {
-        onChange?.(e.target.value);
-        method?.onChangeInput("keyword", e.target.value);
-      }}
+      // value={value}
+      // onChange={(val) => console.log(val)}
       className={className}
     />
   );

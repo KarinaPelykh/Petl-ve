@@ -10,7 +10,7 @@ import clsx from "clsx";
 
 type PetControlProps = {
   setDialogState?: (val: { mode: DialogMode; id: string }) => void;
-  btnClassName: string;
+  btnClassName?: string;
 };
 
 export const PetControl = ({

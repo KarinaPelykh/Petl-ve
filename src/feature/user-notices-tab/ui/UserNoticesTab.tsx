@@ -6,7 +6,7 @@ import { ViewedNoticesList } from "./ViewedNoticesList";
 export const UserNoticesTab = ({ dialog }) => {
   return (
     <Tabs.Root defaultValue="favorite" className="desktop-l:w-166">
-      <Tabs.List className="mb-20 flex items-center gap-2.5">
+      <Tabs.List className="desktop-l:mb-8 mb-20 flex items-center gap-2.5">
         <Tabs.Trigger
           value="favorite"
           className="aria-selected:bg-yellow text-ms rounded-ms group cursor-pointer bg-white p-3 text-center text-black transition-all duration-500 ease-out aria-selected:text-white"

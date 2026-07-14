@@ -1,9 +1,12 @@
 import { usePetContext } from "../api/usePetContex";
 
-// type PetInfoTableProps = {};
-
 export const PetInfoTable = () => {
   const { notice } = usePetContext();
+
+  const updatedDateBirthday = notice?.birthday
+    ?.split("-")
+    .map((item) => item !== "-" && item)
+    .join(".");
 
   return (
     <div className="mb-4 flex gap-x-3.5 gap-y-0.5">
@@ -13,7 +16,7 @@ export const PetInfoTable = () => {
       </div>
       <div className="text-xs">
         <div className="text-black/50"> Birthday</div>
-        <div className="text-s capitalize">{notice.birthday}</div>
+        <div className="text-s capitalize">{updatedDateBirthday}</div>
       </div>
       <div className="text-xs">
         <div className="text-black/50"> Sex</div>
