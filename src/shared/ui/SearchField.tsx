@@ -2,24 +2,24 @@ import { Input } from "./Form";
 
 type SearchFieldProps = {
   field: "search";
-  // value?: string;
   className?: string;
-  // onChange?: (val: string) => void;
+  value?: string;
+  onChange?: (val: string) => void;
 };
 
 export const SearchField = ({
   className,
-  // value,
   field,
-  // onChange,
+  value,
+  onChange,
   ...props
 }: SearchFieldProps) => {
   return (
     <Input
+      value={value}
+      onChange={(e) => onChange?.(e.target.value)}
       {...props}
       placeholder={field}
-      // value={value}
-      // onChange={(val) => console.log(val)}
       className={className}
     />
   );

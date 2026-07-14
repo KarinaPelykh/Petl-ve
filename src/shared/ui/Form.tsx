@@ -75,21 +75,23 @@ export const Input = ({
   className,
   ...props
 }: ComponentProps<"input">) => {
-  const { name } = useFormContext();
+  // const { name } = useFormContext();
 
-  const { errors, isValidating } = useFormState();
+  // const fromState = useFormState() || null;
 
-  const message = errors[name]?.message as string;
+  // const message = fromState
+  //   ? (fromState.errors[name]?.message as string)
+  //   : null;
   return (
     <input
       {...props}
-      name={name}
+      // name={name}
       onChange={onChange}
       className={clsx(
         "desktop-l:p-4 text-ms rounded-ms h-10.5 w-full border border-black/50 p-3 text-black/80 shadow-lg outline-none placeholder:text-black/50 placeholder:capitalize",
         className,
-        message && "border-red",
-        isValidating && "border-green",
+        // message && "border-red",
+        // fromState && fromState.isValidating && "border-green",
       )}
     />
   );

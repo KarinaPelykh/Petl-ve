@@ -10,6 +10,7 @@ import { DatePicker } from "react-datepicker";
 import "./addmodule.css";
 import "react-datepicker/dist/react-datepicker.css";
 import { RadioGroupBtn } from "../shared/ui/RadioGroupBtn";
+import { useForm } from "react-hook-form";
 
 const genderOption = [
   { label: "female", value: "female" },
@@ -25,11 +26,15 @@ export const AddPetPage = () => {
   const { species } = usePetSelect();
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
 
+  const form = useForm();
   return (
     <section className="desktop-l:pb-8">
       <div className="desktop-l:flex desktop-l:gap-8 container">
         <PetBlock variant="second-dog" />
-        <Form className="desktop-l:px-20 desktop-l:py-15 my-0! h-auto w-148">
+        <Form
+          form={form}
+          className="desktop-l:px-20 desktop-l:py-15 my-0! h-auto w-148"
+        >
           <Heading className="desktop-l:text-4xl desktop-l:mb-10 mb-5" as="h3">
             Add my pet /
             <span className="text-m text-black/40">Personal details</span>
