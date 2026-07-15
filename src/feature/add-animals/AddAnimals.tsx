@@ -3,7 +3,7 @@ import { Icon } from "../../shared/ui/Icon";
 
 export const AddAnimals = () => {
   return (
-    <div className="desktop-l:mb-20 flex items-center justify-between">
+    <div className="desktop-l:mb-20 mb-10 flex items-center justify-between">
       <p className="text-m">My pets</p>
       <Link
         to="/add-pet"

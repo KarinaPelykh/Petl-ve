@@ -15,8 +15,8 @@ export const UserBlock = ({ setDialogState }: UserBlockProps) => {
 
   return (
     <>
-      <div className="mb-5 flex items-center justify-between">
-        <div className="bg-yellow rounded-ms flex h-9.5 w-20 items-center justify-center gap-1">
+      <div className="flex items-center justify-between">
+        <div className="bg-yellow rounded-ms flex h-9.5 w-20 items-center justify-center gap-1 p-2.5">
           <p className="text-ms text-white">User</p>
           <Icon name="user-2" className="size-4.5" />
         </div>
@@ -44,22 +44,21 @@ export const UserBlock = ({ setDialogState }: UserBlockProps) => {
           id="file"
           className="hidden"
           data-size="lg"
-          name="upload"
           accept="image/png"
           ngf-max-size="2MB"
         />
-        <label htmlFor="file" className="underline">
+        <label htmlFor="file" className="text-s underline">
           Upload photo
         </label>
       </div>
 
       <div className="desktop-l:10 tablet-l:mb-20 mb-10 w-full">
         <p className="text-m mb-5">My information</p>
-        <div className="tablet-l:flex tablet-l:flex-wrap tablet-l:gap-3.5 tablet-l:justify-between desktop-l:flex-col desktop-l:gap-3.5">
+        <div className="tablet-l:gap-3.5 tablet-l:grid tablet-l:grid-cols-2 tablet-l:justify-between desktop-l:flex desktop-l:flex-col desktop-l:gap-3.5 flex flex-col flex-wrap gap-2.5">
           <p
             className={clsx(
               user.name && "border-yellow",
-              "max-desktop-l:w-76.25! desktop-l:p-4 text-ms rounded-ms flex h-10.5 w-full items-center border border-black/50 p-3 text-black/80 shadow-lg outline-none placeholder:text-black/50 placeholder:capitalize",
+              "desktop-l:p-4 text-ms rounded-ms flex items-center border border-black/50 p-3 text-black/80 capitalize placeholder:text-black/50 placeholder:capitalize",
             )}
           >
             {user.name || "Name"}
@@ -68,21 +67,21 @@ export const UserBlock = ({ setDialogState }: UserBlockProps) => {
           <p
             className={clsx(
               user.email && "border-yellow",
-              "max-desktop-l:w-76.25! desktop-l:p-4 text-ms rounded-ms flex h-10.5 w-full items-center border border-black/50 p-3 text-black/80 shadow-lg outline-none placeholder:text-black/50 placeholder:capitalize",
+              "desktop-l:p-4 text-ms rounded-ms flex items-center border border-black/50 p-3 text-black/80 placeholder:text-black/50 placeholder:capitalize",
             )}
           >
             {user.email || "name00@gmail.com"}
           </p>
-        </div>
 
-        <p
-          className={clsx(
-            user.phone && "border-yellow",
-            "max-desktop-l:w-76.25! desktop-l:p-4 text-ms rounded-ms desktop-l:mt-3.5 flex h-10.5 w-full items-center border border-black/50 p-3 text-black/80 shadow-lg outline-none placeholder:text-black/50 placeholder:capitalize",
-          )}
-        >
-          {user.phone || "+380"}
-        </p>
+          <p
+            className={clsx(
+              user.phone && "border-yellow",
+              "desktop-l:p-4 text-ms rounded-ms flex items-center border border-black/50 p-3 text-black/80 placeholder:text-black/50 placeholder:capitalize",
+            )}
+          >
+            {user.phone || "+380"}
+          </p>
+        </div>
       </div>
     </>
   );

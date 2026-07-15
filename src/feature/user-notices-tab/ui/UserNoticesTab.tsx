@@ -3,10 +3,14 @@ import { Tabs } from "radix-ui";
 import { FavoriteNoticesList } from "./FavoriteNoticesList";
 import { ViewedNoticesList } from "./ViewedNoticesList";
 
-export const UserNoticesTab = ({ dialog }) => {
+type UserNoticesTabProps = {
+  dialog: { setDialogState: (val: { mode: string; id: string }) => void };
+};
+
+export const UserNoticesTab = ({ dialog }: UserNoticesTabProps) => {
   return (
-    <Tabs.Root defaultValue="favorite" className="desktop-l:w-166">
-      <Tabs.List className="desktop-l:mb-8 mb-20 flex items-center gap-2.5">
+    <Tabs.Root defaultValue="favorite">
+      <Tabs.List className="flex items-center gap-2.5">
         <Tabs.Trigger
           value="favorite"
           className="aria-selected:bg-yellow text-ms rounded-ms group cursor-pointer bg-white p-3 text-center text-black transition-all duration-500 ease-out aria-selected:text-white"
@@ -26,13 +30,6 @@ export const UserNoticesTab = ({ dialog }) => {
       <Tabs.Content value="viewed">
         <ViewedNoticesList dialog={dialog} />
       </Tabs.Content>
-
-      {/* <p className="text-ms tablet-l:w-114.5 desktop-l:mt-45 mx-auto text-center">
-        Oops,
-        <span className="text-yellow">looks like there aren't any furries</span>
-        on our adorable page yet. Do not worry! View your pets on the "find your
-        favorite pet" page and add them to your favorites.
-      </p> */}
     </Tabs.Root>
   );
 };

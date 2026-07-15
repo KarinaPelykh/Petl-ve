@@ -25,10 +25,10 @@ export const UserProfile = () => {
 
   return (
     <section className="desktop-l:pb-8 tablet-l:pb-45.5 pb-35">
-      <div className="desktop-l:flex desktop-l:gap-8 container w-full items-start">
+      <div className="desktop-l:flex desktop-l:gap-8 desktop-l:items-start container w-full">
         <NoticeDialogWrap open={dialog.open} setOpen={dialog.setOpen}>
           {content[dialog.dialogState.mode]}
-          <div className="rounded-ms max-tablet-l:w-83.75 desktop-l:rounded-m tablet-l:p-10 desktop-l:m-0 desktop-l:w-130! mx-auto my-auto flex flex-col bg-white px-5 py-7 pt-5 pb-10">
+          <div className="rounded-ms max-tablet-l:w-83.75 tablet-l:rounded-m tablet-l:p-10 desktop-l:m-0 desktop-l:w-130! m-auto mb-10 bg-white px-5 pt-5 pb-10">
             <UserBlock setDialogState={dialog.setDialogState} />
             <AddAnimals />
             <Dialog.Trigger
@@ -39,7 +39,9 @@ export const UserProfile = () => {
               Log out
             </Dialog.Trigger>
           </div>
-          <UserNoticesTab dialog={dialog} />
+          {/* <div className="desktop-l:w-166 max-tablet-l:w-83.75 mx-auto">
+            <UserNoticesTab dialog={dialog} />
+          </div> */}
         </NoticeDialogWrap>
       </div>
     </section>
