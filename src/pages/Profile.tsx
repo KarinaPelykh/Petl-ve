@@ -1,5 +1,5 @@
 import { UserBlock } from "../entities/user/UserBlock";
-import { AddAnimals } from "../feature/add-animals/AddAnimals";
+import { AddAnimals } from "../widget/add-animals/AddAnimals";
 import { NoticeDialogWrap } from "../feature/dialog-content/ui/NoticeDialogWrap";
 import { UserNoticesTab } from "../feature/user-notices-tab/ui/UserNoticesTab";
 import { useManageDialog } from "../feature/dialog-content/hook/useManageDialog";
@@ -39,9 +39,9 @@ export const UserProfile = () => {
               Log out
             </Dialog.Trigger>
           </div>
-          {/* <div className="desktop-l:w-166 max-tablet-l:w-83.75 mx-auto">
+          <div className="desktop-l:w-166 max-tablet-l:w-83.75 mx-auto">
             <UserNoticesTab dialog={dialog} />
-          </div> */}
+          </div>
         </NoticeDialogWrap>
       </div>
     </section>

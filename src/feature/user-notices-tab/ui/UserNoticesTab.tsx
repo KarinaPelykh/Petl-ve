@@ -10,7 +10,7 @@ type UserNoticesTabProps = {
 export const UserNoticesTab = ({ dialog }: UserNoticesTabProps) => {
   return (
     <Tabs.Root defaultValue="favorite">
-      <Tabs.List className="flex items-center gap-2.5">
+      <Tabs.List className="desktop-l:mb-8 mb-5 flex items-center gap-2.5">
         <Tabs.Trigger
           value="favorite"
           className="aria-selected:bg-yellow text-ms rounded-ms group cursor-pointer bg-white p-3 text-center text-black transition-all duration-500 ease-out aria-selected:text-white"

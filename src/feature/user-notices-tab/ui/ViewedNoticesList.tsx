@@ -21,7 +21,7 @@ export const ViewedNoticesList = ({ dialog }: ViewedNoticesListProps) => {
   return (
     <>
       {user?.noticesViewed?.length ? (
-        <ul className="flex flex-wrap gap-2.5">
+        <ul className="desktop-l:mb-8 mb-5 flex flex-wrap gap-2.5">
           {user?.noticesViewed.map((item) => (
             <PetCard
               key={item._id}

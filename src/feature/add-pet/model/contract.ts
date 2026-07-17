@@ -1,17 +1,9 @@
 import { z } from "zod";
 
-export const editedUserSchema = z
+export const petSchema = z
   .object({
-    name: z
-      .string()
-      .min(3, "Username must be at least 3 characters")
-      .optional(),
-    email: z.email("Enter a valid Email").optional(),
-    phone: z
-      .string()
-      .regex(/^\+38\d{10}$/, "Введіть номер телефону у форматі +380XXXXXXXXX")
-
-      .optional(),
+    title: z.string(),
+    name: z.string(),
     avatarUrl: z
       .url()
       .regex(
@@ -25,10 +17,13 @@ export const editedUserSchema = z
       .max(1024 * 1024)
       .mime("image/png")
       .optional(),
+    species: z.string(),
+    birthday: z.coerce.date(),
+    sex: z.string(),
   })
-  .refine((data) => data.avatarUrl || data.avatarFile, {
+  .refine((data) => data.avatarFile || data.avatarUrl, {
     message: "Завантажте файл або вкажіть посилання",
     path: ["file"],
   });
 
-export type EditedUser = z.infer<typeof editedUserSchema>;
+export type PetData = z.infer<typeof petSchema>;

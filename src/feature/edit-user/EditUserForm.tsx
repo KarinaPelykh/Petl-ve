@@ -16,7 +16,7 @@ import { editedUserSchema, type EditedUser } from "./model/contracts";
 import { useAppDispatch, useAppSelector } from "../../shared/hooks/reduxHooks";
 import { editUser } from "../../shared/api/redux/user/operations";
 import { auth } from "../../shared/api/redux/user/selectors";
-import { useEffect } from "react";
+import { useManageAvatar } from "../../shared/hooks/useManageAvatar";
 
 type EditUserFormProps = {
   setOpen: (val: boolean) => void;
@@ -52,21 +52,23 @@ export const EditUserForm = ({ setOpen }: EditUserFormProps) => {
       console.log(error);
     }
   };
-  // eslint-disable-next-line react-hooks/incompatible-library
-  const avatarFile = form.watch("avatarFile");
-  const avatarUrl = form.watch("avatarUrl");
 
-  useEffect(() => {
-    if (avatarFile) {
-      form.setValue("avatarUrl", "");
-    }
-  }, [avatarFile]);
+  useManageAvatar({ form });
+  // // eslint-disable-next-line react-hooks/incompatible-library
+  // const avatarFile = form.watch("avatarFile");
+  // const avatarUrl = form.watch("avatarUrl");
 
-  useEffect(() => {
-    if (avatarUrl) {
-      form.setValue("avatarFile", undefined);
-    }
-  }, [avatarUrl]);
+  // useEffect(() => {
+  //   if (avatarFile) {
+  //     form.setValue("avatarUrl", "");
+  //   }
+  // }, [avatarFile]);
+
+  // useEffect(() => {
+  //   if (avatarUrl) {
+  //     form.setValue("avatarFile", undefined);
+  //   }
+  // }, [avatarUrl]);
 
   return (
     <Modal className="desktop-l:p-12.5! px-5 py-10">

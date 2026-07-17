@@ -8,15 +8,15 @@ type Data = {
 };
 
 type RadioGroupBtnProps = {
-  onChange: (val: string | boolean) => void;
+  onChange?: (val: string | boolean) => void;
   data: Data[];
-  filterValue: string | boolean | null | undefined;
+  filterValue?: string | boolean | null | undefined;
   activeClassName?: string;
-  reset: () => void;
+  reset?: () => void;
   variant: "icon" | "text";
 };
 
-const styles: { gender: string; female: string; male: string } = {
+const styles: { [key: string]: string } = {
   gender: "bg-yellow/10!",
   female: "bg-pink/10!",
   male: "bg-blue/10!",
@@ -34,7 +34,7 @@ export const RadioGroupBtn = ({
     <RadioGroup.Root
       className="flex h-10.5 w-fit flex-wrap gap-2"
       value={filterValue === null ? "" : String(filterValue)}
-      onValueChange={(val) => onChange(val === "true")}
+      onValueChange={(val) => onChange?.(val === "true" || val)}
     >
       {data?.map(({ label, value }) => (
         <RadioGroup.Item
@@ -55,7 +55,7 @@ export const RadioGroupBtn = ({
               className="ml-1.5 size-4.5 stroke-white"
               onClick={(e) => {
                 e.stopPropagation();
-                reset();
+                reset?.();
               }}
             />
           )}
