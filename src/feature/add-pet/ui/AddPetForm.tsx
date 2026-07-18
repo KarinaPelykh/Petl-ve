@@ -20,6 +20,8 @@ import { petSchema, type PetData } from "../model/contract";
 import { PetSpecies } from "./PetSpecies";
 import { PetBirthdayDate } from "./PetBirthDate";
 import { useManageAvatar } from "../../../shared/hooks/useManageAvatar";
+import { useAppDispatch } from "../../../shared/hooks/reduxHooks";
+import { addPet } from "../../../shared/api/redux/user/operations";
 
 const genderOption = [
   { label: "female", value: "female" },
@@ -33,7 +35,7 @@ const defaultValues = {
   avatarUrl: "",
   avatarFile: undefined,
   species: "",
-  birthday: new Date(),
+  birthday: "",
   sex: "",
 };
 
@@ -42,12 +44,38 @@ export const AddPetForm = () => {
     defaultValues,
     resolver: zodResolver(petSchema) as Resolver<PetData>,
   });
+  console.log(form.formState.errors);
 
+  const dispatch = useAppDispatch();
   useManageAvatar({ form });
+
+  const submitForm = (data) => {
+    try {
+      dispatch(addPet(data)).unwrap();
+      form.reset();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Form
-      onSubmit={form.handleSubmit((data) => console.log(data))}
+      onSubmit={form.handleSubmit(
+        ({ title, name, avatarUrl, avatarFile, species, birthday, sex }) => {
+          const imgURL = avatarUrl || avatarFile;
+          const params = {
+            title,
+            name,
+            imgURL,
+            species,
+            birthday,
+            sex,
+          };
+          console.log(birthday);
+
+          submitForm(params);
+        },
+      )}
       form={form}
       className="desktop-l:px-20 desktop-l:py-15 my-0! h-auto w-148"
     >

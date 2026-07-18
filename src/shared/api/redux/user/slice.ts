@@ -1,5 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { editUser, refresh, signin, signout, signup } from "./operations";
+import {
+  addPet,
+  deletePet,
+  editUser,
+  refresh,
+  signin,
+  signout,
+  signup,
+} from "./operations";
 
 const initialState = {
   user: {
@@ -8,9 +16,10 @@ const initialState = {
     avatar: "",
     phone: "",
     token: null,
+    pets: [],
   },
-  isLoggedIn: false,
 
+  isLoggedIn: false,
   isRefresh: false,
 };
 
@@ -50,6 +59,14 @@ const authSlice = createSlice({
       .addCase(refresh.rejected, (state) => {
         state.isRefresh = false;
         state.isLoggedIn = false;
+      })
+      .addCase(addPet.fulfilled, (state, action) => {
+        state.user.pets = action.payload;
+      })
+      .addCase(deletePet.fulfilled, (state, action) => {
+        state.user.pets = state.user.pets.filter(
+          (item) => item._id !== action.payload,
+        );
       });
   },
 });

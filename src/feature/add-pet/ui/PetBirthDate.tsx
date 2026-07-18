@@ -1,6 +1,7 @@
 import DatePicker from "react-datepicker";
 import { Controller, useFormContext } from "react-hook-form";
 import { Icon } from "../../../shared/ui/Icon";
+import { format } from "date-fns";
 
 export const PetBirthdayDate = () => {
   const { control } = useFormContext();
@@ -12,9 +13,13 @@ export const PetBirthdayDate = () => {
       render={({ field }) => (
         <DatePicker
           selected={field.value}
-          onChange={field.onChange}
+          onChange={(date) => {
+            const formattedDate = date ? format(date, "yyyy-MM-dd") : null;
+            field.onChange(formattedDate);
+          }}
           onBlur={field.onBlur}
           showIcon
+          placeholderText="00.00.0000"
           icon={
             <Icon
               name="calendar"

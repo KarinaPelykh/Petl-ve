@@ -17,6 +17,15 @@ type EditUserParams = Partial<{
   phone: string;
 }>;
 
+type AddPetParams = {
+  title: string;
+  name: string;
+  avatar: string | File;
+  species: string;
+  birthday: string;
+  sex: string;
+};
+
 export const signup = createAsyncThunk(
   "auth/signup",
   async (params: UserSignup, thunkAPI) => {
@@ -78,6 +87,35 @@ export const editUser = createAsyncThunk(
     try {
       const data = await instance.patch("users/current/edit", { ...params });
       return data.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  },
+);
+
+export const addPet = createAsyncThunk(
+  "users/addPet",
+  async (params: AddPetParams, thunkAPI) => {
+    try {
+      const response = await instance.post(`/users/current/pets/add`, {
+        ...params,
+      });
+
+      console.log(response.data.pets);
+
+      return response.data.pets;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  },
+);
+
+export const deletePet = createAsyncThunk(
+  "users/deletePet",
+  async (id, thunkAPI) => {
+    try {
+      await instance.delete(`/users/current/pets/remove/${id}`);
+      return id;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }

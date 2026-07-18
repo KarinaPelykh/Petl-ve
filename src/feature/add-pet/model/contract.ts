@@ -18,7 +18,8 @@ export const petSchema = z
       .mime("image/png")
       .optional(),
     species: z.string(),
-    birthday: z.coerce.date(),
+    birthday: z.string(),
+    // .regex(/^\d{4}-\d{2}-\d{2}$/, "Введіть дату у форматі 00.00.0000"),
     sex: z.string(),
   })
   .refine((data) => data.avatarFile || data.avatarUrl, {
