@@ -29,25 +29,17 @@ export const UserBlock = ({ setDialogState }: UserBlockProps) => {
         </Dialog.Trigger>
       </div>
 
-      <div className="tablet-l:mb-5 mb-7 flex flex-col items-center justify-center gap-2">
-        {user.avatar ? (
-          <img
-            src={user.avatar}
-            alt="avatar"
-            className="tablet-l:size-27.5 size-23.5 rounded-[50%]"
-          />
-        ) : (
-          <Icon name="user" className="tablet-l:size-27.5 size-23.5" />
-        )}
-        <input
-          type="file"
-          id="file"
-          className="hidden"
-          data-size="lg"
-          accept="image/png"
-          ngf-max-size="2MB"
-        />
-        <label htmlFor="file" className="text-s underline">
+      <div className="tablet-l:mb-5 mb-7">
+        <label className="text-s flex flex-col items-center justify-center gap-2 underline">
+          {user?.avatar ? (
+            <img
+              src={user?.avatar}
+              alt="avatar"
+              className="tablet-l:size-27.5 size-23.5 rounded-[50%]"
+            />
+          ) : (
+            <Icon name="user" className="tablet-l:size-27.5 size-23.5" />
+          )}
           Upload photo
         </label>
       </div>
@@ -57,29 +49,29 @@ export const UserBlock = ({ setDialogState }: UserBlockProps) => {
         <div className="tablet-l:gap-3.5 tablet-l:grid tablet-l:grid-cols-2 tablet-l:justify-between desktop-l:flex desktop-l:flex-col desktop-l:gap-3.5 flex flex-col flex-wrap gap-2.5">
           <p
             className={clsx(
-              user.name && "border-yellow",
+              user?.name && "border-yellow",
               "desktop-l:p-4 text-ms rounded-ms flex items-center border border-black/50 p-3 text-black/80 capitalize placeholder:text-black/50 placeholder:capitalize",
             )}
           >
-            {user.name || "Name"}
+            {user?.name || "Name"}
           </p>
 
           <p
             className={clsx(
-              user.email && "border-yellow",
+              user?.email && "border-yellow",
               "desktop-l:p-4 text-ms rounded-ms flex items-center border border-black/50 p-3 text-black/80 placeholder:text-black/50 placeholder:capitalize",
             )}
           >
-            {user.email || "name00@gmail.com"}
+            {user?.email || "name00@gmail.com"}
           </p>
 
           <p
             className={clsx(
-              user.phone && "border-yellow",
+              user?.phone && "border-yellow",
               "desktop-l:p-4 text-ms rounded-ms flex items-center border border-black/50 p-3 text-black/80 placeholder:text-black/50 placeholder:capitalize",
             )}
           >
-            {user.phone || "+380"}
+            {user?.phone || "+380"}
           </p>
         </div>
       </div>

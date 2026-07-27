@@ -44,7 +44,6 @@ export const AddPetForm = () => {
     defaultValues,
     resolver: zodResolver(petSchema) as Resolver<PetData>,
   });
-  console.log(form.formState.errors);
 
   const dispatch = useAppDispatch();
   useManageAvatar({ form });
@@ -71,7 +70,6 @@ export const AddPetForm = () => {
             birthday,
             sex,
           };
-          console.log(birthday);
 
           submitForm(params);
         },

@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  addFavorite,
   addPet,
+  deleteFavorite,
   deletePet,
   editUser,
   refresh,
@@ -9,7 +11,44 @@ import {
   signup,
 } from "./operations";
 
-const initialState = {
+export type Notice = {
+  _id: string;
+  name: string;
+  imgURL: string;
+  title: string;
+  popularity: number;
+  comment: string;
+  birthday: string;
+  sex: string;
+  species: string;
+  category: string;
+};
+
+type Pet = {
+  birthday: string;
+  _id: string;
+  imgURL: string;
+  name: string;
+  sex: string;
+  species: string;
+  title: string;
+};
+
+type InitialState = {
+  user: {
+    name: string;
+    email: string;
+    avatar: string;
+    phone: string;
+    token: null;
+    pets: Pet[];
+    noticesFavorites: Notice[];
+  };
+  isLoggedIn: boolean;
+  isRefresh: boolean;
+};
+
+const initialState: InitialState = {
   user: {
     name: "",
     email: "",
@@ -17,6 +56,7 @@ const initialState = {
     phone: "",
     token: null,
     pets: [],
+    noticesFavorites: [],
   },
 
   isLoggedIn: false,
@@ -52,7 +92,18 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
       })
       .addCase(refresh.fulfilled, (state, action) => {
-        state.user = action.payload;
+        {
+          /* here I get notices to store   ad return an array with objects*/
+        }
+
+        state.user = {
+          ...action.payload,
+          noticesFavorites: action.payload.noticesFavorites.map(
+            (notice: Notice) => notice._id,
+          ),
+        };
+        console.log(state.user);
+
         state.isLoggedIn = true;
         state.isRefresh = false;
       })
@@ -66,6 +117,19 @@ const authSlice = createSlice({
       .addCase(deletePet.fulfilled, (state, action) => {
         state.user.pets = state.user.pets.filter(
           (item) => item._id !== action.payload,
+        );
+      })
+      .addCase(addFavorite.fulfilled, (state, action) => {
+        {
+          /* here I add notice to store by myself  ad return an array with ides*/
+        }
+        console.log(action.payload);
+
+        state.user.noticesFavorites = action.payload;
+      })
+      .addCase(deleteFavorite.fulfilled, (state, action) => {
+        state.user.noticesFavorites = state.user.noticesFavorites.filter(
+          (item) => item !== action.payload,
         );
       });
   },

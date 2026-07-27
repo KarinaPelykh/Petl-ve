@@ -32,7 +32,7 @@ export const LoginForm = () => {
 
   const submitForm = (data: Signin) => {
     try {
-      dispatch(signin(data));
+      dispatch(signin(data)).unwrap();
       reset();
       navigation("/profile");
     } catch (error) {

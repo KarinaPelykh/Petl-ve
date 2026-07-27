@@ -9,7 +9,10 @@ type UserNoticesTabProps = {
 
 export const UserNoticesTab = ({ dialog }: UserNoticesTabProps) => {
   return (
-    <Tabs.Root defaultValue="favorite">
+    <Tabs.Root
+      defaultValue="favorite"
+      className="desktop-l:w-166 max-tablet-l:w-83.75 mx-auto"
+    >
       <Tabs.List className="desktop-l:mb-8 mb-5 flex items-center gap-2.5">
         <Tabs.Trigger
           value="favorite"

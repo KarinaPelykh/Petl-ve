@@ -12,30 +12,31 @@ import { Icon } from "../../../shared/ui/Icon";
 import { PetPopularity } from "../../../entities/pet/ui/PetPopularity";
 
 import type { Notice } from "../../../entities/pet/ui/PetCard";
-import { useAppSelector } from "../../../shared/hooks/reduxHooks";
-import { favorite } from "../../../shared/api/redux/notices/selectors";
-import { useFavorite } from "../hook/useFavorite";
-import { useRemoveFavorite } from "../hook/useRemoveFavorite";
+// import { useAppSelector } from "../../../shared/hooks/reduxHooks";
+// import { useFavorite } from "../hook/useFavorite";
+// import { useRemoveFavorite } from "../hook/useRemoveFavorite";
 import { Modal } from "../../../shared/ui/Modal";
+// import { favorite } from "../../../shared/api/redux/user/selectors";
 
 type NoticeDialogProps = {
   data?: Notice | null;
 };
 
 export const NoticeDialogContent = ({ data }: NoticeDialogProps) => {
-  const favoriteNotices = useAppSelector(favorite);
+  // const favoriteNotices = useAppSelector(favorite);
+  // console.log(favoriteNotices);
 
-  const add = useFavorite();
+  // const add = useFavorite();
 
-  const remove = useRemoveFavorite();
+  // const remove = useRemoveFavorite();
 
-  if (!data) {
-    return;
-  }
+  // if (!data) {
+  //   return;
+  // }
 
-  const idFavoriteNotice = favoriteNotices.find((notice) =>
-    notice.includes(data._id),
-  );
+  // const idFavoriteNotice = favoriteNotices.find((notice) =>
+  //   notice.includes(data._id),
+  // );
 
   return (
     <Modal>
@@ -62,14 +63,14 @@ export const NoticeDialogContent = ({ data }: NoticeDialogProps) => {
           type="button"
           onClick={() => {
             // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-            !idFavoriteNotice ? add(data._id) : remove(data._id);
+            // !idFavoriteNotice ? add(data._id) : remove(data._id);
           }}
           variant="primary"
           className="flex w-full items-center justify-center gap-2"
         >
-          {idFavoriteNotice ? "Delete" : "Add"}
+          {/* {idFavoriteNotice ? "Delete" : "Add"} */}
           <Icon
-            name={idFavoriteNotice ? "trash" : "heart"}
+            // name={idFavoriteNotice ? "trash" : "heart"}
             className="size-4.5 fill-transparent stroke-white"
           />
         </Button>

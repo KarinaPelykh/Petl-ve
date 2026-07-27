@@ -1,4 +1,4 @@
-import { deleteFavorite } from "../../../shared/api/redux/notices/operations";
+import { deleteFavorite } from "../../../shared/api/redux/user/operations";
 import { useAppDispatch } from "../../../shared/hooks/reduxHooks";
 
 export const useRemoveFavorite = () => {

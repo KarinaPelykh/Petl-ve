@@ -43,9 +43,8 @@ export const signin = createAsyncThunk(
   "auth/signin",
   async (params: UserSignin, thunkAPI) => {
     try {
-      const response = await instance.post("users/signin", { ...params });
-      setToken(response.data.token);
-      return response.data;
+      const { data } = await instance.post("users/signin", { ...params });
+      setToken(data.token);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -100,9 +99,6 @@ export const addPet = createAsyncThunk(
       const response = await instance.post(`/users/current/pets/add`, {
         ...params,
       });
-
-      console.log(response.data.pets);
-
       return response.data.pets;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -121,3 +117,41 @@ export const deletePet = createAsyncThunk(
     }
   },
 );
+
+export const addFavorite = createAsyncThunk(
+  "notices/addFavorite",
+  async (id: string, thunkAPI) => {
+    try {
+      const response = await instance.post(`notices/favorites/add/${id}`);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  },
+);
+
+export const deleteFavorite = createAsyncThunk(
+  "notices/deleteFav",
+  async (id: string, thunkAPI) => {
+    try {
+      await instance.delete(`notices/favorites/remove/${id}`);
+
+      return id;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  },
+);
+
+// // export const currentUserInfo = createAsyncThunk(
+// //   "user/current",
+// //   async
+// //
+// export const currentUserInfo = async () => {
+//   try {
+//     const response = await instance.get("users/current");
+//     return response.data;
+//   } catch (error) {
+//     // return thunkAPI.rejectWithValue(error);
+//   }
+// };

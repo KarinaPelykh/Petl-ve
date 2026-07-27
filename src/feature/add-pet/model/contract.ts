@@ -6,10 +6,10 @@ export const petSchema = z
     name: z.string(),
     avatarUrl: z
       .url()
-      .regex(
-        /^https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|webp)$/,
-        "Введіть url фото у форматі png|jpg|jpeg|gif|bmp|webp",
-      )
+      // .regex(
+      //   /^https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|webp)$/,
+      //   "Введіть url фото у форматі png|jpg|jpeg|gif|bmp|webp",
+      // )
       .optional(),
     avatarFile: z
       .file()
@@ -19,7 +19,6 @@ export const petSchema = z
       .optional(),
     species: z.string(),
     birthday: z.string(),
-    // .regex(/^\d{4}-\d{2}-\d{2}$/, "Введіть дату у форматі 00.00.0000"),
     sex: z.string(),
   })
   .refine((data) => data.avatarFile || data.avatarUrl, {

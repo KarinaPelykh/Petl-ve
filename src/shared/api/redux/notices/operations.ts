@@ -16,31 +16,6 @@ export const getNotices = createAsyncThunk(
   },
 );
 
-export const addFavorite = createAsyncThunk(
-  "notices/addFavorite",
-  async (id: string, thunkAPI) => {
-    try {
-      const response = await instance.post(`notices/favorites/add/${id}`);
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error);
-    }
-  },
-);
-
-export const deleteFavorite = createAsyncThunk(
-  "notices/deleteFav",
-  async (id: string, thunkAPI) => {
-    try {
-      const response = await instance.delete(`notices/favorites/remove/${id}`);
-
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error);
-    }
-  },
-);
-
 export const getNotice = async (id: string) => {
   const response = await instance.get(`notices/${id}`);
   return response.data;

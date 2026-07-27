@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import { addFavorite, deleteFavorite, getNotices } from "./operations";
+import { getNotices } from "./operations";
 import type { Data } from "../news/types";
 
 export type Notice = {
@@ -17,9 +17,7 @@ export type Notice = {
 
 type State = {
   notices: Data<Notice>;
-
   isLoading: boolean;
-  favorite: string[];
 };
 
 const initialState: State = {
@@ -29,7 +27,6 @@ const initialState: State = {
     totalPages: 0,
     results: [],
   },
-  favorite: [],
 
   isLoading: false,
 };
@@ -39,19 +36,12 @@ const noticesSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers(builder) {
-    builder
-      .addCase(
-        getNotices.fulfilled,
-        (state, action: PayloadAction<State["notices"]>) => {
-          state.notices = action.payload;
-        },
-      )
-      .addCase(addFavorite.fulfilled, (state, action) => {
-        state.favorite = action.payload;
-      })
-      .addCase(deleteFavorite.fulfilled, (state, action) => {
-        state.favorite = action.payload;
-      });
+    builder.addCase(
+      getNotices.fulfilled,
+      (state, action: PayloadAction<State["notices"]>) => {
+        state.notices = action.payload;
+      },
+    );
   },
 });
 

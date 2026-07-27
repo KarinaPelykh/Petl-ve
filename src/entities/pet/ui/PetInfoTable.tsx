@@ -3,8 +3,10 @@ import { usePetContext } from "../api/usePetContex";
 
 export const PetInfoTable = ({
   categoryClassName,
+  tableClassName,
 }: {
   categoryClassName?: string;
+  tableClassName?: string;
 }) => {
   const { notice } = usePetContext();
 
@@ -17,6 +19,7 @@ export const PetInfoTable = ({
     <div
       className={clsx(
         "flex gap-x-3.5 gap-y-0.5",
+        tableClassName,
         categoryClassName && "gap-x-6.25 gap-y-0.75",
       )}
     >

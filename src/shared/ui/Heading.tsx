@@ -13,13 +13,13 @@ type HeadingProps = {
   className?: string;
   variant?: "first" | "second";
 };
-
+// mb - 3;
 export const Heading = ({ as, children, className, variant }: HeadingProps) => {
   return createElement(
     acceptedHeading[as],
     {
       className: clsx(
-        "text-2xl mb-3 ",
+        "text-2xl ",
         className,
         variant === "first" && "text-2xl tablet-l:text-6xl",
       ),

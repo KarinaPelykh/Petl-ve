@@ -21,7 +21,7 @@ export const ViewedNoticesList = ({ dialog }: ViewedNoticesListProps) => {
   return (
     <>
       {user?.noticesViewed?.length ? (
-        <ul className="desktop-l:mb-8 mb-5 flex flex-wrap gap-2.5">
+        <ul className="desktop-l:mb-8 desktop-l:gap-6 mb-5 flex flex-wrap gap-2.5">
           {user?.noticesViewed.map((item) => (
             <PetCard
               key={item._id}
@@ -29,16 +29,14 @@ export const ViewedNoticesList = ({ dialog }: ViewedNoticesListProps) => {
               className="desktop-l:w-[320px] desktop-l:p-3.5!"
             >
               <PetImage imgClassName="desktop-l:w-full" />
-              <div>
-                <PetTitle />
-                <PetInfoTable />
-                <PetDescription />
-                <PetPrice />
-                <PetControl
-                  setDialogState={dialog.setDialogState}
-                  btnClassName="hidden"
-                />
-              </div>
+              <PetTitle />
+              <PetInfoTable />
+              <PetDescription />
+              <PetPrice />
+              <PetControl
+                setDialogState={dialog.setDialogState}
+                btnClassName="hidden"
+              />
             </PetCard>
           ))}
         </ul>
