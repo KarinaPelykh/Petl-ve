@@ -6,7 +6,6 @@ export const editedUserSchema = z.object({
   phone: z
     .string()
     .regex(/^\+38\d{10}$/, "Введіть номер телефону у форматі +380XXXXXXXXX")
-
     .optional(),
   avatarUrl: z
     .url()

@@ -6,16 +6,6 @@ import { deletePet } from "../../shared/api/redux/user/operations";
 import { Icon } from "../../shared/ui/Icon";
 import { pets } from "../../shared/api/redux/user/selectors";
 
-// type Pet = {
-//   birthday: string;
-//   _id: string;
-//   imgURL: string;
-//   name: string;
-//   sex: string;
-//   species: string;
-//   title: string;
-// };
-
 export const AddedPetsList = () => {
   const data = useAppSelector(pets);
   const dispatch = useAppDispatch();

@@ -8,9 +8,6 @@ import { NoticeDialogContent } from "../feature/dialog-content/ui/NoticeDialogCo
 import { Dialog } from "radix-ui";
 import { UserSignout } from "../feature/dialog-content/ui/UserSignout";
 import { EditUserForm } from "../feature/edit-user/EditUserForm";
-import { useAppDispatch } from "../shared/hooks/reduxHooks";
-import { getNotices } from "../shared/api/redux/notices/operations";
-import { useEffect } from "react";
 
 export const UserProfile = () => {
   const dialog = useManageDialog();
@@ -24,12 +21,6 @@ export const UserProfile = () => {
     edit: <EditUserForm setOpen={dialog.setOpen} />,
     logout: <UserSignout setOpen={dialog.setOpen} />,
   };
-
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(getNotices({ limit: 56 }));
-  }, [dispatch]);
 
   return (
     <section className="desktop-l:pb-8 tablet-l:pb-45.5 pb-35">

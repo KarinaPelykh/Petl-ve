@@ -1,17 +1,21 @@
 import { Heading } from "../shared/ui/Heading";
 import { PartnerList } from "../widget/partnerlist/PartnerList";
-import { friends } from "../shared/api/redux/friends/selectors";
-import { useEffect } from "react";
-import { getFriends } from "../shared/api/redux/friends/operations";
-import { useAppDispatch, useAppSelector } from "../shared/hooks/reduxHooks";
+import { useEffect, useState } from "react";
 
 export const OurFriends = () => {
-  const dispatch = useAppDispatch();
-  const data = useAppSelector(friends);
+  const [friends, setFriends] = useState([]);
 
   useEffect(() => {
-    dispatch(getFriends());
-  }, [dispatch]);
+    const getFriends = async () => {
+      try {
+        const res = await getFriends();
+        setFriends(res?.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getFriends();
+  }, []);
 
   return (
     <section className="pt-15 pb-11">
@@ -19,7 +23,7 @@ export const OurFriends = () => {
         <Heading as="h1" variant="first" className="desktop-l:mb-15 mb-5">
           Our friends
         </Heading>
-        <PartnerList data={data} />
+        <PartnerList data={friends} />
       </div>
     </section>
   );

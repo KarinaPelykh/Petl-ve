@@ -1,6 +1,5 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import { noticesReducer } from "../../shared/api/redux/notices/slice";
-import { friendsReducer } from "../../shared/api/redux/friends/slice";
 import { newsReducer } from "../../shared/api/redux/news/slice";
 import { authReducer } from "../../shared/api/redux/user/slice";
 import storage from "redux-persist/lib/storage";
@@ -23,20 +22,24 @@ const str =
 const persistConfig = {
   key: "root",
   storage: str,
-  whitelist: ["auth", "notices", "news", "friends"],
+  whitelist: ["token"],
 };
 
-const rootReducer = combineReducers({
-  auth: authReducer,
-  notices: noticesReducer,
-  friends: friendsReducer,
-  news: newsReducer,
-});
+// const rootReducer = combineReducers({
+//   auth: authReducer,
+//   notices: noticesReducer,
+//   friends: friendsReducer,
+//   news: newsReducer,
+// });
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+const persistedReducer = persistReducer(persistConfig, authReducer);
 
 export const store = configureStore({
-  reducer: persistedReducer,
+  reducer: {
+    auth: persistedReducer,
+    notices: noticesReducer,
+    news: newsReducer,
+  },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {

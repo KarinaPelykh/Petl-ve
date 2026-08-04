@@ -3,7 +3,7 @@ import {
   getCategory,
   getGender,
   getSpecies,
-} from "../../../shared/api/redux/notices/operations";
+} from "../../../shared/api/services";
 
 export const usePetSelect = () => {
   const [selectData, setSelectData] = useState({

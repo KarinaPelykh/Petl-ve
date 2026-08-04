@@ -1,10 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { clearToken, instance, setToken } from "../../axios";
 import type { RootState } from "../../../../app/store/store";
+import type { Signin } from "../../../../feature/login/model/contract";
+import type { Signup } from "../../../../feature/register/model/contract";
 
-type UserSignup = { name: string; email: string; password: string };
-
-type UserSignin = Pick<UserSignup, "email" | "password">;
+type UserSignup = Omit<Signup, "confirmPassword">;
 
 type UserRefreshResponse = UserSignup & { token: string };
 
@@ -41,10 +41,12 @@ export const signup = createAsyncThunk(
 
 export const signin = createAsyncThunk(
   "auth/signin",
-  async (params: UserSignin, thunkAPI) => {
+  async (params: Signin, thunkAPI) => {
     try {
       const { data } = await instance.post("users/signin", { ...params });
+
       setToken(data.token);
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -65,7 +67,7 @@ export const refresh = createAsyncThunk<
   void,
   AsyncThunkConfig
 >("auth/refresh", async (_, { rejectWithValue, getState }) => {
-  const persisted = getState().auth.user.token;
+  const persisted = getState().auth.token;
 
   if (!persisted) {
     return rejectWithValue("None");
@@ -142,16 +144,3 @@ export const deleteFavorite = createAsyncThunk(
     }
   },
 );
-
-// // export const currentUserInfo = createAsyncThunk(
-// //   "user/current",
-// //   async
-// //
-// export const currentUserInfo = async () => {
-//   try {
-//     const response = await instance.get("users/current");
-//     return response.data;
-//   } catch (error) {
-//     // return thunkAPI.rejectWithValue(error);
-//   }
-// };

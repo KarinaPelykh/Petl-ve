@@ -18,17 +18,17 @@ type FavoriteNoticesListProps = {
 };
 
 export const FavoriteNoticesList = ({ dialog }: FavoriteNoticesListProps) => {
-  // const favoriteNotices = useAppSelector(favorite);
+  const favoriteNotices = useAppSelector(favorite);
 
-  // const allNotices = useAppSelector(notices);
+  const allNotices = useAppSelector(notices);
 
-  // const filteredData = allNotices?.results.filter((notice) =>
-  //   favoriteNotices?.includes(notice._id),
-  // );
+  const filteredData = allNotices?.results.filter((notice) =>
+    favoriteNotices?.includes(notice._id),
+  );
 
   return (
     <>
-      {/* {filteredData?.length ? (
+      {filteredData?.length ? (
         <ul className="desktop-l:gap-6 flex flex-wrap gap-2.5">
           {filteredData?.map((item) => (
             <PetCard
@@ -46,8 +46,8 @@ export const FavoriteNoticesList = ({ dialog }: FavoriteNoticesListProps) => {
           ))}
         </ul>
       ) : (
-        <EmptyStateNotices /> */}
-      {/* )} */}
+        <EmptyStateNotices />
+      )}
     </>
   );
 };

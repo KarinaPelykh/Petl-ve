@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { LocationResponse, Option } from "../types/select.type";
-import { getLocations } from "../../../shared/api/redux/notices/operations";
+import { getLocations } from "../../../shared/api/services";
 
 export const useCreateLocationOptions = () => {
   const [options, setOptions] = useState<Option[]>([]);

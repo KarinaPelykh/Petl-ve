@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { instance } from "../../axios";
 import type { Filter } from "../../../../feature/search-pet/types/select.type";
 
-type Params = Partial<Filter>;
+type Params = Partial<Filter> & { limit?: number };
 
 export const getNotices = createAsyncThunk(
   "notices/getAll",
@@ -15,32 +15,3 @@ export const getNotices = createAsyncThunk(
     }
   },
 );
-
-export const getNotice = async (id: string) => {
-  const response = await instance.get(`notices/${id}`);
-  return response.data;
-};
-
-export const getCategory = async () => {
-  const response = await instance.get("notices/categories");
-
-  return response.data;
-};
-
-export const getGender = async () => {
-  const response = await instance.get("notices/sex");
-
-  return response.data;
-};
-
-export const getSpecies = async () => {
-  const response = await instance.get("notices/species");
-
-  return response.data;
-};
-
-export const getLocations = async () => {
-  const response = await instance.get("/cities/locations");
-
-  return response.data;
-};

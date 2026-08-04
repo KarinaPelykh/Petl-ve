@@ -5,5 +5,5 @@ export const isLoggedIn = (state: RootState) => state.auth.isLoggedIn;
 
 export const auth = (state: RootState) => state.auth;
 
-export const pets = (state: RootState) => state.auth.user.pets;
-export const favorite = (state: RootState) => state.auth.user.noticesFavorites;
+export const pets = (state: RootState) => state.auth.pets;
+export const favorite = (state: RootState) => state.auth.noticesFavorites;
