@@ -1,7 +1,7 @@
 import { Link } from "react-router";
-import type { New } from "../../shared/api/redux/news/types";
 import { useFormatDate } from "../../shared/hooks/useFormatDate";
 import { Heading } from "../../shared/ui/Heading";
+import type { New } from "../../pages/News";
 
 type NewsCardProps = {
   item: New;

@@ -7,8 +7,8 @@ import {
   PetPrice,
   PetTitle,
 } from "../../../entities";
+import type { DialogMode } from "../../../feature/dialog-content/hook/useManageDialog";
 import type { PetFilterControl } from "../../../feature/search-pet/hook/usePetsFilter";
-import type { DialogMode } from "../../../pages/FindPet";
 import { notices } from "../../../shared/api/redux/notices/selectors";
 import { useAppSelector } from "../../../shared/hooks/reduxHooks";
 
@@ -29,7 +29,7 @@ export const PetList = ({ setDialogState, method }: PetListProps) => {
           {results.map((notice) => (
             <PetCard
               key={notice._id}
-              notice={notice}
+              data={notice}
               className="desktop-l:w-90.75"
             >
               <PetImage />

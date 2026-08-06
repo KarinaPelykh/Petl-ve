@@ -24,7 +24,7 @@ export type Notice = {
   category: string;
 };
 
-type Pet = {
+export type Pet = {
   birthday: string;
   _id: string;
   imgURL: string;
@@ -39,13 +39,14 @@ type User = {
   email: string;
   avatar: string;
   phone: string;
+  noticesViewed: [];
 };
 
 type InitialState = {
   user: User;
   token: string;
   pets: Pet[];
-  noticesFavorites: Notice[];
+  noticesFavorites: string[];
   isLoggedIn: boolean;
   isRefresh: boolean;
 };
@@ -56,6 +57,7 @@ const initialState: InitialState = {
     email: "",
     avatar: "",
     phone: "",
+    noticesViewed: [],
   },
   pets: [],
   noticesFavorites: [],
@@ -86,10 +88,20 @@ const authSlice = createSlice({
       })
 
       .addCase(refresh.fulfilled, (state, action) => {
-        state.user = { ...state.user, ...action.payload };
+        const { name, email, avatar, phone, noticesViewed } = action.payload;
+        const user = {
+          name,
+          email,
+          avatar,
+          phone,
+          noticesViewed,
+        };
+
+        state.user = { ...user };
         state.noticesFavorites = action.payload.noticesFavorites.map(
-          (notice: Notice) => notice._id,
+          (notice: Notice) => notice._id as string,
         );
+
         state.pets = action.payload.pets;
         state.isLoggedIn = true;
         state.isRefresh = false;
@@ -107,7 +119,9 @@ const authSlice = createSlice({
         state.pets = action.payload;
       })
       .addCase(deletePet.fulfilled, (state, action) => {
-        state.pets = state.pets.filter((item) => item._id !== action.payload);
+        state.pets = state.pets.filter(
+          (item) => item._id !== action.payload._id,
+        );
       })
       .addCase(addFavorite.fulfilled, (state, action) => {
         {
@@ -117,8 +131,8 @@ const authSlice = createSlice({
         state.noticesFavorites = action.payload;
       })
       .addCase(deleteFavorite.fulfilled, (state, action) => {
-        state.noticesFavorites = state.noticesFavorites.filter(
-          (id) => id !== action.payload,
+        state.noticesFavorites = state.noticesFavorites.filter((id) =>
+          action.payload.includes(id),
         );
       });
   },

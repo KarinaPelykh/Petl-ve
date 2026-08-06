@@ -6,12 +6,13 @@ type PetImageProps = {
 };
 
 export const PetImage = ({ imgClassName }: PetImageProps) => {
-  const { notice } = usePetContext();
+  const { data } = usePetContext();
+
   return (
     <div className={clsx("mb-6 overflow-hidden rounded-s", imgClassName)}>
       <img
-        src={notice.imgURL}
-        alt={notice.name}
+        src={data.imgURL}
+        alt={data.name}
         width={287}
         height={178}
         className={clsx(

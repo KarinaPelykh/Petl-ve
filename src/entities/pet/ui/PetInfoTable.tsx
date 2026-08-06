@@ -8,11 +8,11 @@ export const PetInfoTable = ({
   categoryClassName?: string;
   tableClassName?: string;
 }) => {
-  const { notice } = usePetContext();
+  const { data } = usePetContext();
 
-  const updatedDateBirthday = notice?.birthday
+  const updatedDateBirthday = data?.birthday
     ?.split("-")
-    .map((item) => item !== "-" && item)
+    .map((item: string) => item !== "-" && item)
     .join(".");
   // from first div mb-4
   return (
@@ -25,7 +25,7 @@ export const PetInfoTable = ({
     >
       <div className="text-xs">
         <div className="text-black/50"> Name</div>
-        <div className="text-s capitalize">{notice.name}</div>
+        <div className="text-s capitalize">{data.name}</div>
       </div>
       <div className="text-xs">
         <div className="text-black/50"> Birthday</div>
@@ -33,16 +33,16 @@ export const PetInfoTable = ({
       </div>
       <div className="text-xs">
         <div className="text-black/50"> Sex</div>
-        <div className="text-s capitalize">{notice.sex}</div>
+        <div className="text-s capitalize">{data.sex}</div>
       </div>
       <div className="text-xs">
         <div className="text-black/50"> Species</div>
-        <div className="text-s capitalize">{notice.species}</div>
+        <div className="text-s capitalize">{data.species}</div>
       </div>
 
       <div className={clsx("text-xs", categoryClassName)}>
         <div className="text-black/50"> Category</div>
-        <div className="text-s capitalize">{notice.category}</div>
+        <div className="text-s capitalize">{data.category}</div>
       </div>
     </div>
   );

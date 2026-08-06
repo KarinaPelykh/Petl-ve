@@ -23,7 +23,7 @@ export const PasswordInput = ({ ...props }: PasswordInputProps) => {
           name={isOpen ? "eye" : "closed-eye"}
           className={clsx(
             "size-[16.5px]",
-            errors[props?.name]?.message ? "stroke-red" : "stroke-yellow",
+            props.name && errors[props.name]?.message ? "stroke-red" : "stroke-yellow",
           )}
         />
       </Button>

@@ -1,8 +1,9 @@
 import { createContext, useContext } from "react";
-import type { Notice } from "../ui/PetCard";
+import type { Notice } from "../../../shared/api/redux/notices/slice";
+import type { Pet } from "../../../shared/api/redux/user/slice";
 
 type PetCardContextProps = {
-  notice: Notice;
+  data: Notice | Pet;
   setCardId?: (val: string) => void;
 };
 

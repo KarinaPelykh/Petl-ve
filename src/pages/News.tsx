@@ -1,18 +1,52 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { SearchNews } from "../feature/search-news/SearchNews";
 
 import { Heading } from "../shared/ui/Heading";
 
-import { useAppDispatch } from "../shared/hooks/reduxHooks";
-import { getNews } from "../shared/api/redux/news/operations";
 import { NewsListContent } from "../widget/news-list/NewsListContent";
+import { getNews } from "../shared/api/services";
+
+export type New = {
+  _id: string;
+  imgUrl: string;
+  title: string;
+  text: string;
+  date: string;
+  url: string;
+  id: string;
+};
+
+export type Data<T> = {
+  page: number;
+  perPage: number;
+  totalPages: number;
+  results: T[];
+};
 
 export const News = () => {
-  const dispatch = useAppDispatch();
+  const [news, setNews] = useState<Data<New> | null>(null);
 
   useEffect(() => {
-    dispatch(getNews({ page: 1 }));
-  }, [dispatch]);
+    async function fetchNews() {
+      try {
+        const result = await getNews({ page: 1 });
+        setNews(result);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchNews();
+  }, []);
+
+  const onSearch = async (search: string) => {
+    if (!news?.page) return;
+    try {
+      const res = await getNews({ page: news?.page, search });
+      setNews(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <section className="pt-15 pb-11">
@@ -21,9 +55,9 @@ export const News = () => {
           <Heading as="h1" variant="first" className="tablet-l:mb-0 mb-5">
             News
           </Heading>
-          <SearchNews />
+          <SearchNews onSearch={onSearch} />
         </div>
-        <NewsListContent />
+        <NewsListContent news={news} setNews={setNews} />
       </div>
     </section>
   );

@@ -1,4 +1,4 @@
-import type { New } from "../../shared/api/redux/news/types";
+import type { New } from "../../pages/News";
 import { NewsCard } from "./NewsCard";
 
 type NewsListProps = {

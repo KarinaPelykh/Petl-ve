@@ -6,10 +6,10 @@ type PetPriceProps = {
 };
 
 export const PetPrice = ({ className }: PetPriceProps) => {
-  const { notice } = usePetContext();
+  const { data } = usePetContext();
   return (
     <span className={clsx("text-m mb-3 block", className)}>
-      ${notice?.price || "40.99"}
+      ${data?.price || "40.99"}
     </span>
   );
 };

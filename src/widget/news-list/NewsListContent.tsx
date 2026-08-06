@@ -1,24 +1,31 @@
-import { getNews } from "../../shared/api/redux/news/operations";
-import { news } from "../../shared/api/redux/news/selectors";
-import { useAppDispatch, useAppSelector } from "../../shared/hooks/reduxHooks";
+import type { Data, New } from "../../pages/News";
+import { getNews } from "../../shared/api/services";
 import { Pagination } from "../../shared/ui/Pagination";
 import { NewsFallback } from "./NewsFallback";
 import { NewsList } from "./NewsList";
 
-export const NewsListContent = () => {
-  const data = useAppSelector(news);
-  const dispatch = useAppDispatch();
+type NewsListContentProps = {
+  news: Data<New> | null;
+  setNews: (val: Data<New>) => void;
+};
+
+export const NewsListContent = ({ news, setNews }: NewsListContentProps) => {
+  const handelPage = async (page: number) => {
+    try {
+      const res = await getNews({ page });
+      setNews(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
-      {data?.results?.length ? (
+      {news?.results?.length ? (
         <>
-          <NewsList newsData={data.results} />
+          <NewsList newsData={news?.results} />
           <div className="mt-15 flex w-full justify-center">
-            <Pagination
-              data={data}
-              onPageChange={(page) => dispatch(getNews({ page }))}
-            />
+            <Pagination data={news} onPageChange={(page) => handelPage(page)} />
           </div>
         </>
       ) : (

@@ -7,14 +7,11 @@ import { PaginationWrap } from "../widget/pagination/Pagination";
 import { NoticeDialogWrap } from "../feature/dialog-content/ui/NoticeDialogWrap";
 import { useAppSelector } from "../shared/hooks/reduxHooks";
 import { isLoggedIn } from "../shared/api/redux/user/selectors";
-import { useNoticeDetails } from "../feature/dialog-content/api/useNoticeDetails";
 import { Modal } from "../shared/ui/Modal";
 import { NoticeDialogContent } from "../feature/dialog-content/ui/NoticeDialogContent";
 import { AttentionDialog } from "../entities/pet/ui/AttentionDialog";
 import { usePetsFilter } from "../feature/search-pet/hook/usePetsFilter";
 import { useManageDialog } from "../feature/dialog-content/hook/useManageDialog";
-
-export type DialogMode = "details" | "favorite";
 
 export const FindPets = () => {
   const dialog = useManageDialog();
@@ -23,11 +20,11 @@ export const FindPets = () => {
 
   const isLoggIn = useAppSelector(isLoggedIn);
 
-  const { cardData } = useNoticeDetails(dialog.dialogState.id);
-
   const content = {
-    details: <NoticeDialogContent data={cardData} />,
+    details: <NoticeDialogContent data={dialog.cardData} />,
     favorite: null,
+    edit: null,
+    logout: null,
   };
 
   return (

@@ -1,4 +1,3 @@
-import type { Data, New } from "../api/redux/news/types";
 import ReactPaginate from "react-paginate";
 import { Button } from "./Button";
 import { Icon } from "./Icon";
@@ -8,6 +7,7 @@ import type {
   Filter,
   FilterKey,
 } from "../../feature/search-pet/types/select.type";
+import type { New, Data } from "../../pages/News";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const ReactPaginateComponent = (ReactPaginate as any).default || ReactPaginate;
@@ -16,7 +16,7 @@ type T = Notice | New;
 
 type PaginationProps = {
   data: Data<T>;
-  onPageChange: (val: number) => void;
+  onPageChange?: (val: number) => void;
   method?: {
     filter: Filter;
     onChangeInput: (key: FilterKey, val: Filter[FilterKey]) => void;

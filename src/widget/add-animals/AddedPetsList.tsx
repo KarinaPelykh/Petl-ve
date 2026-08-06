@@ -21,11 +21,11 @@ export const AddedPetsList = () => {
         data?.map((pet) => (
           <PetCard
             key={pet._id}
-            notice={pet}
+            data={pet}
             className="rounded-s1 flex flex-row items-center gap-6.25 border border-black/15 p-5!"
           >
             <PetImage imgClassName="size-[90px]! rounded-[50%]  mb-0!" />
-            <div className="flex w-[243px] flex-col gap-3 overflow-hidden">
+            <div className="flex w-60.75 flex-col gap-3 overflow-hidden">
               <PetTitle className="mb-0!" titleClassName="mb-0!" />
               <PetInfoTable categoryClassName="hidden" />
             </div>

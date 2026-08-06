@@ -3,7 +3,6 @@ import { AddAnimals } from "../widget/add-animals/AddAnimals";
 import { NoticeDialogWrap } from "../feature/dialog-content/ui/NoticeDialogWrap";
 import { UserNoticesTab } from "../feature/user-notices-tab/ui/UserNoticesTab";
 import { useManageDialog } from "../feature/dialog-content/hook/useManageDialog";
-import { useNoticeDetails } from "../feature/dialog-content/api/useNoticeDetails";
 import { NoticeDialogContent } from "../feature/dialog-content/ui/NoticeDialogContent";
 import { Dialog } from "radix-ui";
 import { UserSignout } from "../feature/dialog-content/ui/UserSignout";
@@ -12,14 +11,11 @@ import { EditUserForm } from "../feature/edit-user/EditUserForm";
 export const UserProfile = () => {
   const dialog = useManageDialog();
 
-  const { cardData } = useNoticeDetails(
-    dialog.dialogState.mode === "details" ? dialog.dialogState.id : "",
-  );
-
   const content = {
-    details: <NoticeDialogContent data={cardData} />,
+    details: <NoticeDialogContent data={dialog.cardData} />,
     edit: <EditUserForm setOpen={dialog.setOpen} />,
     logout: <UserSignout setOpen={dialog.setOpen} />,
+    favorite: null,
   };
 
   return (
@@ -38,7 +34,7 @@ export const UserProfile = () => {
               Log out
             </Dialog.Trigger>
           </div>
-          <UserNoticesTab dialog={dialog} />
+          <UserNoticesTab setDialogState={dialog.setDialogState} />
         </NoticeDialogWrap>
       </div>
     </section>

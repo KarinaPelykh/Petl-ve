@@ -1,3 +1,4 @@
+import { getFriends } from "../shared/api/services";
 import { Heading } from "../shared/ui/Heading";
 import { PartnerList } from "../widget/partnerlist/PartnerList";
 import { useEffect, useState } from "react";
@@ -6,15 +7,15 @@ export const OurFriends = () => {
   const [friends, setFriends] = useState([]);
 
   useEffect(() => {
-    const getFriends = async () => {
+    const fetchFriends = async () => {
       try {
         const res = await getFriends();
-        setFriends(res?.data);
+        setFriends(res);
       } catch (error) {
         console.log(error);
       }
     };
-    getFriends();
+    fetchFriends();
   }, []);
 
   return (

@@ -10,14 +10,17 @@ import {
 import { notices } from "../../../shared/api/redux/notices/selectors";
 import { favorite } from "../../../shared/api/redux/user/selectors";
 import { useAppSelector } from "../../../shared/hooks/reduxHooks";
+import type { DialogMode } from "../../dialog-content/hook/useManageDialog";
 
 import { EmptyStateNotices } from "./EmptyStateNotices";
 
 type FavoriteNoticesListProps = {
-  dialog: { setDialogState: (val: { mode: string; id: string }) => void };
+  setDialogState: (val: { mode: DialogMode; id: string }) => void;
 };
 
-export const FavoriteNoticesList = ({ dialog }: FavoriteNoticesListProps) => {
+export const FavoriteNoticesList = ({
+  setDialogState,
+}: FavoriteNoticesListProps) => {
   const favoriteNotices = useAppSelector(favorite);
 
   const allNotices = useAppSelector(notices);
@@ -33,7 +36,7 @@ export const FavoriteNoticesList = ({ dialog }: FavoriteNoticesListProps) => {
           {filteredData?.map((item) => (
             <PetCard
               key={item._id}
-              notice={item}
+              data={item}
               className="desktop-l:w-[320px] desktop-l:p-3.5! desktop-l:pb-6!"
             >
               <PetImage imgClassName="desktop-l:w-full" />
@@ -41,7 +44,7 @@ export const FavoriteNoticesList = ({ dialog }: FavoriteNoticesListProps) => {
               <PetInfoTable tableClassName="mb-3.5" />
               <PetDescription />
               <PetPrice className="mb-0!" />
-              <PetControl setDialogState={dialog.setDialogState} />
+              <PetControl setDialogState={setDialogState} />
             </PetCard>
           ))}
         </ul>

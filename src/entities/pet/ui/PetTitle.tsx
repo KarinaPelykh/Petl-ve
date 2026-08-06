@@ -15,7 +15,7 @@ export const PetTitle = ({
   className,
   titleClassName,
 }: PetTitleProps) => {
-  const { notice } = usePetContext();
+  const { data } = usePetContext();
 
   return (
     <div
@@ -28,7 +28,7 @@ export const PetTitle = ({
         as="h3"
         className={clsx("text-m tablet-l:text-xl", titleClassName)}
       >
-        {notice.title}
+        {data.title}
       </Heading>
 
       {children || (
@@ -39,7 +39,7 @@ export const PetTitle = ({
           )}
         >
           <Icon name="star" className="fill-yellow mr-1 size-4" />
-          <span>{notice.popularity}</span>
+          <span>{data.popularity}</span>
         </div>
       )}
     </div>

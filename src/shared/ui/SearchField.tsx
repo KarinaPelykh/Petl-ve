@@ -4,7 +4,7 @@ type SearchFieldProps = {
   field: "search";
   className?: string;
   value?: string;
-  onChange?: (val: string) => void;
+  onChange?: (val?: string) => void;
 };
 
 export const SearchField = ({
@@ -16,9 +16,10 @@ export const SearchField = ({
 }: SearchFieldProps) => {
   return (
     <Input
+      {...props}
       value={value}
       onChange={(e) => onChange?.(e.target.value)}
-      {...props}
+
       placeholder={field}
       className={className}
     />

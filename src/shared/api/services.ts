@@ -1,5 +1,25 @@
-import { instance } from "./axios";
+import axios from "axios";
 
+type NewsProps = {
+  page: number;
+  search?: string;
+};
+
+export const instance = axios.create({
+  baseURL: "https://petlove.b.goit.study/api/",
+});
+
+//auth
+export const setToken = (token: string) => {
+  instance.defaults.headers.common.Authorization = `Bearer ${token}`;
+};
+
+export const clearToken = () => {
+  instance.defaults.headers.common.Authorization = "";
+};
+//aut
+
+// notices
 export const getNotice = async (id: string) => {
   const response = await instance.get(`notices/${id}`);
 
@@ -29,8 +49,16 @@ export const getLocations = async () => {
 
   return response.data;
 };
+// notices
+
 // Friends
 export const getFriends = async () => {
   const response = await instance.get("friends/");
+  return response.data;
+};
+// news
+export const getNews = async ({ page = 1, search = "" }: NewsProps) => {
+  const response = await instance.get(`news?page=${page}&keyword=${search}`);
+
   return response.data;
 };

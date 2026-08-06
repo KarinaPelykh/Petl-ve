@@ -1,32 +1,19 @@
 import type { ReactNode } from "react";
 import { PetCardContext } from "../api/usePetContex";
 import clsx from "clsx";
-
-export type Notice = {
-  _id: string;
-  name: string;
-  imgURL: string;
-  title: string;
-  popularity: number;
-  comment: string;
-  birthday: string;
-  sex: string;
-  species: string;
-  category: string;
-  price?: string;
-};
+import type { Notice, Pet } from "../../../shared/api/redux/user/slice";
 
 type PetCardProps = {
-  notice: Notice;
+  data: Notice | Pet;
   children: ReactNode;
   className: string;
 };
 
-export const PetCard = ({ notice, children, className }: PetCardProps) => {
+export const PetCard = ({ data, children, className }: PetCardProps) => {
   return (
     <PetCardContext.Provider
       value={{
-        notice,
+        data,
       }}
     >
       <article

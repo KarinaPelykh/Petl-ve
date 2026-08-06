@@ -1,12 +1,24 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { clearToken, instance, setToken } from "../../axios";
+import { clearToken, instance, setToken } from "../../services";
 import type { RootState } from "../../../../app/store/store";
 import type { Signin } from "../../../../feature/login/model/contract";
 import type { Signup } from "../../../../feature/register/model/contract";
+import type { Notice, Pet } from "./slice";
 
 type UserSignup = Omit<Signup, "confirmPassword">;
 
-type UserRefreshResponse = UserSignup & { token: string };
+type UserRefreshResponse = {
+  name: string;
+  email: string;
+  avatar: string;
+  phone: string;
+  noticesViewed: [];
+  pets: Pet[];
+  noticesFavorites: Notice[];
+  token: string;
+  isLoggedIn: false;
+  isRefresh: false;
+};
 
 type AsyncThunkConfig = { state: RootState; rejectWithValue: unknown };
 
@@ -110,10 +122,13 @@ export const addPet = createAsyncThunk(
 
 export const deletePet = createAsyncThunk(
   "users/deletePet",
-  async (id, thunkAPI) => {
+  async (id: string, thunkAPI) => {
     try {
-      await instance.delete(`/users/current/pets/remove/${id}`);
-      return id;
+      const response = await instance.delete(
+        `/users/current/pets/remove/${id}`,
+      );
+
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -136,9 +151,9 @@ export const deleteFavorite = createAsyncThunk(
   "notices/deleteFav",
   async (id: string, thunkAPI) => {
     try {
-      await instance.delete(`notices/favorites/remove/${id}`);
+      const response = await instance.delete(`notices/favorites/remove/${id}`);
 
-      return id;
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }

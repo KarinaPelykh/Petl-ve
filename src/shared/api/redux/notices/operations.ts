@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { instance } from "../../axios";
+import { instance } from "../../services";
 import type { Filter } from "../../../../feature/search-pet/types/select.type";
 
 type Params = Partial<Filter> & { limit?: number };

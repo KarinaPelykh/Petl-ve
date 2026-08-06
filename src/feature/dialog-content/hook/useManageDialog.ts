@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNoticeDetails } from "../api/useNoticeDetails";
 
 export type DialogMode = "details" | "favorite" | "edit" | "logout";
 
@@ -17,5 +18,6 @@ export const useManageDialog = () => {
 
   const [open, setOpen] = useState(false);
 
-  return { dialogState, setDialogState, open, setOpen };
+  const { cardData } = useNoticeDetails(dialogState.id);
+  return { dialogState, setDialogState, open, setOpen, cardData };
 };

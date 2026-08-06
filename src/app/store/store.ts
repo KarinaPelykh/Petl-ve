@@ -1,6 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { noticesReducer } from "../../shared/api/redux/notices/slice";
-import { newsReducer } from "../../shared/api/redux/news/slice";
 import { authReducer } from "../../shared/api/redux/user/slice";
 import storage from "redux-persist/lib/storage";
 import {
@@ -38,7 +37,6 @@ export const store = configureStore({
   reducer: {
     auth: persistedReducer,
     notices: noticesReducer,
-    news: newsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

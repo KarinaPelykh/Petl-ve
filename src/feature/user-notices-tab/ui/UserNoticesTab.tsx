@@ -2,12 +2,13 @@ import { Tabs } from "radix-ui";
 
 import { FavoriteNoticesList } from "./FavoriteNoticesList";
 import { ViewedNoticesList } from "./ViewedNoticesList";
+import type { DialogMode } from "../../dialog-content/hook/useManageDialog";
 
 type UserNoticesTabProps = {
-  dialog: { setDialogState: (val: { mode: string; id: string }) => void };
+  setDialogState: (val: { mode: DialogMode; id: string }) => void;
 };
 
-export const UserNoticesTab = ({ dialog }: UserNoticesTabProps) => {
+export const UserNoticesTab = ({ setDialogState }: UserNoticesTabProps) => {
   return (
     <Tabs.Root
       defaultValue="favorite"
@@ -28,10 +29,10 @@ export const UserNoticesTab = ({ dialog }: UserNoticesTabProps) => {
         </Tabs.Trigger>
       </Tabs.List>
       <Tabs.Content value="favorite">
-        <FavoriteNoticesList dialog={dialog} />
+        <FavoriteNoticesList setDialogState={setDialogState} />
       </Tabs.Content>
       <Tabs.Content value="viewed">
-        <ViewedNoticesList dialog={dialog} />
+        <ViewedNoticesList setDialogState={setDialogState} />
       </Tabs.Content>
     </Tabs.Root>
   );

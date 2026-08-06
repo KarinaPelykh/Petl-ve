@@ -3,9 +3,9 @@ import { Icon } from "../../../shared/ui/Icon";
 import { usePetContext } from "../api/usePetContex";
 
 export const PetPopularity = () => {
-  const { notice } = usePetContext();
+  const { data } = usePetContext();
 
-  const currentLIkes = Math.min(notice.popularity, 5000);
+  const currentLIkes = Math.min(data.popularity, 5000);
   const rawRating = (currentLIkes / 5000) * 5;
   const rating = Math.round(rawRating * 2) / 2;
 
@@ -24,7 +24,7 @@ export const PetPopularity = () => {
           />
         );
       })}
-      <span>{notice.popularity}</span>
+      <span>{data.popularity}</span>
     </div>
   );
 };
