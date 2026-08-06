@@ -19,10 +19,18 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { petSchema, type PetData } from "../model/contract";
 import { PetSpecies } from "./PetSpecies";
 import { PetBirthdayDate } from "./PetBirthDate";
-import { useManageAvatar } from "../../../shared/hooks/useManageAvatar";
+// import { useManageAvatar } from "../../../shared/hooks/useManageAvatar";
 import { useAppDispatch } from "../../../shared/hooks/reduxHooks";
 import { addPet } from "../../../shared/api/redux/user/operations";
 
+type SubmitData = {
+  title: string;
+  name: string;
+  imgURL: string | File;
+  species: string;
+  birthday: string;
+  sex: string;
+};
 const genderOption = [
   { label: "female", value: "female" },
   { label: "male", value: "male" },
@@ -46,9 +54,9 @@ export const AddPetForm = () => {
   });
 
   const dispatch = useAppDispatch();
-  useManageAvatar({ form });
+  // useManageAvatar({ form });
 
-  const submitForm = (data) => {
+  const submitForm = (data: SubmitData) => {
     try {
       dispatch(addPet(data)).unwrap();
       form.reset();
@@ -62,6 +70,8 @@ export const AddPetForm = () => {
       onSubmit={form.handleSubmit(
         ({ title, name, avatarUrl, avatarFile, species, birthday, sex }) => {
           const imgURL = avatarUrl || avatarFile;
+
+          if (!imgURL) return;
           const params = {
             title,
             name,

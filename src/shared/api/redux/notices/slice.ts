@@ -1,19 +1,7 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { getNotices } from "./operations";
 import type { Data } from "../../../../pages/News";
-
-export type Notice = {
-  _id: string;
-  name: string;
-  imgURL: string;
-  title: string;
-  popularity: number;
-  comment: string;
-  birthday: string;
-  sex: string;
-  species: string;
-  category: string;
-};
+import type { Notice } from "../types";
 
 type State = {
   notices: Data<Notice>;

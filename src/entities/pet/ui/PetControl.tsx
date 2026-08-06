@@ -2,11 +2,11 @@ import { Dialog } from "radix-ui";
 import { usePetContext } from "../api/usePetContex";
 import { Icon } from "../../../shared/ui/Icon";
 import { useAppSelector } from "../../../shared/hooks/reduxHooks";
-import type { DialogMode } from "../../../pages/FindPet";
 import { useFavorite } from "../../../feature/dialog-content/hook/useFavorite";
 import { useRemoveFavorite } from "../../../feature/dialog-content/hook/useRemoveFavorite";
 import clsx from "clsx";
 import { favorite } from "../../../shared/api/redux/user/selectors";
+import type { DialogMode } from "../../../feature/dialog-content/hook/useManageDialog";
 
 type PetControlProps = {
   setDialogState?: (val: { mode: DialogMode; id: string }) => void;

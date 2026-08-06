@@ -3,7 +3,7 @@ import { clearToken, instance, setToken } from "../../services";
 import type { RootState } from "../../../../app/store/store";
 import type { Signin } from "../../../../feature/login/model/contract";
 import type { Signup } from "../../../../feature/register/model/contract";
-import type { Notice, Pet } from "./slice";
+import type { Notice, Pet } from "../types";
 
 type UserSignup = Omit<Signup, "confirmPassword">;
 
@@ -32,7 +32,7 @@ type EditUserParams = Partial<{
 type AddPetParams = {
   title: string;
   name: string;
-  avatar: string | File;
+  imgURL: string | File;
   species: string;
   birthday: string;
   sex: string;

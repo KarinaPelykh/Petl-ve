@@ -13,7 +13,7 @@ export const PetBirthdayDate = () => {
       render={({ field }) => (
         <DatePicker
           selected={field.value}
-          onChange={(date) => {
+          onChange={(date: Date | null) => {
             const formattedDate = date ? format(date, "yyyy-MM-dd") : null;
             field.onChange(formattedDate);
           }}

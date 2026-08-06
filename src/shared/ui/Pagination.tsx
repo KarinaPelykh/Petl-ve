@@ -2,12 +2,12 @@ import ReactPaginate from "react-paginate";
 import { Button } from "./Button";
 import { Icon } from "./Icon";
 import clsx from "clsx";
-import type { Notice } from "../api/redux/notices/slice";
 import type {
   Filter,
   FilterKey,
 } from "../../feature/search-pet/types/select.type";
 import type { New, Data } from "../../pages/News";
+import type { Notice } from "../api/redux/types";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const ReactPaginateComponent = (ReactPaginate as any).default || ReactPaginate;

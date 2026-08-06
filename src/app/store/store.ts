@@ -24,13 +24,6 @@ const persistConfig = {
   whitelist: ["token"],
 };
 
-// const rootReducer = combineReducers({
-//   auth: authReducer,
-//   notices: noticesReducer,
-//   friends: friendsReducer,
-//   news: newsReducer,
-// });
-
 const persistedReducer = persistReducer(persistConfig, authReducer);
 
 export const store = configureStore({

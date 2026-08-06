@@ -16,7 +16,7 @@ import { useFavorite } from "../hook/useFavorite";
 import { useRemoveFavorite } from "../hook/useRemoveFavorite";
 import { Modal } from "../../../shared/ui/Modal";
 import { favorite } from "../../../shared/api/redux/user/selectors";
-import type { Notice } from "../../../shared/api/redux/user/slice";
+import type { Notice } from "../../../shared/api/redux/types";
 
 type NoticeDialogProps = {
   data?: Notice | null;
