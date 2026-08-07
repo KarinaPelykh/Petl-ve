@@ -3,12 +3,14 @@ export type Notice = {
   name: string;
   imgURL: string;
   title: string;
-  popularity?: number;
+  popularity: number;
   comment: string;
   birthday: string;
   sex: string;
   species: string;
-  category?: string;
+  category: string;
+
+  price?: number;
 };
 
 export type Pet = {

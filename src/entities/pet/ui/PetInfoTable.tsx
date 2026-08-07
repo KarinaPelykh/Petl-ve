@@ -42,7 +42,9 @@ export const PetInfoTable = ({
 
       <div className={clsx("text-xs", categoryClassName)}>
         <div className="text-black/50"> Category</div>
-        <div className="text-s capitalize">{data.category}</div>
+        {"category" in data && (
+          <div className="text-s capitalize">{data.category}</div>
+        )}
       </div>
     </div>
   );

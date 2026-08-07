@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { PetCardContext } from "../api/usePetContex";
 import clsx from "clsx";
-import type { Notice, Pet } from "../../../shared/api/redux/user/slice";
+import type { Notice, Pet } from "../../../shared/api/redux/types";
 
 type PetCardProps = {
   data: Notice | Pet;

@@ -39,7 +39,7 @@ export const PetTitle = ({
           )}
         >
           <Icon name="star" className="fill-yellow mr-1 size-4" />
-          <span>{data.popularity}</span>
+          <span>{"popularity" in data && data.popularity}</span>
         </div>
       )}
     </div>

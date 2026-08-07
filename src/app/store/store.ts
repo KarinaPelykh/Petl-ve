@@ -13,9 +13,16 @@ import {
   REGISTER,
 } from "redux-persist";
 
+type StorageModule = {
+  __esModule?: boolean;
+  default: Storage;
+};
+
 const str =
-  typeof storage === "object" && storage !== null && storage.__esModule
-    ? storage.default
+  typeof storage === "object" &&
+  storage !== null &&
+  (storage as unknown as StorageModule).__esModule
+    ? (storage as unknown as StorageModule).default
     : storage;
 
 const persistConfig = {
