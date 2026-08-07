@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import type { Notice } from "../../../entities/pet/ui/PetCard";
 import { getNotice } from "../../../shared/api/services";
+import type { Notice } from "../../../shared/api/redux/types";
 
 export const useNoticeDetails = (id: string) => {
   const [cardData, setCardData] = useState<Notice | null>(null);

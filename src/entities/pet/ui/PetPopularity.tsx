@@ -4,8 +4,9 @@ import { usePetContext } from "../api/usePetContex";
 
 export const PetPopularity = () => {
   const { data } = usePetContext();
+  const popularity = "popularity" in data ? data.popularity : 0;
 
-  const currentLIkes = Math.min(data.popularity, 5000);
+  const currentLIkes = Math.min(popularity, 5000);
   const rawRating = (currentLIkes / 5000) * 5;
   const rating = Math.round(rawRating * 2) / 2;
 
@@ -24,7 +25,7 @@ export const PetPopularity = () => {
           />
         );
       })}
-      <span>{data.popularity}</span>
+      <span>{popularity}</span>
     </div>
   );
 };
