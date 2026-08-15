@@ -19,7 +19,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { petSchema, type PetData } from "../model/contract";
 import { PetSpecies } from "./PetSpecies";
 import { PetBirthdayDate } from "./PetBirthDate";
-// import { useManageAvatar } from "../../../shared/hooks/useManageAvatar";
 import { useAppDispatch } from "../../../shared/hooks/reduxHooks";
 import { addPet } from "../../../shared/api/redux/user/operations";
 
@@ -54,7 +53,6 @@ export const AddPetForm = () => {
   });
 
   const dispatch = useAppDispatch();
-  // useManageAvatar({ form });
 
   const submitForm = (data: SubmitData) => {
     try {
@@ -85,13 +83,12 @@ export const AddPetForm = () => {
         },
       )}
       form={form}
-      className="desktop-l:px-20 desktop-l:py-15 my-0! h-auto w-148"
+      className="desktop-l:px-20 desktop-l:py-15 tablet-l:px-[136px] desktop-l:w-148 my-0! h-auto"
     >
-      <Heading className="desktop-l:text-4xl desktop-l:mb-10 mb-5" as="h3">
+      <Heading className="desktop-l:text-4xl desktop-l:mb-10 mb-6" as="h3">
         Add my pet /
         <span className="text-m text-black/40">Personal details</span>
       </Heading>
-
       <Controller
         name="sex"
         control={form.control}
@@ -109,8 +106,11 @@ export const AddPetForm = () => {
       />
 
       <div className="tablet-l:mb-5 mb-7 flex flex-col items-center justify-center gap-2">
-        <div className="bg-cream desktop-l:size-21.5 desktop-l:mb-3 flex items-center justify-center rounded-[50%]">
-          <Icon name="footprint" className="tablet-l:size-11 size-23.5" />
+        <div className="bg-cream desktop-l:size-21.5 desktop-l:mb-3 flex size-17 items-center justify-center rounded-[50%]">
+          <Icon
+            name="footprint"
+            className="tablet-l:size-11 desktop-l:size-23.5 size-8.5"
+          />
         </div>
 
         <div className="flex w-full items-center gap-2">

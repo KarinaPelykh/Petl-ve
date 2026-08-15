@@ -28,7 +28,7 @@ export const PetBirthdayDate = () => {
           }
           toggleCalendarOnIconClick
           dateFormat="dd.MM.yyyy"
-          className="rounded-ms h-10.5 w-52.5! items-center justify-between border border-black/15 p-3 font-medium text-black shadow-lg outline-none placeholder:text-black/50"
+          className="rounded-ms tablet-l:w-52.5! h-10.5 w-1/2 items-center justify-between border border-black/15 p-3 font-medium text-black shadow-lg outline-none placeholder:text-black/50"
         />
       )}
     />

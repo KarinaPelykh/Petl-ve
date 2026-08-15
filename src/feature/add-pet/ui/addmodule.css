@@ -6,6 +6,7 @@
 .react-datepicker__input-container input {
   padding: 16px !important;
   font-size: 16px !important;
+  width: 100% !important;
 }
 
 .react-datepicker__calendar-icon {

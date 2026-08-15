@@ -32,7 +32,7 @@ export const RadioGroupBtn = ({
 }: RadioGroupBtnProps) => {
   return (
     <RadioGroup.Root
-      className="flex h-10.5 w-fit flex-wrap gap-2"
+      className="desktop-l:h-10.5 flex w-fit flex-wrap gap-2"
       value={filterValue === null ? "" : String(filterValue)}
       onValueChange={(val) => onChange?.(val === "true" || val)}
     >
@@ -44,11 +44,13 @@ export const RadioGroupBtn = ({
             styles[label],
 
             filterValue === value && activeClassName,
-            "text-ms desktop-l:text-m rounded-ms desktop-l:p-3.5 flex w-fit cursor-pointer items-center border border-transparent bg-white p-3 font-normal text-black transition-all duration-200 hover:shadow-lg",
+            "text-ms desktop-l:text-m rounded-ms desktop-l:p-3.5 tablet-l:p-3 flex w-fit cursor-pointer items-center border border-transparent bg-white p-1.5 font-normal text-black transition-all duration-200 hover:shadow-lg",
           )}
         >
           {variant === "text" && label}
-          {variant === "icon" && <Icon name={label} className="size-6" />}
+          {variant === "icon" && (
+            <Icon name={label} className="desktotablet-l:l:size-6 size-5" />
+          )}
           {filterValue === value && (
             <Icon
               name="close"

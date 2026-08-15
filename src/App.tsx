@@ -25,7 +25,7 @@ function App() {
   }, [dispatch]);
 
   return isRefreshed ? (
-    <p>Loader</p>
+    <p>loader</p>
   ) : (
     <Routes>
       <Route path="/" element={<Layout />}>

@@ -63,7 +63,7 @@ export const EditUserForm = ({ setOpen }: EditUserFormProps) => {
               alt="avatar"
               width={80}
               height={80}
-              className="block size-full rounded-[50%] object-cover"
+              className="block size-[80px] rounded-[50%] object-cover"
             />
           ) : (
             <Icon
