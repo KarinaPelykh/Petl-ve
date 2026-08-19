@@ -5,6 +5,13 @@ import { Heading } from "../shared/ui/Heading";
 
 import { NewsListContent } from "../widget/news-list/NewsListContent";
 import { getNews } from "../shared/api/services";
+import { useForm } from "react-hook-form";
+import {
+  NewSchema,
+  type NewType,
+} from "../feature/search-news/model/contarcts";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { toastNotification } from "../shared/api/lib/toast";
 
 export type New = {
   _id: string;
@@ -26,12 +33,18 @@ export type Data<T> = {
 export const News = () => {
   const [news, setNews] = useState<Data<New> | null>(null);
 
+  const form = useForm<NewType>({
+    defaultValues: { search: "" },
+    resolver: zodResolver(NewSchema),
+  });
+
   useEffect(() => {
     async function fetchNews() {
       try {
         const result = await getNews({ page: 1 });
         setNews(result);
       } catch (error) {
+        toastNotification("error", "Sorry, something went wrong, reload page");
         console.log(error);
       }
     }
@@ -39,15 +52,27 @@ export const News = () => {
   }, []);
 
   const onSearch = async (search: string) => {
-    if (!news?.page) return;
+    if (!search || !news) return;
+
     try {
-      const res = await getNews({ page: news?.page, search });
+      const res = await getNews({ page: news.page, search });
       setNews(res);
     } catch (error) {
       console.log(error);
     }
   };
 
+  const handleReset = async () => {
+    form.reset();
+    try {
+      const res = await getNews({ page: 1 });
+      setNews(res);
+    } catch (error) {
+      console.log(error);
+
+      toastNotification("error", "Sorry, something went wrong, reload page");
+    }
+  };
   return (
     <section className="pt-15 pb-11">
       <div className="container mx-auto!">
@@ -55,7 +80,7 @@ export const News = () => {
           <Heading as="h1" variant="first" className="tablet-l:mb-0 mb-5">
             News
           </Heading>
-          <SearchNews onSearch={onSearch} />
+          <SearchNews onSearch={onSearch} form={form} reset={handleReset} />
         </div>
         <NewsListContent news={news} setNews={setNews} />
       </div>

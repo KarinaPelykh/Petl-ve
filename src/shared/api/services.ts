@@ -57,7 +57,7 @@ export const getFriends = async () => {
   return response.data;
 };
 // news
-export const getNews = async ({ page = 1, search = "" }: NewsProps) => {
+export const getNews = async ({ page, search = "" }: NewsProps) => {
   const response = await instance.get(`news?page=${page}&keyword=${search}`);
 
   return response.data;

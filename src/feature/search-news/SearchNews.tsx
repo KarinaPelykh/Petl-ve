@@ -3,14 +3,16 @@ import { SearchField } from "../../shared/ui/SearchField";
 import { Button } from "../../shared/ui/Button";
 import { Icon } from "../../shared/ui/Icon";
 
-import { useForm } from "react-hook-form";
 import clsx from "clsx";
+import type { UseFormReturn } from "react-hook-form";
 
-type SearchNewsProps = { onSearch: (val: string) => void };
+type SearchNewsProps = {
+  onSearch: (val: string) => void;
+  reset: () => void;
+  form: UseFormReturn<{ search: string }>;
+};
 
-export const SearchNews = ({ onSearch }: SearchNewsProps) => {
-  const form = useForm();
-  // eslint-disable-next-line react-hooks/incompatible-library
+export const SearchNews = ({ onSearch, form, reset }: SearchNewsProps) => {
   const isFieldBlank = form.watch("search");
   const searchField = form.register("search");
 
@@ -24,6 +26,7 @@ export const SearchNews = ({ onSearch }: SearchNewsProps) => {
         <ItemLabel>
           <SearchField
             field="search"
+            value={isFieldBlank}
             onChange={(value) =>
               searchField.onChange({
                 target: {
@@ -48,8 +51,8 @@ export const SearchNews = ({ onSearch }: SearchNewsProps) => {
           {isFieldBlank && (
             <Button
               type="button"
-              className="absolute top-0 right-0"
-              onClick={() => form.reset()}
+              className="absolute top-0 right-0 z-50"
+              onClick={() => reset()}
             >
               <Icon
                 name="close"

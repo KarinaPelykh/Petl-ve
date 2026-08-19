@@ -8,6 +8,7 @@ import type {
 } from "../../feature/search-pet/types/select.type";
 import type { New, Data } from "../../pages/News";
 import type { Notice } from "../api/redux/types";
+import { useEffect, useState } from "react";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const ReactPaginateComponent = (ReactPaginate as any).default || ReactPaginate;
@@ -24,6 +25,19 @@ type PaginationProps = {
 };
 
 export function Pagination({ method, data, onPageChange }: PaginationProps) {
+  const [windowSize, setWindowSize] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleWindowSize = () => {
+      setWindowSize(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleWindowSize);
+    return () => window.removeEventListener("resize", handleWindowSize);
+  }, []);
+
+  const pageRange = windowSize > 768 ? 2 : 1;
+
   const isFirstPage = method?.filter.page === 1;
 
   const isLastPage = data.page === data.totalPages;
@@ -65,7 +79,7 @@ export function Pagination({ method, data, onPageChange }: PaginationProps) {
         breakLabel="..."
         nextLabel={<Icon name="slider-1" className="size-11" />}
         onPageChange={handlePageClick}
-        pageRangeDisplayed={2}
+        pageRangeDisplayed={pageRange}
         marginPagesDisplayed={0}
         forcePage={data.page - 1}
         pageCount={data.totalPages}

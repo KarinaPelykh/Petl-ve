@@ -12,7 +12,7 @@ export const NewsCard = ({ item }: NewsCardProps) => {
 
   return (
     <li className="desktop-l:w-90.25 tablet-l:h-119 shadow-base flex flex-col rounded-xs">
-      <div className="tablet-l:mb-0! desktop-l:h[226px] tablet-l:h-56.5 mb-5 h-47.5 w-fit overflow-hidden rounded-xs">
+      <div className="tablet-l:mb-0! desktop-l:h[226px] tablet-l:h-56.5 mb-5 h-47.5 w-full overflow-hidden rounded-xs">
         <img
           alt="news"
           src={item.imgUrl}
