@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router";
 
 const nav = [
   { link: "news", name: "News" },
-  { link: "findPet", name: "Find pet" },
+  { link: "notices", name: "Find pet" },
   { link: "friends", name: "Our friends" },
 ];
 
