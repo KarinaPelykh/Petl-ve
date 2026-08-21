@@ -1,4 +1,4 @@
-import { Controller, useForm, type Resolver } from "react-hook-form";
+import { useForm, type Resolver } from "react-hook-form";
 
 import "./addmodule.css";
 import "react-datepicker/dist/react-datepicker.css";
@@ -11,7 +11,7 @@ import {
   FormField,
 } from "../../../shared/ui/Form";
 import { Heading } from "../../../shared/ui/Heading";
-import { RadioGroupBtn } from "../../../shared/ui/RadioGroupBtn";
+// import { RadioGroupBtn } from "../../../shared/ui/RadioGroupBtn";
 import { Icon } from "../../../shared/ui/Icon";
 import { Button } from "../../../shared/ui/Button";
 
@@ -30,11 +30,11 @@ type SubmitData = {
   birthday: string;
   sex: string;
 };
-const genderOption = [
-  { label: "female", value: "female" },
-  { label: "male", value: "male" },
-  { label: "gender", value: "gender" },
-];
+// const genderOption = [
+//   { label: "female", value: "female" },
+//   { label: "male", value: "male" },
+//   { label: "gender", value: "gender" },
+// ];
 
 const defaultValues = {
   title: "",
@@ -83,13 +83,13 @@ export const AddPetForm = () => {
         },
       )}
       form={form}
-      className="desktop-l:px-20 desktop-l:py-15 tablet-l:px-[136px] desktop-l:w-148 my-0! h-auto"
+      className="desktop-l:px-20 desktop-l:py-15 tablet-l:px-34 desktop-l:w-148 my-0! h-auto"
     >
       <Heading className="desktop-l:text-4xl desktop-l:mb-10 mb-6" as="h3">
         Add my pet /
         <span className="text-m text-black/40">Personal details</span>
       </Heading>
-      <Controller
+      {/* <Controller
         name="sex"
         control={form.control}
         rules={{ required: true }}
@@ -103,7 +103,7 @@ export const AddPetForm = () => {
             />
           );
         }}
-      />
+      /> */}
 
       <div className="tablet-l:mb-5 mb-7 flex flex-col items-center justify-center gap-2">
         <div className="bg-cream desktop-l:size-21.5 desktop-l:mb-3 flex size-17 items-center justify-center rounded-[50%]">
