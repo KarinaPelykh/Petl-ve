@@ -19,5 +19,6 @@ export const useManageDialog = () => {
   const [open, setOpen] = useState(false);
 
   const { cardData } = useNoticeDetails(dialogState.id);
+
   return { dialogState, setDialogState, open, setOpen, cardData };
 };

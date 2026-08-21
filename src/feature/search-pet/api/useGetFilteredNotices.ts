@@ -7,6 +7,6 @@ export const useGetFilteredNotices = (filter: Filter) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getNotices({ ...filter, limit: 56 }));
+    dispatch(getNotices({ ...filter }));
   }, [filter, dispatch]);
 };

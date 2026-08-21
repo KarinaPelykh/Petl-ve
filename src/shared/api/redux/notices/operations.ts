@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { instance } from "../../services";
 import type { Filter } from "../../../../feature/search-pet/types/select.type";
 
-type Params = Partial<Filter> & { limit?: number };
+type Params = Partial<Filter>;
 
 export const getNotices = createAsyncThunk(
   "notices/getAll",

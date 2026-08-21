@@ -21,13 +21,13 @@ export const PetSearchFilter = ({ method }: PetSearchFilterProps) => {
   return (
     <Form className="bg-cream! tablet-l:py-10 tablet-l:px-8 desktop-l:p-10 desktop-l:w-304 mb-10 p-5">
       <div className="tablet-l:flex-row tablet-l:flex-wrap flex w-full flex-col gap-3">
-        <FormField name="search" className="relative mb-0!">
-          <ItemLabel>
+        <FormField name="search" className="mb-0!">
+          <ItemLabel className="relative">
             <SearchField
-              field="search"
               value={method?.filter.keyword}
-              onChange={(val) => method?.onChangeInput("keyword", val)}
-              className="tablet-l:w-66.25 desktop-l:w-66.25 outline-yellow border-0 bg-white"
+              // TO-DO: IT should be done without checking whether it has value
+              onChange={(val) => method?.onChangeInput("keyword", val ?? "")}
+              className="tablet-l:w-66.25 desktop-l:w-66.25 outline-yellow border-none bg-white"
             />
             <Button type="button" className="absolute top-0 right-0">
               <Icon
@@ -46,7 +46,7 @@ export const PetSearchFilter = ({ method }: PetSearchFilterProps) => {
       </div>
       <div className="my-5 h-px w-full bg-black/10" />
 
-      <div className="flex flex-wrap justify-start gap-2.5">
+      <div className="flex flex-wrap gap-2.5">
         <RadioGroupBtn
           filterValue={method.filter.byPrice}
           onChange={(val) => method.onChangeInput("byPrice", val)}
@@ -54,8 +54,6 @@ export const PetSearchFilter = ({ method }: PetSearchFilterProps) => {
           reset={() => {
             method?.setFilter((prev) => ({ ...prev, byPrice: null }));
           }}
-          activeClassName="bg-yellow text-white"
-          variant="text"
         />
         <RadioGroupBtn
           onChange={(val) => method.onChangeInput("byPopularity", val)}
@@ -65,8 +63,6 @@ export const PetSearchFilter = ({ method }: PetSearchFilterProps) => {
           reset={() => {
             method?.setFilter((prev) => ({ ...prev, byPopularity: null }));
           }}
-          activeClassName="bg-yellow text-white"
-          variant="text"
         />
       </div>
     </Form>

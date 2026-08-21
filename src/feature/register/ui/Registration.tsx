@@ -48,7 +48,7 @@ export const RegistrationForm = () => {
       onSubmit={handleSubmit(onSubmit)}
       className="tablet-l:rounded-m tablet-l:py-7.5 tablet-l:px-35 desktop-l:px-21 desktop-l:py-19.25 desktop-l:w-1/2 py-6.75"
     >
-      <Heading className="tablet-l:text-5xl tablet-l:mb-4" as="h1">
+      <Heading className="tablet-l:text-5xl mb-4" as="h1">
         Register
       </Heading>
       <p className="text-ms tablet-l:text-xl tablet-l:mb-8 desktop-l:mb-8 mb-5">
@@ -84,7 +84,7 @@ export const RegistrationForm = () => {
       >
         Registration
       </Button>
-      <p className="text-s tablet-l:text-ms text-center text-black/50">
+      <p className="text-s tablet-l:text-ms flex gap-2.5 text-center text-black/50">
         Already have an account?
         <Link className="text-yellow cursor-pointer underline" to="/login">
           Login

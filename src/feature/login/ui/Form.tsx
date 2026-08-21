@@ -46,7 +46,7 @@ export const LoginForm = () => {
       form={form}
       className="tablet-l:rounded-m tablet-l:py-17.75 tablet-l:px-35 desktop-l:px-21 desktop-l:py-29.5 desktop-l:w-1/2 py-15"
     >
-      <Heading className="tablet-l:text-5xl tablet-l:mb-4" as="h1">
+      <Heading className="tablet-l:text-5xl mb-4" as="h1">
         Log in
       </Heading>
       <p className="text-ms tablet-l:text-m desktop-l:mb-8 mb-6">
@@ -69,7 +69,7 @@ export const LoginForm = () => {
       >
         Log In
       </Button>
-      <p className="text-s tablet-l:text-ms text-center text-black/50">
+      <p className="text-s tablet-l:text-ms flex gap-2.5 text-center text-black/50">
         Don’t have an account?
         <Link className="text-yellow cursor-pointer underline" to="/register">
           Register

@@ -1,7 +1,7 @@
 import { Input } from "./Form";
 
 type SearchFieldProps = {
-  field: "search";
+  field?: "search";
   className?: string;
   value?: string;
   onChange?: (val?: string) => void;
@@ -9,7 +9,7 @@ type SearchFieldProps = {
 
 export const SearchField = ({
   className,
-  field,
+  field = "search",
   value,
   onChange,
   ...props
