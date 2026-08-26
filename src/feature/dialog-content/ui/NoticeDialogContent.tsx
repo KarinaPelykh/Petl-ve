@@ -74,9 +74,13 @@ export const NoticeDialogContent = ({ data }: NoticeDialogProps) => {
           />
         </Button>
 
-        <Button variant="secondary" className="w-full" type="button">
+        <a
+          className="rounded-ms group bg-cream text-yellow w-full cursor-pointer p-3 text-center transition-all duration-500 ease-out"
+          href={`tel:${data?.user?.phone}`}
+        >
+          {" "}
           Contact
-        </Button>
+        </a>
       </div>
     </Modal>
   );

@@ -12,8 +12,16 @@
 //   { label: "Unpopular", value: false },
 // ];
 
-type Data = { [k: string]: boolean };
+// type Data = { [k: string]: boolean };
 
-export const priceOption: Data[] = [{ cheap: false }, { expensive: true }];
+// export const priceOption: Data[] = [{ cheap: false }, { expensive: true }];
 
-export const popularOption: Data[] = [{ popular: true }, { unpopular: false }];
+// export const popularOption: Data[] = [{ popular: true }, { unpopular: false }];
+
+export const options = [
+  { filter: "byPrice", label: "cheap", value: false },
+  { filter: "byPrice", label: "expensive", value: true },
+
+  { filter: "byPopularity", label: "popular", value: true },
+  { filter: "byPopularity", label: "unpopular", value: false },
+];

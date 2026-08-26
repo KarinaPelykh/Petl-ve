@@ -7,10 +7,7 @@ import { Button } from "../../shared/ui/Button";
 import { Icon } from "../../shared/ui/Icon";
 
 import type { PetFilterControl } from "../../feature/search-pet/hook/usePetsFilter";
-import {
-  popularOption,
-  priceOption,
-} from "../../feature/search-pet/constants/searchPet.constants";
+import { options } from "../../feature/search-pet/constants/searchPet.constants";
 import { RadioGroupBtn } from "../../shared/ui/RadioGroupBtn";
 
 type PetSearchFilterProps = {
@@ -46,8 +43,17 @@ export const PetSearchFilter = ({ method }: PetSearchFilterProps) => {
       </div>
       <div className="my-5 h-px w-full bg-black/10" />
 
-      <div className="flex flex-wrap gap-2.5">
+      <div className="size-full">
+        {/* TO-DO: It's needed to simplify logic. Moreover make it responsive! */}
         <RadioGroupBtn
+          filterValue={method.filter.byPrice}
+          onChange={(val) => method.onChangeInput("byPrice", val)}
+          data={options}
+          reset={() => {
+            method?.setFilter((prev) => ({ ...prev, byPrice: null }));
+          }}
+        />
+        {/* <RadioGroupBtn
           filterValue={method.filter.byPrice}
           onChange={(val) => method.onChangeInput("byPrice", val)}
           data={priceOption}
@@ -63,7 +69,7 @@ export const PetSearchFilter = ({ method }: PetSearchFilterProps) => {
           reset={() => {
             method?.setFilter((prev) => ({ ...prev, byPopularity: null }));
           }}
-        />
+        /> */}
       </div>
     </Form>
   );

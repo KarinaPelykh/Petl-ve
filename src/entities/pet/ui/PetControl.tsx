@@ -24,6 +24,7 @@ export const PetControl = ({
   const idFavoriteNotice = favoriteNotices.find((item) => item === data._id);
 
   const add = useFavorite();
+
   const remove = useRemoveFavorite();
 
   return (
@@ -32,8 +33,7 @@ export const PetControl = ({
         onClick={() => {
           setDialogState?.({ mode: "details", id: data._id });
         }}
-        type="button"
-        className="bg-yellow rounded-ms text-ms w-full cursor-pointer p-3.5 font-normal text-white"
+        className="bg-yellow rounded-ms text-ms w-full cursor-pointer p-3.5 text-white"
       >
         Learn more
       </Dialog.Trigger>
@@ -43,7 +43,6 @@ export const PetControl = ({
           // eslint-disable-next-line @typescript-eslint/no-unused-expressions
           idFavoriteNotice ? remove(data._id) : add(data._id);
         }}
-        type="button"
         className={clsx(
           "bg-cream size-11.5 cursor-pointer rounded-[50%] p-3.5 text-white",
           btnClassName,
